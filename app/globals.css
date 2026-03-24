@@ -1,0 +1,127 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  /* Pretendard: loaded in app/layout.js via CDN (pretendard.css) */
+  --font-sans:
+    "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+    "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", sans-serif;
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+/* prose 이미지 캡션: 다크 모드에서 가독성 */
+@media (prefers-color-scheme: dark) {
+  .prose.prose-lg figure figcaption {
+    color: #9ca3af;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .md-content p,
+  .md-content ul,
+  .md-content ol {
+    color: #d1d5db;
+  }
+
+  .md-content h1,
+  .md-content h2 {
+    color: #f9fafb;
+  }
+
+  .md-content img {
+    border-color: #374151;
+    background: #1f2937;
+  }
+
+  .md-content pre {
+    background: #1f2937;
+    border-color: #374151;
+  }
+
+  .md-content blockquote {
+    color: #e5e7eb;
+    border-left-color: #3b82f6;
+  }
+}
+
+/* Markdown rendering (ReactMarkdown) minimal styling */
+.md-content {
+  max-width: 100%;
+}
+
+.md-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem 0;
+  border-radius: 0.75rem;
+  border: 1px solid #e2e8f0; /* slate-200 */
+  background: #f8fafc; /* slate-50 */
+  padding: 0.25rem;
+}
+
+.md-content h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+  font-weight: 800;
+  margin: 1.25rem 0 0.75rem;
+}
+
+.md-content h2 {
+  font-size: 1.5rem;
+  line-height: 1.25;
+  font-weight: 750;
+  margin: 1.1rem 0 0.6rem;
+}
+
+.md-content p {
+  margin: 0.75rem 0;
+  line-height: 1.75;
+  color: #334155; /* slate-700 */
+}
+
+.md-content ul,
+.md-content ol {
+  margin: 0.75rem 0 0.75rem 1.25rem;
+  line-height: 1.75;
+  color: #334155;
+}
+
+.md-content a {
+  color: #2563eb; /* theme primary */
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.md-content pre {
+  background: #f8fafc; /* slate-50 */
+  border: 1px solid #e2e8f0; /* slate-200 */
+  border-radius: 12px;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.md-content code {
+  font-family: var(--font-mono);
+}
+
+.md-content blockquote {
+  border-left: 4px solid #38bdf8; /* sky-400 */
+  padding: 0.25rem 0 0.25rem 1rem;
+  margin: 0.75rem 0;
+  color: #0f172a; /* slate-900 */
+}
+
