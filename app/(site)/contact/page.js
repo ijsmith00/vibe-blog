@@ -1,32 +1,49 @@
-import ContactForm from "@/app/components/ContactForm";
-import {
-  CONTACT_MAIL_DOMAIN,
-  CONTACT_MAIL_LOCAL,
-  SITE_NAME,
-} from "@/lib/site-config";
+import { SITE_NAME } from "@/lib/site-config";
+
+const CONTACT_EMAIL = "howtovibecoding@gmail.com";
 
 export async function generateMetadata() {
   return {
-    title: `문의하기 | ${SITE_NAME}`,
-    description: `${SITE_NAME}에 대한 문의·광고·오류 신고를 남기실 수 있습니다. 이름과 이메일을 남기시면 확인 후 답변드립니다.`,
+    title: `문의 | ${SITE_NAME}`,
+    description: `${SITE_NAME} 문의 — 질문·협업·제안은 이메일로 연락해 주세요.`,
   };
 }
 
 export default function ContactPage() {
   return (
     <div className="mx-auto w-full max-w-2xl pb-20 pt-8 sm:pt-10">
-      <header className="mb-10">
+      <header className="mb-8 sm:mb-10">
         <h1 className="text-2xl font-extrabold tracking-tight text-text-main dark:text-dm-text sm:text-3xl">
-          문의하기
+          문의
         </h1>
         <p className="mt-3 text-[0.9375rem] leading-relaxed text-text-sub dark:text-dm-muted sm:text-base">
-          궁금한 점, 제휴·광고 문의, 사이트 오류 제보 등 아래 양식을 작성해 주세요.
-          필수 항목을 모두 입력한 뒤 제출해 주시면 확인 후 등록하신 이메일로
-          답변드리겠습니다.
+          질문·협업·제안이 있으시면 아래 메일로 편하게 보내 주세요. 가능한 빨리
+          확인해 답변드리겠습니다.
         </p>
       </header>
 
-      <ContactForm mailLocal={CONTACT_MAIL_LOCAL} mailDomain={CONTACT_MAIL_DOMAIN} />
+      <section
+        className="rounded-2xl border border-border bg-bg-main px-5 py-8 shadow-sm dark:border-dm-border dark:bg-dm-card sm:px-8 sm:py-10"
+        aria-labelledby="contact-email-heading"
+      >
+        <h2
+          id="contact-email-heading"
+          className="text-sm font-semibold uppercase tracking-wider text-primary dark:text-blue-400"
+        >
+          이메일
+        </h2>
+        <p className="mt-4 text-[0.9375rem] leading-relaxed text-text-sub dark:text-dm-muted sm:text-base">
+          메일 앱이 열리면 제목과 내용을 적어 보내 주시면 됩니다.
+        </p>
+        <p className="mt-5">
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            className="break-all text-lg font-semibold text-primary underline decoration-1 underline-offset-2 transition hover:text-primary/90 dark:text-blue-400 dark:hover:text-blue-300 sm:text-xl"
+          >
+            {CONTACT_EMAIL}
+          </a>
+        </p>
+      </section>
     </div>
   );
 }

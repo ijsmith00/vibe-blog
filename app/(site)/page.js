@@ -1,5 +1,6 @@
 import EmptyPostsState from "@/app/components/EmptyPostsState";
 import PostListWithFilter from "@/app/components/PostListWithFilter";
+import { DEFAULT_DESCRIPTION, SITE_NAME } from "@/lib/site-config";
 import { getAllPosts } from "@/lib/posts";
 
 export default async function Home() {
@@ -15,10 +16,10 @@ export default async function Home() {
           id="hero-heading"
           className="text-3xl font-extrabold leading-tight tracking-tight text-text-main dark:text-dm-text sm:text-4xl md:text-5xl lg:text-6xl"
         >
-          일주일 완성! 바이브 코딩
+          {SITE_NAME}
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-text-sub dark:text-dm-muted sm:mt-5 sm:text-lg md:text-xl">
-          코알못도 바이브 코딩으로 일주일만에 수익형 블로그를 만들어요!
+          코알못도 {DEFAULT_DESCRIPTION}
         </p>
         <a
           href="#latest-posts"

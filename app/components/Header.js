@@ -4,14 +4,14 @@ import Link from "next/link";
 import { useEffect, useId, useState } from "react";
 
 import SearchBar from "@/app/components/SearchBar";
+import { SITE_NAME } from "@/lib/site-config";
 
-const BLOG_NAME = "일주일 완성! 바이브 코딩";
-
-const NAV_ITEMS = [
+/** 상단 메뉴 순서: 홈 → 소개 → 카테고리(드롭다운) → 문의 */
+const NAV_LEAD = [
   { href: "/", label: "홈" },
   { href: "/about", label: "소개" },
-  { href: "/contact", label: "문의" },
 ];
+const NAV_CONTACT = { href: "/contact", label: "문의" };
 
 function categoryHref(name) {
   return `/category/${encodeURIComponent(name)}`;
@@ -71,7 +71,7 @@ export default function Header({ categories = [] }) {
             setSearchOpen(false);
           }}
         >
-          {BLOG_NAME}
+          {SITE_NAME}
         </Link>
 
         <div className="flex flex-1 items-center justify-end gap-1 min-[769px]:gap-2">
@@ -79,7 +79,7 @@ export default function Header({ categories = [] }) {
           className="hidden min-[769px]:flex min-[769px]:items-center min-[769px]:gap-8"
           aria-label="주요 메뉴"
         >
-          {NAV_ITEMS.map((item) => (
+          {NAV_LEAD.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -133,6 +133,13 @@ export default function Header({ categories = [] }) {
               </ul>
             </div>
           </div>
+
+          <Link
+            href={NAV_CONTACT.href}
+            className="text-[0.9375rem] font-medium leading-snug text-text-sub transition-colors hover:text-text-main dark:text-dm-muted dark:hover:text-dm-text"
+          >
+            {NAV_CONTACT.label}
+          </Link>
         </nav>
 
         <button
@@ -191,7 +198,7 @@ export default function Header({ categories = [] }) {
         inert={!mobileOpen ? true : undefined}
       >
         <nav className="mx-auto flex w-full max-w-[1200px] flex-col page-gutter py-2">
-          {NAV_ITEMS.map((item) => (
+          {NAV_LEAD.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -254,6 +261,17 @@ export default function Header({ categories = [] }) {
               </ul>
             </div>
           </div>
+
+          <Link
+            href={NAV_CONTACT.href}
+            className="block border-t border-border py-3 text-base font-medium text-text-sub transition-colors hover:text-text-main dark:border-dm-border dark:text-dm-muted dark:hover:text-dm-text"
+            onClick={() => {
+              setMobileOpen(false);
+              setCategoryMobileOpen(false);
+            }}
+          >
+            {NAV_CONTACT.label}
+          </Link>
         </nav>
       </div>
     </header>

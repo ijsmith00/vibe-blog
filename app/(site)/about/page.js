@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 import { ABOUT_PROFILE_IMAGE_PATH, SITE_NAME } from "@/lib/site-config";
 
@@ -177,23 +176,33 @@ export default function AboutPage() {
             </p>
             <p>
               관심사로는 테크니컬 라이팅, 독서와 글쓰기, 그리고 장기적으로 블로그
-              한 줄기로 꾸준한 수익 구조를 만드는 일에 큰 흥미가 있습니니다. 질문이나
-              제안이 있으시면 편하게 연락 주세요.
+              한 줄기로 꾸준한 수익 구조를 만드는 일에 큰 흥미가 있습니다.
             </p>
           </div>
         </section>
-      </div>
 
-      <div className="mt-12 flex flex-col items-center gap-3 sm:mt-14">
-        <Link
-          href="/contact"
-          className="inline-flex min-h-11 w-full max-w-sm items-center justify-center rounded-xl bg-primary px-6 py-3 text-center text-sm font-semibold text-white shadow-md transition hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:bg-blue-600 dark:hover:bg-blue-500 sm:w-auto sm:min-w-[12rem] sm:text-base"
-        >
-          문의하기
-        </Link>
-        <p className="text-center text-xs text-text-sub dark:text-dm-muted">
-          문의 페이지로 이동합니다.
-        </p>
+        <section className={sectionClass} aria-labelledby="about-contact">
+          <h2
+            id="about-contact"
+            className="text-xl font-bold tracking-tight text-text-main dark:text-dm-text sm:text-2xl"
+          >
+            문의
+          </h2>
+          <div className="mt-5 space-y-4 text-[0.9375rem] leading-[1.85] text-text-sub dark:text-dm-muted sm:text-base">
+            <p>
+              질문·협업·제안이 있으시면 아래 메일로 편하게 보내 주세요. 가능한 빨리
+              확인해 답변드리겠습니다.
+            </p>
+            <p>
+              <a
+                href="mailto:howtovibecoding@gmail.com"
+                className="break-all text-base font-semibold text-primary underline decoration-1 underline-offset-2 transition hover:text-primary/90 dark:text-blue-400 dark:hover:text-blue-300 sm:text-lg"
+              >
+                howtovibecoding@gmail.com
+              </a>
+            </p>
+          </div>
+        </section>
       </div>
     </div>
   );

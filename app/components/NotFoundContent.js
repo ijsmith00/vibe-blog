@@ -103,7 +103,7 @@ export default async function NotFoundContent() {
           </section>
         </div>
       </main>
-        <Footer categories={categories} />
+        <Footer />
     </>
   );
 }
