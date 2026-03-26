@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-import { SITE_CATEGORIES } from "@/lib/site-config";
-
 const BLOG_NAME = "일주일 완성! 바이브 코딩";
 const INTRO =
   "일주일 만에 바이브 코딩으로 수익형 블로그를 만들어요!";
@@ -18,7 +16,10 @@ function categoryHref(name) {
   return `/category/${encodeURIComponent(name)}`;
 }
 
-export default function Footer() {
+/**
+ * @param {{ categories?: string[] }} props — `getAllCategories()`와 헤더와 동일한 목록
+ */
+export default function Footer({ categories = [] }) {
   return (
     <footer className="border-t border-border bg-bg-sub text-text-sub dark:border-dm-border dark:bg-dm-bg dark:text-dm-muted">
       <div className="mx-auto w-full max-w-[1200px] page-gutter py-12">
@@ -47,7 +48,7 @@ export default function Footer() {
             className="mt-6 flex w-full flex-wrap items-center justify-center gap-x-5 gap-y-2 md:justify-start"
             aria-label="카테고리"
           >
-            {SITE_CATEGORIES.map((name) => (
+            {categories.map((name) => (
               <Link
                 key={name}
                 href={categoryHref(name)}
