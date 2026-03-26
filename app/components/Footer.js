@@ -35,7 +35,7 @@ export default function Footer() {
             ))}
           </nav>
 
-          <p className="mt-10 w-full text-center text-xs text-text-sub dark:text-dm-muted md:text-left">
+          <p className="mt-10 w-full text-center text-xs text-text-sub dark:text-dm-muted">
             Copyright © 2026 {SITE_NAME}. All rights reserved.
           </p>
         </div>
