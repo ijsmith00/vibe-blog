@@ -1,8 +1,8 @@
-import { SITEMAP_BASE_URL } from "@/lib/site-config";
+import { SITE_URL } from "@/lib/site-config";
 
 /** @returns {import("next").MetadataRoute.Robots} */
 export default function robots() {
-  const base = SITEMAP_BASE_URL.replace(/\/$/, "");
+  const base = SITE_URL.replace(/\/$/, "");
 
   return {
     rules: {
