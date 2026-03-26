@@ -1,13 +1,37 @@
 import Link from "next/link";
 
+import {
+  SITE_NAME,
+  absolutePageUrl,
+  ogImageMetadata,
+} from "@/lib/site-config";
 import { getCategorySummaries } from "@/lib/posts";
 
-const SITE_NAME = "일주일 완성! 바이브 코딩";
-
-export const metadata = {
-  title: `카테고리 | ${SITE_NAME}`,
-  description: `주제별로 글을 모아 볼 수 있는 카테고리 목록 — ${SITE_NAME}`,
-};
+export async function generateMetadata() {
+  const title = `카테고리 | ${SITE_NAME}`;
+  const description = `주제별로 글을 모아 볼 수 있는 카테고리 목록 — ${SITE_NAME}`;
+  const canonical = absolutePageUrl("/category");
+  const ogImage = ogImageMetadata(null, SITE_NAME);
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      type: "website",
+      url: canonical,
+      title,
+      description,
+      siteName: SITE_NAME,
+      images: [ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
+}
 
 function categoryHref(name) {
   return `/category/${encodeURIComponent(name)}`;

@@ -9,7 +9,7 @@ const OPERATOR_DISPLAY_NAME = "바이브 빌더";
 export async function generateMetadata() {
   return {
     title: `소개 | ${SITE_NAME}`,
-    description: `${SITE_NAME}는 바이브 코딩과 수익형 블로그 운영 노하우를 나누는 공간입니다. 운영자의 목표와 다루는 주제, 문의 방법을 안내합니다.`,
+    description: `${SITE_NAME}는 바이브 코딩으로 다양한 실험을 해보고 그 노하우를 나누는 공간입니다.`,
   };
 }
 
@@ -75,7 +75,7 @@ export default function AboutPage() {
               {OPERATOR_DISPLAY_NAME}
             </h1>
             <p className="mt-3 text-base leading-relaxed text-text-sub dark:text-dm-muted sm:text-lg">
-              코딩이 낯설어도 괜찮아요—짧은 기간 안에 블로그를 만들고, 꾸준히 성장하는
+              에이전틱틱 AI와 바이브 코딩으로 이것저것 만들어 보면서 배운 노하우와 결과물을 나누고, 꾸준히 성장하는
               여정을 함께합니다.
             </p>
           </div>
@@ -91,19 +91,50 @@ export default function AboutPage() {
             이 블로그를 만든 이유
           </h2>
           <div className="mt-5 space-y-4 text-[0.9375rem] leading-[1.85] text-text-sub dark:text-dm-muted sm:text-base">
-            <p>
-              처음 블로그를 시작하려는 분들은 정보는 많은데 무엇부터 해야 할지 막막할 때가
-              많습니다. 도메인, 호스팅, 글쓰기, 수익화까지 검색만 하다 보면 시간만
-              흘러가고 실행은 늦어지기 쉽습니다. 저 역시 비슷한 시행착오를 겪으며
-              &quot;짧은 기간에 최소한의 기능으로 시작하고, 익숙해지면서 조금씩
-              확장한다&quot;는 방식이 가장 현실적이라는 걸 느꼈습니다.
+            <p className="font-medium text-text-main dark:text-dm-text">
+              솔직히 말씀드리면, 불안함에서 시작했습니다.
             </p>
             <p>
-              그래서 이 블로그는 거창한 이론보다는 바이브 코딩처럼 빠르게 만들고
-              고치며 배우는 과정을 솔직하게 기록하려고 합니다. 혼자 삽질하며 얻은 팁과
-              실수를 공유해, 같은 길을 걷는 분들이 조금이라도 덜 헤매고 자신만의 속도로
-              성장할 수 있기를 바랍니다. 작은 한 걸음이 쌓이면 결국 수익형 블로그로
-              이어질 수 있다는 믿음으로 글을 이어가겠습니다.
+              생성 AI가 등장한 이후 그 발전 속도가 너무 빨라서 따라가지 못하는
+              느낌이 점점 커졌습니다. 그러던 중 블로그로 뭔가 해보겠다고 100만
+              원이 넘는 돈을 쏟아부었는데, 결말은 허무했습니다. 플랫폼 종속의 한계
+              + 다음 저품질 콤보에 조용히 손을 들고 말았거든요. 내 공간인 줄
+              알았는데, 알고 보니 내 공간이 아니었던 겁니다.
+            </p>
+            <p>
+              ‘그럼 아예 직접 만들면 어떨까?’ 막연하게 생각하던 그 즈음, 바이브 코딩
+              붐이 일었습니다. 그리고 문득 이런 생각이 들었습니다.
+            </p>
+            <p className="text-lg font-semibold text-primary dark:text-blue-400">
+              나도 혹시… 될까?
+            </p>
+            <p>
+              일단 Claude한테 물어봤습니다. &quot;바이브 코딩으로 수익형 블로그
+              만들고 싶은데, 어떻게 하면 돼?&quot;라고요. 그랬더니 260페이지짜리
+              가이드를 써주더군요. 반신반의하면서 일단 따라 해봤습니다.
+            </p>
+            <p className="font-semibold text-text-main dark:text-dm-text">
+              딱 3일이었습니다.
+            </p>
+            <p>
+              3일 만에 플랫폼에 종속되지 않은 진짜 내 블로그가 생겼습니다. 더
+              놀라웠던 건 생각보다 훨씬 할 만했다는 점입니다. 겁먹었던 것에 비하면,
+              제가 직접 해야 할 일이 그렇게 많지 않았거든요.
+            </p>
+            <p className="font-medium text-text-main dark:text-dm-text">
+              그 경험을 하고 나니 이런 생각이 들었습니다.
+            </p>
+            <p>
+              이건 블로그만의 이야기가 아니구나. 바이브 코딩, 대체 어디까지 되는
+              거지?
+            </p>
+            <p>
+              그래서 이 블로그에서는 바이브 코딩으로 이것저것 실험해볼 생각입니다.
+              잘 된 것도, 안 된 것도, 제대로 삽질한 것도 — 그 좌충우돌 경험담과
+              거기서 배운 것들을 있는 그대로 공유해 보겠습니다.
+            </p>
+            <p className="text-text-main dark:text-dm-text">
+              기대하셔도 좋습니다. 😄
             </p>
           </div>
         </section>
@@ -120,19 +151,13 @@ export default function AboutPage() {
               <strong className="font-semibold text-text-main dark:text-dm-text">
                 바이브 코딩
               </strong>
-              — Next.js 등으로 블로그를 구축하고 배포·운영하는 실전 노하우
+              — Next.js 등으로 블로그를 구축하고 배포·운영하는 실전 노하우, 에이전틱 AI와 함께 실험하는 과정
             </li>
             <li>
               <strong className="font-semibold text-text-main dark:text-dm-text">
                 수익화 블로그 운영
               </strong>
               — 애드센스, 키워드, SEO·콘텐츠 전략 등 수익과 운영에 필요한 정보
-            </li>
-            <li>
-              <strong className="font-semibold text-text-main dark:text-dm-text">
-                IT 정보
-              </strong>
-              — 도구, 보안, 생산성 등 블로거에게 유용한 IT 소식과 팁
             </li>
           </ul>
         </section>
@@ -146,14 +171,14 @@ export default function AboutPage() {
           </h2>
           <div className="mt-5 space-y-4 text-[0.9375rem] leading-[1.85] text-text-sub dark:text-dm-muted sm:text-base">
             <p>
-              블로그 운영과 콘텐츠 제작, 글쓰기기에 관심이 많고, 직접 만들고 배우는 과정을
+              블로그 운영과 콘텐츠 제작, 글쓰기에 관심이 많고, 직접 만들고 배우는 과정을
               즐기는 편입니다. 새로운 도구와 트렌드는 빠르게 익히되, 글에서는 가능한
               쉽게 풀어 독자분들이 바로 적용해 보실 수 있도록 노력하고 있습니다.
             </p>
             <p>
               관심사로는 테크니컬 라이팅, 독서와 글쓰기, 그리고 장기적으로 블로그
-              한 줄기로 꾸준한 수익 구조를 만드는 일에 큰 흥미를 둡니다. 질문이나
-              제안이 있으시면 아래 버튼으로 편하게 연락 주세요.
+              한 줄기로 꾸준한 수익 구조를 만드는 일에 큰 흥미가 있습니니다. 질문이나
+              제안이 있으시면 편하게 연락 주세요.
             </p>
           </div>
         </section>

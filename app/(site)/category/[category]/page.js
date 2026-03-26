@@ -4,9 +4,9 @@ import Breadcrumb from "@/app/components/Breadcrumb";
 import PostCard from "@/app/components/PostCard";
 import { normalizeCategory } from "@/lib/category";
 import {
-  absoluteOgImageUrl,
   absolutePageUrl,
   SITE_NAME,
+  ogImageMetadata,
 } from "@/lib/site-config";
 import {
   getAllCategories,
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }) {
 
   const description = `${label} 카테고리 글 목록 — ${SITE_NAME}`;
   const canonical = absolutePageUrl(`/category/${encodeURIComponent(label)}`);
-  const ogImage = absoluteOgImageUrl(null);
+  const ogImage = ogImageMetadata(null, label);
 
   return {
     title: label,
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }) {
       title: label,
       description,
       siteName: SITE_NAME,
-      images: [{ url: ogImage, alt: label }],
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",

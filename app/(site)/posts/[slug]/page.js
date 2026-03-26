@@ -13,6 +13,7 @@ import {
   absolutePageUrl,
   SITE_NAME,
   SITE_URL,
+  ogImageMetadata,
 } from "@/lib/site-config";
 
 function isNonOptimizableImageSrc(src) {
@@ -41,7 +42,7 @@ export async function generateMetadata({ params }) {
   }
 
   const canonical = absolutePageUrl(`/posts/${slug}`);
-  const ogImage = absoluteOgImageUrl(post.thumbnailUrl);
+  const ogImage = ogImageMetadata(post.thumbnailUrl, post.title);
 
   return {
     title: post.title,
@@ -56,12 +57,7 @@ export async function generateMetadata({ params }) {
       description: post.description,
       publishedTime: post.date,
       modifiedTime: post.dateModified,
-      images: [
-        {
-          url: ogImage,
-          alt: post.title,
-        },
-      ],
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",

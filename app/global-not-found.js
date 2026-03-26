@@ -7,7 +7,7 @@ import {
   getWebSiteJsonLd,
   GOOGLE_SITE_VERIFICATION,
 } from "@/lib/config";
-import { SITE_NAME } from "@/lib/site-config";
+import { SITE_NAME, SITE_URL, ogImageMetadata } from "@/lib/site-config";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -24,11 +24,27 @@ const notoSansKr = Noto_Sans_KR({
 });
 
 export const metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "페이지를 찾을 수 없습니다",
   description: `${SITE_NAME}에서 요청하신 페이지를 찾을 수 없습니다.`,
   robots: {
     index: false,
     follow: true,
+  },
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: "페이지를 찾을 수 없습니다",
+    description: `${SITE_NAME}에서 요청하신 페이지를 찾을 수 없습니다.`,
+    images: [ogImageMetadata(null, SITE_NAME)],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "페이지를 찾을 수 없습니다",
+    description: `${SITE_NAME}에서 요청하신 페이지를 찾을 수 없습니다.`,
+    images: [ogImageMetadata(null, SITE_NAME)],
   },
 };
 

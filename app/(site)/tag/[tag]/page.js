@@ -3,9 +3,9 @@ import { notFound } from "next/navigation";
 
 import PostCard from "@/app/components/PostCard";
 import {
-  absoluteOgImageUrl,
   absolutePageUrl,
   SITE_NAME,
+  ogImageMetadata,
 } from "@/lib/site-config";
 import { getAllTags, getPostsByTag } from "@/lib/posts";
 
@@ -35,7 +35,7 @@ export async function generateMetadata({ params }) {
   const title = `#${label}`;
   const description = `「${label}」 태그가 달린 글 목록 — ${SITE_NAME}`;
   const canonical = absolutePageUrl(`/tag/${encodeURIComponent(label)}`);
-  const ogImage = absoluteOgImageUrl(null);
+  const ogImage = ogImageMetadata(null, title);
 
   return {
     title,
@@ -47,7 +47,7 @@ export async function generateMetadata({ params }) {
       title,
       description,
       siteName: SITE_NAME,
-      images: [{ url: ogImage, alt: title }],
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",

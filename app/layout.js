@@ -8,9 +8,9 @@ import {
 } from "@/lib/config";
 import {
   DEFAULT_DESCRIPTION,
-  DEFAULT_OG_IMAGE_PATH,
   SITE_NAME,
   SITE_URL,
+  ogImageMetadata,
 } from "@/lib/site-config";
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -49,18 +49,13 @@ export async function generateMetadata() {
       siteName: SITE_NAME,
       title: SITE_NAME,
       description: DEFAULT_DESCRIPTION,
-      images: [
-        {
-          url: DEFAULT_OG_IMAGE_PATH,
-          alt: SITE_NAME,
-        },
-      ],
+      images: [ogImageMetadata(null, SITE_NAME)],
     },
     twitter: {
       card: "summary_large_image",
       title: SITE_NAME,
       description: DEFAULT_DESCRIPTION,
-      images: [DEFAULT_OG_IMAGE_PATH],
+      images: [ogImageMetadata(null, SITE_NAME)],
     },
   };
 }

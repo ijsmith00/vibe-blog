@@ -1,13 +1,37 @@
 import Link from "next/link";
 
+import {
+  SITE_NAME,
+  absolutePageUrl,
+  ogImageMetadata,
+} from "@/lib/site-config";
 import { getAllTags } from "@/lib/posts";
 
-const SITE_NAME = "일주일 완성! 바이브 코딩";
-
-export const metadata = {
-  title: `태그 | ${SITE_NAME}`,
-  description: `태그별로 글을 찾아볼 수 있는 태그 클라우드 — ${SITE_NAME}`,
-};
+export async function generateMetadata() {
+  const title = `태그 | ${SITE_NAME}`;
+  const description = `태그별로 글을 찾아볼 수 있는 태그 클라우드 — ${SITE_NAME}`;
+  const canonical = absolutePageUrl("/tag");
+  const ogImage = ogImageMetadata(null, SITE_NAME);
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      type: "website",
+      url: canonical,
+      title,
+      description,
+      siteName: SITE_NAME,
+      images: [ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
+}
 
 function tagHref(name) {
   return `/tag/${encodeURIComponent(name)}`;
