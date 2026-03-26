@@ -8,7 +8,7 @@ export default async function Home() {
   return (
     <div className="flex w-full flex-col gap-16 md:gap-20 lg:gap-24">
       <section
-        className="mx-auto w-full rounded-2xl bg-gradient-to-b from-white to-secondary px-4 py-16 text-center dark:from-dm-bg dark:to-dm-card sm:px-6 md:py-20 lg:py-24"
+        className="mx-auto w-full rounded-2xl bg-gradient-to-b from-white to-secondary px-5 py-16 text-center dark:from-dm-bg dark:to-dm-card sm:px-7 md:px-10 md:py-20 lg:py-24"
         aria-labelledby="hero-heading"
       >
         <h1

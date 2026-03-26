@@ -2,9 +2,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import PostCard from "@/app/components/PostCard";
+import {
+  absoluteOgImageUrl,
+  absolutePageUrl,
+  SITE_NAME,
+} from "@/lib/site-config";
 import { getAllTags, getPostsByTag } from "@/lib/posts";
-
-const SITE_NAME = "일주일 완성! 바이브 코딩";
 
 function tagFromParam(raw) {
   if (typeof raw !== "string" || raw.trim() === "") return "";
@@ -28,9 +31,30 @@ export async function generateMetadata({ params }) {
   if (!label || !exists) {
     return { title: SITE_NAME };
   }
+
+  const title = `#${label}`;
+  const description = `「${label}」 태그가 달린 글 목록 — ${SITE_NAME}`;
+  const canonical = absolutePageUrl(`/tag/${encodeURIComponent(label)}`);
+  const ogImage = absoluteOgImageUrl(null);
+
   return {
-    title: `${label} | ${SITE_NAME}`,
-    description: `「${label}」 태그가 달린 글 목록 — ${SITE_NAME}`,
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      type: "website",
+      url: canonical,
+      title,
+      description,
+      siteName: SITE_NAME,
+      images: [{ url: ogImage, alt: title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
   };
 }
 
@@ -81,7 +105,7 @@ export default async function TagPostsPage({ params }) {
           아직 작성된 글이 없습니다
         </p>
       ) : (
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-8">
+        <div className="grid w-full min-w-0 grid-cols-1 justify-items-stretch gap-x-6 gap-y-8 sm:gap-x-8 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-8">
           {posts.map((post) => (
             <PostCard key={post.slug} post={post} />
           ))}

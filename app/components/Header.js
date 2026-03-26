@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useId, useState } from "react";
 
+import SearchBar from "@/app/components/SearchBar";
+
 const BLOG_NAME = "일주일 완성! 바이브 코딩";
 
 const NAV_ITEMS = [
@@ -18,11 +20,31 @@ function categoryHref(name) {
 /**
  * @param {{ categories?: string[] }} props
  */
+function SearchIcon({ className = "h-5 w-5" }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="11" cy="11" r="8" />
+      <path d="m21 21-4.35-4.35" />
+    </svg>
+  );
+}
+
 export default function Header({ categories = [] }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [categoryMobileOpen, setCategoryMobileOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const categoryMenuId = useId();
+  const searchPanelId = useId();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 0);
@@ -39,18 +61,20 @@ export default function Header({ categories = [] }) {
           : "shadow-none"
       }`}
     >
-      <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between px-4 py-4 md:px-6">
+      <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between page-gutter py-4">
         <Link
           href="/"
           className="text-xl font-bold tracking-tight text-text-main dark:text-dm-text sm:text-2xl"
           onClick={() => {
             setMobileOpen(false);
             setCategoryMobileOpen(false);
+            setSearchOpen(false);
           }}
         >
           {BLOG_NAME}
         </Link>
 
+        <div className="flex flex-1 items-center justify-end gap-1 min-[769px]:gap-2">
         <nav
           className="hidden min-[769px]:flex min-[769px]:items-center min-[769px]:gap-8"
           aria-label="주요 메뉴"
@@ -113,14 +137,47 @@ export default function Header({ categories = [] }) {
 
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center text-2xl text-text-main dark:text-dm-text min-[769px]:hidden"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-text-main transition-colors hover:bg-secondary/80 dark:text-dm-text dark:hover:bg-dm-card"
+          aria-label={searchOpen ? "검색 닫기" : "검색 열기"}
+          aria-expanded={searchOpen}
+          aria-controls={searchPanelId}
+          onClick={() => {
+            setSearchOpen((v) => !v);
+            if (!searchOpen) setMobileOpen(false);
+          }}
+        >
+          <SearchIcon />
+        </button>
+
+        <button
+          type="button"
+          className="flex h-10 w-10 shrink-0 items-center justify-center text-2xl text-text-main dark:text-dm-text min-[769px]:hidden"
           aria-label={mobileOpen ? "메뉴 닫기" : "메뉴 열기"}
           aria-expanded={mobileOpen}
           aria-controls="mobile-nav"
-          onClick={() => setMobileOpen((open) => !open)}
+          onClick={() => {
+            setMobileOpen((open) => !open);
+            if (!mobileOpen) setSearchOpen(false);
+          }}
         >
           ☰
         </button>
+        </div>
+      </div>
+
+      <div
+        id={searchPanelId}
+        className={`overflow-hidden border-border bg-bg-main transition-[max-height,opacity] duration-300 ease-out motion-reduce:transition-none dark:border-dm-border dark:bg-dm-bg ${
+          searchOpen
+            ? "max-h-[min(40vh,320px)] border-t opacity-100"
+            : "max-h-0 border-t border-transparent opacity-0 pointer-events-none"
+        }`}
+        aria-hidden={!searchOpen}
+        inert={!searchOpen ? true : undefined}
+      >
+        <div className="mx-auto w-full max-w-[1200px] page-gutter py-4">
+          <SearchBar onNavigate={() => setSearchOpen(false)} />
+        </div>
       </div>
 
       <div
@@ -133,7 +190,7 @@ export default function Header({ categories = [] }) {
         aria-hidden={!mobileOpen}
         inert={!mobileOpen ? true : undefined}
       >
-        <nav className="mx-auto flex w-full max-w-[1200px] flex-col px-4 py-2 md:px-6">
+        <nav className="mx-auto flex w-full max-w-[1200px] flex-col page-gutter py-2">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.href}

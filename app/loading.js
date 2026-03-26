@@ -4,7 +4,7 @@ export default function Loading() {
   return (
     <div className="flex w-full flex-col gap-16 md:gap-20 lg:gap-24">
       <section
-        className="mx-auto w-full rounded-2xl bg-gradient-to-b from-white to-secondary px-4 py-16 text-center dark:from-dm-bg dark:to-dm-card sm:px-6 md:py-20 lg:py-24"
+        className="mx-auto w-full rounded-2xl bg-gradient-to-b from-white to-secondary px-5 py-16 text-center dark:from-dm-bg dark:to-dm-card sm:px-7 md:px-10 md:py-20 lg:py-24"
         aria-hidden="true"
       >
         <div className="mx-auto h-10 max-w-md animate-pulse rounded-lg bg-slate-200 dark:bg-dm-border sm:h-12 md:h-14" />
@@ -23,7 +23,7 @@ export default function Loading() {
           </div>
           <div className="h-5 w-16 animate-pulse rounded bg-slate-200 dark:bg-dm-border sm:ml-auto" />
         </div>
-        <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid w-full min-w-0 grid-cols-1 justify-items-stretch gap-x-6 gap-y-8 sm:gap-x-8 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-8">
           {Array.from({ length: 6 }).map((_, i) => (
             <PostCardSkeleton key={i} />
           ))}

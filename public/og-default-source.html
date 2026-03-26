@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1200, height=630, initial-scale=1" />
+    <title>OG 이미지 소스 (1200×630) — 캡처용</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+    />
+    <style>
+      /*
+        캡처 방법 예시:
+        1) 이 파일을 브라우저로 연 뒤(또는 dev 서버에서 /og-default-source.html)
+        2) 창 크기를 넉넉히 두고, 개발자 도구에서 스크린샷 확장 또는
+           뷰포트 1200×630 고정 후 전체 페이지 캡처
+        3) 1200×630 PNG로 저장하여 og-default.png로 교체
+      */
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+      }
+      .og {
+        position: relative;
+        width: 1200px;
+        height: 630px;
+        background: linear-gradient(
+          145deg,
+          #2563eb 0%,
+          #1d4ed8 28%,
+          #1e40af 58%,
+          #172554 100%
+        );
+        font-family:
+          "Pretendard",
+          -apple-system,
+          BlinkMacSystemFont,
+          system-ui,
+          "Apple SD Gothic Neo",
+          "Noto Sans KR",
+          sans-serif;
+        color: #fff;
+      }
+      .og::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 90% 70% at 75% 25%,
+          rgba(255, 255, 255, 0.14) 0%,
+          transparent 55%
+        );
+        pointer-events: none;
+      }
+      .og-inner {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding: 48px 72px 96px;
+        text-align: center;
+      }
+      .og-title {
+        margin: 0;
+        max-width: 1000px;
+        font-size: 56px;
+        font-weight: 800;
+        line-height: 1.2;
+        letter-spacing: -0.03em;
+        text-shadow: 0 4px 28px rgba(0, 0, 0, 0.25);
+      }
+      .og-tagline {
+        margin: 24px 0 0;
+        max-width: 880px;
+        font-size: 26px;
+        font-weight: 500;
+        line-height: 1.55;
+        color: rgba(255, 255, 255, 0.92);
+        text-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+      }
+      .og-domain {
+        position: absolute;
+        right: 40px;
+        bottom: 36px;
+        z-index: 2;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: rgba(255, 255, 255, 0.88);
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="og" role="img" aria-label="일주일 완성 바이브 코딩 블로그 OG 이미지">
+      <div class="og-inner">
+        <h1 class="og-title">일주일 완성! 바이브 코딩</h1>
+        <p class="og-tagline">
+          일주일 만에 바이브 코딩으로 수익형 블로그를 만들어요!
+        </p>
+      </div>
+      <p class="og-domain">https://www.howtovibecoding.com</p>
+    </div>
+  </body>
+</html>

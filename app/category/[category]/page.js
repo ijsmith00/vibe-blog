@@ -1,14 +1,17 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import Breadcrumb from "@/app/components/Breadcrumb";
 import PostCard from "@/app/components/PostCard";
 import { normalizeCategory } from "@/lib/category";
+import {
+  absoluteOgImageUrl,
+  absolutePageUrl,
+  SITE_NAME,
+} from "@/lib/site-config";
 import {
   getAllCategories,
   getPostsByCategory,
 } from "@/lib/posts";
-
-const SITE_NAME = "일주일 완성! 바이브 코딩";
 
 function categoryFromParam(raw) {
   if (typeof raw !== "string" || raw.trim() === "") return "";
@@ -31,9 +34,29 @@ export async function generateMetadata({ params }) {
   if (!label || !categories.includes(label)) {
     return { title: SITE_NAME };
   }
+
+  const description = `${label} 카테고리 글 목록 — ${SITE_NAME}`;
+  const canonical = absolutePageUrl(`/category/${encodeURIComponent(label)}`);
+  const ogImage = absoluteOgImageUrl(null);
+
   return {
-    title: `${label} | ${SITE_NAME}`,
-    description: `${label} 카테고리 글 목록 — ${SITE_NAME}`,
+    title: label,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      type: "website",
+      url: canonical,
+      title: label,
+      description,
+      siteName: SITE_NAME,
+      images: [{ url: ogImage, alt: label }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: label,
+      description,
+      images: [ogImage],
+    },
   };
 }
 
@@ -52,13 +75,15 @@ export default async function CategoryPage({ params }) {
   return (
     <div className="pb-16 pt-10">
       <div className="mb-8 flex flex-col gap-3 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
-        <header>
-          <Link
-            href="/"
-            className="text-sm font-medium text-primary hover:underline dark:text-blue-400"
-          >
-            ← 홈
-          </Link>
+        <header className="w-full min-w-0">
+          <Breadcrumb
+            items={[
+              { label: "홈", href: "/" },
+              { label: "카테고리", href: "/category" },
+              { label, href: null },
+            ]}
+            maxLastLength={30}
+          />
           <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-text-main dark:text-dm-text sm:text-4xl md:text-5xl">
             {label}{" "}
             <span className="text-2xl font-bold text-text-sub dark:text-dm-muted sm:text-3xl md:text-4xl">
@@ -73,7 +98,7 @@ export default async function CategoryPage({ params }) {
           아직 작성된 글이 없습니다
         </p>
       ) : (
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-8">
+        <div className="grid w-full min-w-0 grid-cols-1 justify-items-stretch gap-x-6 gap-y-8 sm:gap-x-8 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-8">
           {posts.map((post) => (
             <PostCard key={post.slug} post={post} />
           ))}

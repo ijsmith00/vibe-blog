@@ -6,19 +6,56 @@
   --foreground: #171717;
 }
 
+/*
+ * 스크롤바: 클래식 트랙은 gutter로, 오버레이(많은 데스크톱)는 본문 오른쪽에 별도 예비 폭.
+ * 오버레이 모드에서는 gutter가 0이라 .page-gutter에 calc(+ reserve)가 필요함.
+ */
+html {
+  scrollbar-gutter: stable;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  /* Pretendard: loaded in app/layout.js via CDN (pretendard.css) */
+  /* 본문: app/layout.js의 next/font Noto Sans KR 변수 + 시스템 폴백 (CLS 완화) */
   --font-sans:
-    "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-    "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
+    var(--font-noto-sans-kr), -apple-system, BlinkMacSystemFont, system-ui,
+    Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
     "Malgun Gothic", sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
 body {
   font-family: var(--font-sans);
+}
+
+/* 본문·헤더·푸터 공통 좌우 여백 + safe-area + 스크롤바(오버레이) 대비 오른쪽 예비 */
+.page-gutter {
+  --page-scrollbar-reserve: 0.75rem;
+  padding-left: max(1.25rem, env(safe-area-inset-left, 0px));
+  padding-right: calc(
+    max(1.625rem, env(safe-area-inset-right, 0px)) + var(--page-scrollbar-reserve)
+  );
+}
+
+@media (min-width: 640px) {
+  .page-gutter {
+    --page-scrollbar-reserve: 0.875rem;
+    padding-left: max(1.5rem, env(safe-area-inset-left, 0px));
+    padding-right: calc(
+      max(1.625rem, env(safe-area-inset-right, 0px)) + var(--page-scrollbar-reserve)
+    );
+  }
+}
+
+@media (min-width: 768px) {
+  .page-gutter {
+    --page-scrollbar-reserve: 1rem;
+    padding-left: max(2rem, env(safe-area-inset-left, 0px));
+    padding-right: calc(
+      max(2.125rem, env(safe-area-inset-right, 0px)) + var(--page-scrollbar-reserve)
+    );
+  }
 }
 
 /* prose 이미지 캡션: 다크 모드에서 가독성 */

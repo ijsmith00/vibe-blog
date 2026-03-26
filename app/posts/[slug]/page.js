@@ -1,8 +1,26 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import Breadcrumb from "@/app/components/Breadcrumb";
+import JsonLd from "@/app/components/JsonLd";
 import PostCard from "@/app/components/PostCard";
 import TableOfContents from "@/app/components/TableOfContents";
+import { normalizeCategory } from "@/lib/category";
+import {
+  AUTHOR_NAME,
+  absoluteOgImageUrl,
+  absolutePageUrl,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/site-config";
+
+function isNonOptimizableImageSrc(src) {
+  return (
+    typeof src === "string" &&
+    (src.startsWith("data:") || src.startsWith("blob:"))
+  );
+}
 import {
   getAdjacentPosts,
   getAllPosts,
@@ -19,13 +37,38 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
   if (!post) {
-    return {
-      title: "일주일 완성! 바이브 코딩",
-    };
+    return { title: SITE_NAME };
   }
+
+  const canonical = absolutePageUrl(`/posts/${slug}`);
+  const ogImage = absoluteOgImageUrl(post.thumbnailUrl);
+
   return {
-    title: `${post.title} | 일주일 완성! 바이브 코딩`,
+    title: post.title,
     description: post.description,
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      type: "article",
+      url: canonical,
+      title: post.title,
+      description: post.description,
+      publishedTime: post.date,
+      modifiedTime: post.dateModified,
+      images: [
+        {
+          url: ogImage,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+      images: [ogImage],
+    },
   };
 }
 
@@ -37,27 +80,85 @@ export default async function PostPage({ params }) {
   }
 
   const { prev, next } = await getAdjacentPosts(slug);
-  const related = await getRelatedPosts(slug, post.category, 3);
+  const related = await getRelatedPosts(slug, post.category, post.tags, 3);
 
   const categoryLabel = post.category.trim() || "미분류";
+  const categoryKey = normalizeCategory(post.category);
+  const postUrl = absolutePageUrl(`/posts/${slug}`);
+  const categoryPageUrl = absolutePageUrl(
+    `/category/${encodeURIComponent(categoryKey)}`,
+  );
+  const imageUrl = absoluteOgImageUrl(post.thumbnailUrl);
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    dateModified: post.dateModified,
+    author: {
+      "@type": "Person",
+      name: AUTHOR_NAME,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    image: [imageUrl],
+    url: postUrl,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": postUrl,
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "홈",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: categoryKey,
+        item: categoryPageUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: postUrl,
+      },
+    ],
+  };
 
   return (
-    <div className="mx-auto w-full max-w-[1200px] px-4 pb-16 pt-10 md:px-6">
+    <div className="pb-16 pt-10">
+      <JsonLd data={articleJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[7fr_3fr] lg:items-start lg:gap-12">
         <main className="min-w-0">
           <div className="mx-auto w-full max-w-[720px]">
-            <div className="flex items-center gap-3 text-sm">
-              <Link
-                href="/"
-                className="font-medium text-primary hover:underline dark:text-blue-400"
-              >
-                ← 홈
-              </Link>
-              <span className="text-border dark:text-dm-border">/</span>
-              <span className="text-text-sub dark:text-dm-muted">포스트</span>
-            </div>
+            <Breadcrumb
+              items={[
+                { label: "홈", href: "/" },
+                {
+                  label: categoryLabel,
+                  href: `/category/${encodeURIComponent(categoryKey)}`,
+                },
+                { label: post.title, href: null },
+              ]}
+              maxLastLength={30}
+            />
 
-            <header className="mt-6">
+            <header className="mt-2">
               <span className="inline-flex rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-800 dark:bg-blue-950/60 dark:text-blue-200">
                 {categoryLabel}
               </span>
@@ -72,13 +173,28 @@ export default async function PostPage({ params }) {
             </header>
 
             {post.thumbnailUrl ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={post.thumbnailUrl}
-                alt=""
-                className="mt-8 w-full rounded-xl border border-border object-cover dark:border-dm-border"
-                loading="lazy"
-              />
+              isNonOptimizableImageSrc(post.thumbnailUrl) ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={post.thumbnailUrl}
+                  alt={post.title}
+                  width={720}
+                  height={405}
+                  className="mt-8 w-full rounded-xl border border-border object-cover dark:border-dm-border"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="relative mt-8 aspect-[16/9] w-full overflow-hidden rounded-xl border border-border dark:border-dm-border">
+                  <Image
+                    src={post.thumbnailUrl}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 720px) 100vw, 720px"
+                    className="object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              )
             ) : null}
 
             <article
@@ -143,7 +259,7 @@ export default async function PostPage({ params }) {
                 >
                   관련 글
                 </h2>
-                <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-6 grid w-full min-w-0 grid-cols-1 gap-x-6 gap-y-6 justify-items-stretch sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3">
                   {related.map((p) => (
                     <PostCard key={p.slug} post={p} />
                   ))}

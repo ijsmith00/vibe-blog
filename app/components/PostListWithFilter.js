@@ -66,9 +66,13 @@ export default function PostListWithFilter({ posts }) {
           선택한 카테고리에 해당하는 글이 없습니다
         </p>
       ) : (
-        <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-8">
-          {filtered.map((post) => (
-            <PostCard key={post.slug} post={post} />
+        <div className="mt-8 grid w-full min-w-0 grid-cols-1 justify-items-stretch gap-x-6 gap-y-8 sm:gap-x-8 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-8">
+          {filtered.map((post, index) => (
+            <PostCard
+              key={post.slug}
+              post={post}
+              priority={index === 0}
+            />
           ))}
         </div>
       )}
