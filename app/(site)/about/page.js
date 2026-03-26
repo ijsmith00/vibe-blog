@@ -74,7 +74,7 @@ export default function AboutPage() {
               {OPERATOR_DISPLAY_NAME}
             </h1>
             <p className="mt-3 text-base leading-relaxed text-text-sub dark:text-dm-muted sm:text-lg">
-              에이전틱틱 AI와 바이브 코딩으로 이것저것 만들어 보면서 배운 노하우와 결과물을 나누고, 꾸준히 성장하는
+              에이전틱 AI와 바이브 코딩으로 이것저것 만들어 보면서 배운 노하우와 결과물을 나누고, 꾸준히 성장하는
               여정을 함께합니다.
             </p>
           </div>
