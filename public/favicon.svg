@@ -1,8 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="3일 완성 바이브 코딩">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="모두의 바이브 코딩">
   <defs>
     <linearGradient id="fav-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#2563eb" />
-      <stop offset="100%" stop-color="#1e40af" />
+      <stop offset="0%" stop-color="#0ea5e9" />
+      <stop offset="50%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#7c3aed" />
     </linearGradient>
   </defs>
   <rect width="128" height="128" rx="28" fill="url(#fav-bg)" />
@@ -13,19 +14,11 @@
     height="120"
     rx="24"
     fill="none"
-    stroke="rgba(255,255,255,0.25)"
+    stroke="rgba(255,255,255,0.28)"
     stroke-width="2"
   />
-  <text
-    x="64"
-    y="86"
-    text-anchor="middle"
-    font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif"
-    font-size="68"
-    font-weight="900"
-    fill="#ffffff"
-    letter-spacing="-2"
-  >
-    3
-  </text>
+  <!-- 모두를 상징하는 세 개의 원 -->
+  <circle cx="38" cy="60" r="16" fill="rgba(255,255,255,0.96)" />
+  <circle cx="64" cy="40" r="16" fill="#ffffff" />
+  <circle cx="90" cy="60" r="16" fill="rgba(255,255,255,0.96)" />
 </svg>

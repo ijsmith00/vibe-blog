@@ -1,6 +1,6 @@
 import EmptyPostsState from "@/app/components/EmptyPostsState";
 import PostListWithFilter from "@/app/components/PostListWithFilter";
-import { DEFAULT_DESCRIPTION, SITE_NAME } from "@/lib/site-config";
+import { SITE_NAME } from "@/lib/site-config";
 import { getAllPosts } from "@/lib/posts";
 
 export default async function Home() {
@@ -19,7 +19,7 @@ export default async function Home() {
           {SITE_NAME}
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-text-sub dark:text-dm-muted sm:mt-5 sm:text-lg md:text-xl">
-          코알못도 {DEFAULT_DESCRIPTION}
+          꺾이지 않는 마음과 복/붙 기술만 있다면 누구나 나만의 웹사이트를 만들 수 있어요!
         </p>
         <a
           href="#latest-posts"

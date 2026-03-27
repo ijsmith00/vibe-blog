@@ -8,7 +8,7 @@ const OPERATOR_DISPLAY_NAME = "바이브 빌더";
 export async function generateMetadata() {
   return {
     title: `소개 | ${SITE_NAME}`,
-    description: `${SITE_NAME}는 바이브 코딩으로 다양한 실험을 해보고 그 노하우를 나누는 공간입니다.`,
+    description: `${SITE_NAME}은 바이브 코딩으로 다양한 실험을 해보고 그 노하우를 나누는 공간입니다.`,
   };
 }
 
@@ -74,8 +74,8 @@ export default function AboutPage() {
               {OPERATOR_DISPLAY_NAME}
             </h1>
             <p className="mt-3 text-base leading-relaxed text-text-sub dark:text-dm-muted sm:text-lg">
-              에이전틱 AI와 바이브 코딩으로 이것저것 만들어 보면서 배운 노하우와 결과물을 나누고, 꾸준히 성장하는
-              여정을 함께합니다.
+              바이브 코딩으로 이것저것 만들어 보면서 배운 노하우와 결과물을 나누고, 꾸준히 성장하는 여정을
+              함께합니다.
             </p>
           </div>
         </div>
