@@ -154,7 +154,7 @@ export default function AboutPage() {
             </li>
             <li>
               <strong className="font-semibold text-text-main dark:text-dm-text">
-                수익화 블로그 운영
+                수익화 블로그
               </strong>
               — 애드센스, 키워드, SEO·콘텐츠 전략 등 수익과 운영에 필요한 정보
             </li>
