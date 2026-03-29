@@ -3,25 +3,11 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 /**
- * @param {Array<{ id: string; text: string; level: 2; children: Array<{ id: string; text: string; level: 3 }> }>} items
- */
-function flattenTocEntries(items) {
-  const out = [];
-  for (const h2 of items) {
-    out.push({ id: h2.id, text: h2.text, level: 2 });
-    for (const h3 of h2.children || []) {
-      out.push({ id: h3.id, text: h3.text, level: 3 });
-    }
-  }
-  return out;
-}
-
-/**
- * @param {{ items: Array<{ id: string; text: string; level: 2; children: Array<{ id: string; text: string; level: 3 }> }> }} props
+ * @param {{ items: Array<{ id: string; text: string }> }} props
  */
 export default function TableOfContents({ items }) {
-  const flat = useMemo(() => flattenTocEntries(items || []), [items]);
-  const ids = useMemo(() => flat.map((e) => e.id), [flat]);
+  const list = useMemo(() => items || [], [items]);
+  const ids = useMemo(() => list.map((e) => e.id), [list]);
 
   const [activeId, setActiveId] = useState("");
 
@@ -64,14 +50,13 @@ export default function TableOfContents({ items }) {
     }
   }, []);
 
-  if (!items?.length || flat.length <= 1) {
+  if (!list.length || list.length <= 1) {
     return null;
   }
 
-  const linkClass = (id, isH3) =>
+  const linkClass = (id) =>
     [
-      "block w-full rounded-r py-1.5 text-left text-sm transition-colors",
-      isH3 ? "pl-6" : "pl-2",
+      "block w-full rounded-r py-1.5 pl-2 text-left text-sm transition-colors",
       activeId === id
         ? "border-l-2 border-primary font-medium text-primary dark:border-blue-400 dark:text-blue-400"
         : "border-l-2 border-transparent text-text-sub hover:text-text-main dark:text-dm-muted dark:hover:text-dm-text",
@@ -86,36 +71,18 @@ export default function TableOfContents({ items }) {
         목차
       </h2>
       <ul className="space-y-0.5">
-        {items.map((h2) => (
-          <li key={h2.id}>
+        {list.map((item) => (
+          <li key={item.id}>
             <a
-              href={`#${h2.id}`}
-              className={linkClass(h2.id, false)}
+              href={`#${item.id}`}
+              className={linkClass(item.id)}
               onClick={(e) => {
                 e.preventDefault();
-                scrollToId(h2.id);
+                scrollToId(item.id);
               }}
             >
-              {h2.text}
+              {item.text}
             </a>
-            {(h2.children?.length ?? 0) > 0 ? (
-              <ul className="mt-0.5 space-y-0.5">
-                {h2.children.map((h3) => (
-                  <li key={h3.id}>
-                    <a
-                      href={`#${h3.id}`}
-                      className={linkClass(h3.id, true)}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        scrollToId(h3.id);
-                      }}
-                    >
-                      {h3.text}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            ) : null}
           </li>
         ))}
       </ul>

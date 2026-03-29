@@ -7,6 +7,7 @@ export default {
     "./app/**/*.{js,jsx,ts,tsx,mdx}",
     "./components/**/*.{js,jsx,ts,tsx,mdx}",
     "./lib/**/*.{js,jsx,ts,tsx}",
+    "./posts/**/*.md",
   ],
   theme: {
     extend: {
@@ -45,19 +46,18 @@ export default {
               },
             },
             h2: {
-              borderTopWidth: "1px",
-              borderTopStyle: "solid",
-              borderTopColor: "#e5e7eb",
+              /* 상단 실선은 마크다운 `---`(hr)로만 두고, h2 테두리와 겹치면 이중선처럼 보임 */
               paddingTop: "2.5rem",
               marginTop: "3rem",
               marginBottom: "1.75rem",
             },
             pre: {
-              backgroundColor: "#f3f4f6",
-              fontSize: "0.875em",
+              /* globals.css에서 .prose pre로 통일 (대비·모노스페이스) */
+              backgroundColor: "transparent",
+              fontSize: "inherit",
             },
             "pre code": {
-              fontSize: "0.9em",
+              fontSize: "inherit",
             },
             blockquote: {
               borderLeftWidth: "4px",

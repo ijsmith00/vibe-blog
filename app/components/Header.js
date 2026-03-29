@@ -64,14 +64,22 @@ export default function Header({ categoryNavItems = [] }) {
       <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between page-gutter py-4">
         <Link
           href="/"
-          className="text-xl font-bold tracking-tight text-text-main dark:text-dm-text sm:text-2xl"
+          className="flex items-center gap-2.5 text-xl font-bold tracking-tight text-text-main dark:text-dm-text sm:gap-3 sm:text-2xl"
           onClick={() => {
             setMobileOpen(false);
             setCategoryMobileOpen(false);
             setSearchOpen(false);
           }}
         >
-          {SITE_NAME}
+          <img
+            src="/favicon.svg"
+            alt=""
+            width={28}
+            height={28}
+            className="h-7 w-7 shrink-0 opacity-90 dark:opacity-95"
+            aria-hidden
+          />
+          <span>{SITE_NAME}</span>
         </Link>
 
         <div className="flex flex-1 items-center justify-end gap-1 min-[769px]:gap-2">
