@@ -1,6 +1,9 @@
 import Link from "next/link";
 
-import { DEFAULT_DESCRIPTION, SITE_NAME } from "@/lib/site-config";
+import { SITE_NAME } from "@/lib/site-config";
+
+const FOOTER_TAGLINE =
+  "바이브 코딩으로 블로그 제작·다양한 실험 노하우를 모두와 나눕니다.";
 
 const FOOTER_LINKS = [
   { href: "/", label: "홈" },
@@ -27,7 +30,7 @@ export default function Footer() {
             <span>{SITE_NAME}</span>
           </p>
           <p className="mt-2 max-w-xl text-sm leading-relaxed text-text-sub dark:text-dm-muted">
-            {DEFAULT_DESCRIPTION}
+            {FOOTER_TAGLINE}
           </p>
 
           <nav
