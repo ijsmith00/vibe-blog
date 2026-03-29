@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import PostTitle from "@/app/components/PostTitle";
+import { stripMarkdownBold } from "@/lib/post-title";
+
 /** @param {string} src */
 function isNonOptimizableImageSrc(src) {
   return (
@@ -25,6 +28,7 @@ export default function PostCard({ post, priority = false }) {
   } = post;
 
   const categoryLabel = category.trim() || "미분류";
+  const titlePlain = stripMarkdownBold(title);
 
   const sizes =
     "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw";
@@ -41,7 +45,7 @@ export default function PostCard({ post, priority = false }) {
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={cardThumbnail}
-                alt={title}
+                alt={titlePlain}
                 width={640}
                 height={400}
                 className="h-full w-full object-cover"
@@ -51,7 +55,7 @@ export default function PostCard({ post, priority = false }) {
             ) : (
               <Image
                 src={cardThumbnail}
-                alt={title}
+                alt={titlePlain}
                 fill
                 sizes={sizes}
                 className="object-cover"
@@ -73,7 +77,7 @@ export default function PostCard({ post, priority = false }) {
           </span>
 
           <h2 className="mt-3 line-clamp-2 text-lg font-bold leading-snug text-text-main group-hover:text-primary dark:text-dm-text dark:group-hover:text-blue-400">
-            {title}
+            <PostTitle title={title} />
           </h2>
 
           <p className="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-text-sub dark:text-dm-muted">

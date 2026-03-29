@@ -2,7 +2,10 @@ import { notFound } from "next/navigation";
 
 import Breadcrumb from "@/app/components/Breadcrumb";
 import PostCard from "@/app/components/PostCard";
-import { normalizeCategory } from "@/lib/category";
+import {
+  categoryLabelFromSlug,
+  isKnownCategorySlug,
+} from "@/lib/category";
 import {
   absolutePageUrl,
   SITE_NAME,
@@ -13,12 +16,12 @@ import {
   getPostsByCategory,
 } from "@/lib/posts";
 
-function categoryFromParam(raw) {
+function categorySlugFromParam(raw) {
   if (typeof raw !== "string" || raw.trim() === "") return "";
   try {
-    return normalizeCategory(decodeURIComponent(raw));
+    return decodeURIComponent(raw).trim();
   } catch {
-    return normalizeCategory(raw);
+    return raw.trim();
   }
 }
 
@@ -29,14 +32,19 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const { category: categoryParam } = await params;
-  const label = categoryFromParam(categoryParam);
+  const slug = categorySlugFromParam(categoryParam);
   const categories = await getAllCategories();
-  if (!label || !categories.includes(label)) {
+  if (!slug || !categories.includes(slug)) {
+    return { title: SITE_NAME };
+  }
+
+  const label = categoryLabelFromSlug(slug);
+  if (!label) {
     return { title: SITE_NAME };
   }
 
   const description = `${label} 카테고리 글 목록 — ${SITE_NAME}`;
-  const canonical = absolutePageUrl(`/category/${encodeURIComponent(label)}`);
+  const canonical = absolutePageUrl(`/category/${encodeURIComponent(slug)}`);
   const ogImage = ogImageMetadata(null, label);
 
   return {
@@ -62,14 +70,19 @@ export async function generateMetadata({ params }) {
 
 export default async function CategoryPage({ params }) {
   const { category: categoryParam } = await params;
-  const label = categoryFromParam(categoryParam);
+  const slug = categorySlugFromParam(categoryParam);
   const categories = await getAllCategories();
 
-  if (!label || !categories.includes(label)) {
+  if (!slug || !categories.includes(slug) || !isKnownCategorySlug(slug)) {
     notFound();
   }
 
-  const posts = await getPostsByCategory(label);
+  const label = categoryLabelFromSlug(slug);
+  if (!label) {
+    notFound();
+  }
+
+  const posts = await getPostsByCategory(slug);
   const count = posts.length;
 
   return (

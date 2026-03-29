@@ -13,12 +13,12 @@ const NAV_LEAD = [
 ];
 const NAV_CONTACT = { href: "/contact", label: "문의" };
 
-function categoryHref(name) {
-  return `/category/${encodeURIComponent(name)}`;
+function categoryHref(slug) {
+  return `/category/${encodeURIComponent(slug)}`;
 }
 
 /**
- * @param {{ categories?: string[] }} props
+ * @param {{ categoryNavItems?: { slug: string; label: string }[] }} props
  */
 function SearchIcon({ className = "h-5 w-5" }) {
   return (
@@ -38,7 +38,7 @@ function SearchIcon({ className = "h-5 w-5" }) {
   );
 }
 
-export default function Header({ categories = [] }) {
+export default function Header({ categoryNavItems = [] }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [categoryMobileOpen, setCategoryMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -119,14 +119,14 @@ export default function Header({ categories = [] }) {
                     전체 보기
                   </Link>
                 </li>
-                {categories.map((name) => (
-                  <li key={name} role="none">
+                {categoryNavItems.map(({ slug, label }) => (
+                  <li key={slug} role="none">
                     <Link
                       role="menuitem"
-                      href={categoryHref(name)}
+                      href={categoryHref(slug)}
                       className="block px-4 py-2 text-sm font-medium text-text-sub transition-colors hover:bg-secondary hover:text-text-main dark:text-dm-muted dark:hover:bg-dm-bg dark:hover:text-dm-text"
                     >
-                      {name}
+                      {label}
                     </Link>
                   </li>
                 ))}
@@ -244,17 +244,17 @@ export default function Header({ categories = [] }) {
                     전체 보기
                   </Link>
                 </li>
-                {categories.map((name) => (
-                  <li key={name}>
+                {categoryNavItems.map(({ slug, label }) => (
+                  <li key={slug}>
                     <Link
-                      href={categoryHref(name)}
+                      href={categoryHref(slug)}
                       className="block py-2 text-sm text-text-sub hover:text-text-main dark:text-dm-muted dark:hover:text-dm-text"
                       onClick={() => {
                         setMobileOpen(false);
                         setCategoryMobileOpen(false);
                       }}
                     >
-                      {name}
+                      {label}
                     </Link>
                   </li>
                 ))}

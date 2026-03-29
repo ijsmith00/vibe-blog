@@ -30,6 +30,16 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: "/category/%EB%B0%94%EC%9D%B4%EB%B8%8C%20%EC%BD%94%EB%94%A9",
+        destination: "/category/vibe-coding-guide",
+        permanent: true,
+      },
+      {
+        source: "/category/%EC%88%98%EC%9D%B5%ED%99%94%20%EB%B8%94%EB%A1%9C%EA%B7%B8",
+        destination: "/category/blog-monetization",
+        permanent: true,
+      },
+      {
         source: "/:path*",
         has: [
           { type: "header", key: "x-forwarded-proto", value: "http" },

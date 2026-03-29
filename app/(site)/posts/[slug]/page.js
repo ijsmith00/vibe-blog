@@ -5,8 +5,12 @@ import { notFound } from "next/navigation";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import JsonLd from "@/app/components/JsonLd";
 import PostCard from "@/app/components/PostCard";
+import PostTitle from "@/app/components/PostTitle";
 import TableOfContents from "@/app/components/TableOfContents";
-import { normalizeCategory } from "@/lib/category";
+import {
+  categorySlugFromLabel,
+  normalizeCategory,
+} from "@/lib/category";
 import {
   AUTHOR_NAME,
   absoluteOgImageUrl,
@@ -22,6 +26,7 @@ function isNonOptimizableImageSrc(src) {
     (src.startsWith("data:") || src.startsWith("blob:"))
   );
 }
+import { stripMarkdownBold } from "@/lib/post-title";
 import {
   getAdjacentPosts,
   getAllPosts,
@@ -42,10 +47,11 @@ export async function generateMetadata({ params }) {
   }
 
   const canonical = absolutePageUrl(`/posts/${slug}`);
-  const ogImage = ogImageMetadata(post.thumbnailUrl, post.title);
+  const titlePlain = stripMarkdownBold(post.title);
+  const ogImage = ogImageMetadata(post.thumbnailUrl, titlePlain);
 
   return {
-    title: post.title,
+    title: titlePlain,
     description: post.description,
     alternates: {
       canonical,
@@ -53,7 +59,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       type: "article",
       url: canonical,
-      title: post.title,
+      title: titlePlain,
       description: post.description,
       publishedTime: post.date,
       modifiedTime: post.dateModified,
@@ -61,7 +67,7 @@ export async function generateMetadata({ params }) {
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
+      title: titlePlain,
       description: post.description,
       images: [ogImage],
     },
@@ -79,17 +85,20 @@ export default async function PostPage({ params }) {
   const related = await getRelatedPosts(slug, post.category, post.tags, 3);
 
   const categoryLabel = post.category.trim() || "미분류";
-  const categoryKey = normalizeCategory(post.category);
+  const categorySlug =
+    categorySlugFromLabel(post.category) ??
+    encodeURIComponent(normalizeCategory(post.category));
   const postUrl = absolutePageUrl(`/posts/${slug}`);
   const categoryPageUrl = absolutePageUrl(
-    `/category/${encodeURIComponent(categoryKey)}`,
+    `/category/${categorySlug}`,
   );
   const imageUrl = absoluteOgImageUrl(post.thumbnailUrl);
+  const titlePlain = stripMarkdownBold(post.title);
 
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: post.title,
+    headline: titlePlain,
     description: post.description,
     datePublished: post.date,
     dateModified: post.dateModified,
@@ -123,13 +132,13 @@ export default async function PostPage({ params }) {
       {
         "@type": "ListItem",
         position: 2,
-        name: categoryKey,
+        name: categoryLabel,
         item: categoryPageUrl,
       },
       {
         "@type": "ListItem",
         position: 3,
-        name: post.title,
+        name: titlePlain,
         item: postUrl,
       },
     ],
@@ -147,9 +156,9 @@ export default async function PostPage({ params }) {
                 { label: "홈", href: "/" },
                 {
                   label: categoryLabel,
-                  href: `/category/${encodeURIComponent(categoryKey)}`,
+                  href: `/category/${categorySlug}`,
                 },
-                { label: post.title, href: null },
+                { label: titlePlain, href: null },
               ]}
               maxLastLength={30}
             />
@@ -158,9 +167,11 @@ export default async function PostPage({ params }) {
               <span className="inline-flex rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-800 dark:bg-blue-950/60 dark:text-blue-200">
                 {categoryLabel}
               </span>
-              <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-text-main dark:text-dm-text sm:text-4xl md:text-[2.5rem] md:leading-tight">
-                {post.title}
-              </h1>
+              <PostTitle
+                title={post.title}
+                as="h1"
+                className="mt-4 text-3xl font-extrabold tracking-tight text-text-main dark:text-dm-text sm:text-4xl md:text-[2.5rem] md:leading-tight"
+              />
               <p className="mt-3 text-sm font-medium text-text-sub dark:text-dm-muted">
                 <time dateTime={post.date}>{post.dateLabel}</time>
                 <span className="mx-2 text-border dark:text-dm-border">·</span>
@@ -173,7 +184,7 @@ export default async function PostPage({ params }) {
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={post.thumbnailUrl}
-                  alt={post.title}
+                  alt={titlePlain}
                   width={720}
                   height={405}
                   className="mt-8 w-full rounded-xl border border-border object-cover dark:border-dm-border"
@@ -183,7 +194,7 @@ export default async function PostPage({ params }) {
                 <div className="relative mt-8 aspect-[16/9] w-full overflow-hidden rounded-xl border border-border dark:border-dm-border">
                   <Image
                     src={post.thumbnailUrl}
-                    alt={post.title}
+                    alt={titlePlain}
                     fill
                     sizes="(max-width: 720px) 100vw, 720px"
                     className="object-cover"
@@ -226,7 +237,7 @@ export default async function PostPage({ params }) {
                     이전 글
                   </span>
                   <span className="mt-1 line-clamp-2 text-sm font-semibold text-text-main group-hover:text-primary dark:text-dm-text dark:group-hover:text-blue-400">
-                    {prev.title}
+                    <PostTitle title={prev.title} />
                   </span>
                 </Link>
               ) : (
@@ -241,7 +252,7 @@ export default async function PostPage({ params }) {
                     다음 글
                   </span>
                   <span className="mt-1 line-clamp-2 text-sm font-semibold text-text-main group-hover:text-primary dark:text-dm-text dark:group-hover:text-blue-400">
-                    {next.title}
+                    <PostTitle title={next.title} />
                   </span>
                 </Link>
               ) : null}

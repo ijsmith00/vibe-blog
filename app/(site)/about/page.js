@@ -148,13 +148,19 @@ export default function AboutPage() {
           <ul className="mt-5 list-inside list-disc space-y-2.5 text-[0.9375rem] leading-relaxed text-text-sub marker:text-primary dark:text-dm-muted dark:marker:text-blue-400 sm:text-base">
             <li>
               <strong className="font-semibold text-text-main dark:text-dm-text">
-                바이브 코딩
+                바이브 코딩 (AI 개발)
               </strong>
               — Next.js 등으로 블로그를 구축하고 배포·운영하는 실전 노하우, 에이전틱 AI와 함께 실험하는 과정
             </li>
             <li>
               <strong className="font-semibold text-text-main dark:text-dm-text">
-                수익화 블로그
+                [연재] 바이브 코딩으로 블로그 만들기
+              </strong>
+              — 바이브 코딩만으로 블로그를 처음부터 완성해 가는 연재 시리즈
+            </li>
+            <li>
+              <strong className="font-semibold text-text-main dark:text-dm-text">
+                수익화 노하우
               </strong>
               — 애드센스, 키워드, SEO·콘텐츠 전략 등 수익과 운영에 필요한 정보
             </li>

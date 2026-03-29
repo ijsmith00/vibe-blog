@@ -33,8 +33,8 @@ export async function generateMetadata() {
   };
 }
 
-function categoryHref(name) {
-  return `/category/${encodeURIComponent(name)}`;
+function categoryHref(slug) {
+  return `/category/${encodeURIComponent(slug)}`;
 }
 
 export default async function CategoriesIndexPage() {
@@ -64,9 +64,9 @@ export default async function CategoriesIndexPage() {
       ) : (
         <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
           {summaries.map((item) => (
-            <li key={item.name}>
+            <li key={item.slug}>
               <Link
-                href={categoryHref(item.name)}
+                href={categoryHref(item.slug)}
                 className="group block h-full rounded-xl border border-border bg-bg-main p-6 shadow-sm transition duration-200 ease-out hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:border-dm-border dark:bg-dm-card dark:hover:border-primary/50 dark:hover:shadow-black/40"
               >
                 <h2 className="text-xl font-bold leading-snug text-text-main group-hover:text-primary dark:text-dm-text dark:group-hover:text-blue-400">
