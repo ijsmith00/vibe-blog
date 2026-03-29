@@ -22,7 +22,7 @@ export default async function Home() {
           꺾이지 않는 마음과 복/붙 기술만 있다면 누구나 나만의 웹사이트를 만들 수 있어요!
         </p>
         <a
-          href="#latest-posts"
+          href="/category/vibe-coding-blog"
           className="mt-8 inline-flex items-center justify-center rounded-xl bg-[#1d4ed8] px-5 py-3 text-sm font-bold text-white shadow-md ring-2 ring-white/40 transition hover:bg-[#1e3a8a] hover:ring-white/60 sm:mt-10 sm:px-8 sm:py-3.5 sm:text-base md:text-lg"
         >
           바로 시작하기!
