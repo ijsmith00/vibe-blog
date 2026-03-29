@@ -55,6 +55,12 @@ export default async function sitemap() {
       priority: 0.6,
     })),
     {
+      url: `${base}/ecp-charts`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.35,
+    },
+    {
       url: `${base}/about`,
       lastModified: now,
       changeFrequency: "monthly",
