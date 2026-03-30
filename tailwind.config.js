@@ -33,10 +33,15 @@ export default {
             "--tw-prose-headings": "#111827",
             "--tw-prose-bold": "#111827",
             maxWidth: "none",
+            /* typography 기본: 인라인 code 앞뒤에 백틱 문자(::before/after) — 제거 */
+            "code::before": { content: "none" },
+            "code::after": { content: "none" },
           },
         },
         lg: {
           css: {
+            "code::before": { content: "none" },
+            "code::after": { content: "none" },
             color: "#1f2937",
             a: {
               color: "#2563eb",
