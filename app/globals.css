@@ -430,6 +430,22 @@ body {
     th[scope="row"] {
     border-right-color: #475569;
   }
+
+  .wireframe-gshape.wireframe-gshape--table .wireframe-table--compare3 thead th {
+    background-color: rgba(30, 41, 59, 0.85);
+    color: #e2e8f0;
+    border-color: #475569;
+  }
+
+  .wireframe-gshape.wireframe-gshape--table .wireframe-table--compare3 tbody th[scope="row"] {
+    color: #e2e8f0;
+    border-color: #475569;
+  }
+
+  .wireframe-gshape.wireframe-gshape--table .wireframe-table--compare3 th,
+  .wireframe-gshape.wireframe-gshape--table .wireframe-table--compare3 td {
+    border-color: #475569;
+  }
 }
 
 /* 공통점2·3: 공통점1과 동일 외곽 + 표(table)로 정렬 */
@@ -522,5 +538,44 @@ body {
 
 .wireframe-table__anchor-main {
   font-weight: 500;
+}
+
+/* DAY 04 등: Next.js vs Astro 같은 3열 비교표 */
+.wireframe-table.wireframe-table--compare3 {
+  table-layout: fixed;
+}
+
+.wireframe-table.wireframe-table--compare3 th,
+.wireframe-table.wireframe-table--compare3 td {
+  width: auto;
+  border-right: 1px solid #94a3b8;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.wireframe-table.wireframe-table--compare3 th {
+  width: auto;
+}
+
+.wireframe-table--compare3 thead th {
+  font-weight: 600;
+  background-color: #f1f5f9;
+  color: #334155;
+}
+
+.wireframe-table--compare3 tbody th[scope="row"] {
+  text-align: left;
+  font-weight: 600;
+  color: #334155;
+  border-right: 1px solid #94a3b8;
+}
+
+.wireframe-table--compare3 tbody td {
+  font-weight: 400;
+}
+
+.wireframe-table--compare3 th:last-child,
+.wireframe-table--compare3 td:last-child {
+  border-right: none;
 }
 
