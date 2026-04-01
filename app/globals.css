@@ -180,6 +180,22 @@ body {
   padding: 0.25rem;
 }
 
+/* 세로형 스크린샷 — 가로 기준 표시 크기 2/3 (본문 컨테이너 대비) */
+.md-content img.md-img-portrait-2-3 {
+  width: 66.666%;
+  max-width: 66.666%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 특정 세로형만 1/2 폭 (DAY 05 day05-11 등) */
+.md-content img.md-img-portrait-half {
+  width: 50%;
+  max-width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .md-content h1 {
   font-size: 2rem;
   line-height: 1.2;
