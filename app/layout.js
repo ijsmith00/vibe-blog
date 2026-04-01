@@ -5,6 +5,7 @@ import JsonLd from "./components/JsonLd";
 import {
   getWebSiteJsonLd,
   GOOGLE_SITE_VERIFICATION,
+  NAVER_SITE_VERIFICATION,
 } from "@/lib/config";
 import {
   DEFAULT_DESCRIPTION,
@@ -39,8 +40,12 @@ export async function generateMetadata() {
       index: true,
       follow: true,
     },
+    // Google / 네이버 서치어드바이저 소유 확인 — 실제 `<head>` 메타는 아래 `verification`에서 생성됨(토큰은 `lib/config.js`).
     verification: {
       google: GOOGLE_SITE_VERIFICATION,
+      other: {
+        "naver-site-verification": NAVER_SITE_VERIFICATION,
+      },
     },
     openGraph: {
       type: "website",

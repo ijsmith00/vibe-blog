@@ -6,6 +6,7 @@ import JsonLd from "@/app/components/JsonLd";
 import {
   getWebSiteJsonLd,
   GOOGLE_SITE_VERIFICATION,
+  NAVER_SITE_VERIFICATION,
 } from "@/lib/config";
 import { SITE_NAME, SITE_URL, ogImageMetadata } from "@/lib/site-config";
 
@@ -60,9 +61,14 @@ export default function GlobalNotFound() {
       className={`${geistMono.variable} ${notoSansKr.variable} h-full scroll-smooth antialiased`}
     >
       <head>
+        {/* 구글 서치 콘솔 / 네이버 서치어드바이저 소유 확인 — 루트 레이아웃과 동일 토큰(lib/config.js) */}
         <meta
           name="google-site-verification"
           content={GOOGLE_SITE_VERIFICATION}
+        />
+        <meta
+          name="naver-site-verification"
+          content={NAVER_SITE_VERIFICATION}
         />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
