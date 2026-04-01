@@ -40,13 +40,7 @@ export async function generateMetadata() {
       index: true,
       follow: true,
     },
-    // Google / 네이버 서치어드바이저 소유 확인 — 실제 `<head>` 메타는 아래 `verification`에서 생성됨(토큰은 `lib/config.js`).
-    verification: {
-      google: GOOGLE_SITE_VERIFICATION,
-      other: {
-        "naver-site-verification": NAVER_SITE_VERIFICATION,
-      },
-    },
+    // 소유 확인용 meta는 아래 `<head>`에 직접 둠(네이버 크롤러 호환·head 앞쪽 배치). 토큰은 lib/config.js.
     openGraph: {
       type: "website",
       locale: "ko_KR",
@@ -78,6 +72,15 @@ export default function RootLayout({ children }) {
       className={`${geistMono.variable} ${notoSansKr.variable} h-full scroll-smooth antialiased`}
     >
       <head>
+        {/* 네이버 서치어드바이저·구글 서치 콘솔 소유 확인(HTML 태그) — head 안 앞쪽, 토큰은 lib/config.js */}
+        <meta
+          name="naver-site-verification"
+          content={NAVER_SITE_VERIFICATION}
+        />
+        <meta
+          name="google-site-verification"
+          content={GOOGLE_SITE_VERIFICATION}
+        />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
       <body
