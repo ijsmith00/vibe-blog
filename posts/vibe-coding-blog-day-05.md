@@ -99,7 +99,7 @@ npm run dev
 
 <img src="/image-day05/day05-04.png" alt="명령 실행 완료" class="md-img-portrait-2-3" />
 
-이와 유사한 메시지가 보이면, 브라우저를 열고 주소창에 **`localhost:3000`**을 입력하세요.
+이와 유사한 메시지가 보이면, 브라우저를 열고 주소창에 <strong>`localhost:3000`</strong>을 입력하세요.
 
 ![웹 페이지 생성](/image-day05/day05-05.png)
 

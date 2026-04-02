@@ -196,6 +196,19 @@ body {
   margin-right: auto;
 }
 
+/*
+ * 본문(prose lg): typography가 img에 width:100%를 주어 작은 스크린샷이 늘어남.
+ * 원본(내재) 픽셀 너비로 보이게 — 필요한 이미지에만 .md-img-natural 부여.
+ */
+.prose.prose-lg img.md-img-natural,
+.prose.prose-lg figure > img.md-img-natural {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .md-content h1 {
   font-size: 2rem;
   line-height: 1.2;
@@ -462,6 +475,45 @@ body {
   .wireframe-gshape.wireframe-gshape--table .wireframe-table--compare3 td {
     border-color: #475569;
   }
+
+  .wireframe-gshape.wireframe-gshape--table .wireframe-table--typography tbody td:last-child {
+    color: #94a3b8;
+  }
+
+  .wireframe-gshape--header-schematic .wireframe-table__caption {
+    color: #cbd5e1;
+    border-color: #475569;
+  }
+
+  .wireframe-header-schematic__track--labels {
+    border-top-color: #475569;
+  }
+
+  .wireframe-header-schematic__track--labels .wireframe-header-schematic__cell {
+    color: #94a3b8;
+  }
+
+  .wireframe-adsense-mock__thumb {
+    border-color: #64748b;
+    background-color: rgba(15, 23, 42, 0.55);
+    color: #94a3b8;
+  }
+
+  .wireframe-adsense-mock__title {
+    color: #60a5fa;
+  }
+
+  .wireframe-adsense-mock__desc {
+    color: #94a3b8;
+  }
+
+  .wireframe-adsense-mock__url {
+    color: #4ade80;
+  }
+
+  .wireframe-color-swatch {
+    border-color: rgba(203, 213, 225, 0.45);
+  }
 }
 
 /* 공통점2·3: 공통점1과 동일 외곽 + 표(table)로 정렬 */
@@ -475,6 +527,85 @@ body {
   max-width: 18rem;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* DAY 06 헤더 도식: 3열 간격 + 범례를 각 열 아래 정렬 */
+.wireframe-gshape--header-schematic {
+  padding: 0;
+  overflow: hidden;
+}
+
+.wireframe-gshape--header-schematic .wireframe-table__caption {
+  margin: 0;
+}
+
+.wireframe-header-schematic__band {
+  padding: 0.5rem 0.75rem 0.65rem;
+}
+
+.wireframe-header-schematic__track {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 1.75rem;
+  row-gap: 0.35rem;
+}
+
+.wireframe-header-schematic__track--labels {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed #cbd5e1;
+  align-items: flex-start;
+}
+
+.wireframe-header-schematic__cell {
+  flex: 1 1 0;
+  min-width: 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+
+.wireframe-header-schematic__cell--start {
+  text-align: left;
+}
+
+.wireframe-header-schematic__cell--center {
+  text-align: center;
+}
+
+.wireframe-header-schematic__cell--end {
+  text-align: right;
+}
+
+/* 데스크톱: 카테고리 줄(가운데 열)이 한 줄로 유지되도록 — '카테고리3' 등이 끊기지 않게 */
+.wireframe-gshape--header-schematic:not(.wireframe-gshape--narrow)
+  .wireframe-header-schematic__track:not(.wireframe-header-schematic__track--labels)
+  .wireframe-header-schematic__cell--center {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+/* 모바일: 햄버거(가운데)와 다크모드(오른쪽)만 간격 축소 — 블로그명과는 기존 간격 유지 */
+.wireframe-gshape--narrow
+  .wireframe-header-schematic__track:not(.wireframe-header-schematic__track--labels)
+  .wireframe-header-schematic__cell--end {
+  margin-left: -0.85rem;
+}
+
+.wireframe-gshape--narrow
+  .wireframe-header-schematic__track--labels
+  .wireframe-header-schematic__cell--end {
+  margin-left: -0.85rem;
+}
+
+.wireframe-header-schematic__track--labels .wireframe-header-schematic__cell {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 400;
+}
+
+.wireframe-gshape--header-schematic.wireframe-gshape--narrow {
+  max-width: 26rem;
 }
 
 .wireframe-table {
@@ -590,8 +721,108 @@ body {
   font-weight: 400;
 }
 
+.wireframe-table--compare3 tbody td:has(.wireframe-color-cell) {
+  text-align: left;
+  vertical-align: top;
+}
+
 .wireframe-table--compare3 th:last-child,
 .wireframe-table--compare3 td:last-child {
   border-right: none;
+}
+
+/* DAY 06: 타이포그래피 표 — 설정값·이유 열 구분 */
+.wireframe-table--typography tbody td:nth-child(2) {
+  font-weight: 500;
+}
+
+.wireframe-table--typography tbody td:last-child {
+  font-size: 0.75rem;
+  color: #64748b;
+  text-align: left;
+}
+
+/* DAY 06: 색상 시스템 표 — 스와치 열 고정으로 세로 기준 정렬 */
+.wireframe-color-cell {
+  display: grid;
+  grid-template-columns: 0.72rem minmax(0, 1fr);
+  column-gap: 0.4rem;
+  align-items: start;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+.wireframe-color-cell__main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.35rem;
+  min-width: 0;
+}
+
+.wireframe-color-cell .wireframe-inset__sub {
+  margin-top: 0;
+  font-size: 0.68rem;
+}
+
+.wireframe-color-swatch {
+  width: 0.72rem;
+  height: 0.72rem;
+  margin-top: 0.22em;
+  border: 1px solid rgba(15, 23, 42, 0.2);
+  border-radius: 0.12rem;
+  box-sizing: border-box;
+}
+
+/* DAY 06: 애드센스 단위 광고 형태(텍스트 광고 스타일) 와이어프레임 */
+.wireframe-adsense-mock {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  text-align: left;
+  padding: 0.2rem 0;
+}
+
+.wireframe-adsense-mock__thumb {
+  flex-shrink: 0;
+  width: 4.25rem;
+  height: 4.25rem;
+  border: 1px dashed #94a3b8;
+  border-radius: 0.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  color: #64748b;
+  background-color: rgba(255, 255, 255, 0.45);
+}
+
+.wireframe-adsense-mock__text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.wireframe-adsense-mock__title {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #2563eb;
+  line-height: 1.4;
+}
+
+.wireframe-adsense-mock__desc {
+  font-size: 0.75rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.wireframe-adsense-mock__url {
+  font-size: 0.7rem;
+  color: #15803d;
+  line-height: 1.4;
 }
 
