@@ -15,7 +15,9 @@
         1) 이 파일을 브라우저로 연 뒤(또는 dev 서버에서 /og-default-source.html)
         2) 창 크기를 넉넉히 두고, 개발자 도구에서 스크린샷 확장 또는
            뷰포트 1200×630 고정 후 전체 페이지 캡처
-        3) 1200×630 PNG로 저장하여 og-default.png로 교체
+        3) 1200×630 PNG로 저장하여 public/og-default.png로 교체한 뒤 lib/config.js의
+           DEFAULT_OG_IMAGE_WIDTH/HEIGHT도 같은 크기로 맞출 것.
+           (현재 저장소에 og-default.png가 포함되어 있으면 이 단계는 생략 가능)
       */
       * {
         box-sizing: border-box;
