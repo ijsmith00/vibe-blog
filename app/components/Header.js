@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useId, useState } from "react";
 
+import ScrollProgressBar from "@/app/components/ScrollProgressBar";
 import SearchBar from "@/app/components/SearchBar";
 import { SITE_NAME } from "@/lib/site-config";
 
@@ -61,6 +62,7 @@ export default function Header({ categoryNavItems = [] }) {
           : "shadow-none"
       }`}
     >
+      <ScrollProgressBar />
       <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between page-gutter py-4">
         <Link
           href="/"

@@ -1,6 +1,6 @@
 ---
 title: "**DAY 03** [준비] AI 코딩 비서 세팅: Cursor 설치부터 첫 대화까지 15분"
-date: "2026-04-01"
+date: "2026-03-28"
 category: "[연재] 바이브 코딩으로 블로그 만들기"
 description: "Node.js·Git·Cursor·GitHub 설치 순서와 역할, 15분 안에 AI 코딩 비서를 세팅하고 첫 대화까지 마치는 방법."
 tags: ["바이브코딩", "VibeCoding", "블로그만들기", "연재", "Cursor", "Node.js", "Git", "GitHub"]

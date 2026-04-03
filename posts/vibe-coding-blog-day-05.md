@@ -1,6 +1,6 @@
 ---
 title: "**DAY 05** [실전] 코드 제로, ‘블로그 만들어줘’라고 말만 하세요(첫 화면 띄우기)"
-date: "2026-04-03"
+date: "2026-03-30"
 category: "[연재] 바이브 코딩으로 블로그 만들기"
 description: "create-next-app으로 뼈대 만들기, Cursor 프롬프트로 수익형 블로그 UI 생성, localhost 확인·에러 대처·마크다운 글까지 첫 화면 띄우기."
 tags: ["바이브코딩", "VibeCoding", "블로그만들기", "연재", "Next.js", "Cursor", "create-next-app"]

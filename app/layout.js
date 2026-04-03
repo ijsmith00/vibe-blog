@@ -2,6 +2,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { Geist_Mono, Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 import JsonLd from "./components/JsonLd";
+import ScrollToTop from "./components/ScrollToTop";
 import {
   getWebSiteJsonLd,
   GOOGLE_SITE_VERIFICATION,
@@ -88,6 +89,7 @@ export default function RootLayout({ children }) {
       >
         <JsonLd data={getWebSiteJsonLd()} />
         {children}
+        <ScrollToTop />
         <Analytics />
       </body>
     </html>

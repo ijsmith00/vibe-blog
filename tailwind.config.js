@@ -76,23 +76,30 @@ export default {
               paddingInlineStart: "1rem",
               borderRadius: "0.375rem",
             },
+            /* 본문 이미지: 파일 원래 픽셀 너비(최대 본문 너비까지). width:100%는 작은 스크린샷이 늘어남 */
             img: {
-              width: "100%",
+              width: "auto",
               maxWidth: "100%",
               height: "auto",
               borderRadius: "0.5rem",
+              marginLeft: "auto",
+              marginRight: "auto",
+              display: "block",
             },
             figure: {
               marginTop: "2rem",
               marginBottom: "2rem",
             },
             "figure > img": {
-              width: "100%",
+              width: "auto",
               maxWidth: "100%",
               height: "auto",
               borderRadius: "0.5rem",
               marginTop: "0",
               marginBottom: "0",
+              marginLeft: "auto",
+              marginRight: "auto",
+              display: "block",
             },
             figcaption: {
               marginTop: "0.5rem",
