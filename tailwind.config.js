@@ -2,7 +2,7 @@ import typography from "@tailwindcss/typography";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: "media",
+  darkMode: "class",
   content: [
     "./app/**/*.{js,jsx,ts,tsx,mdx}",
     "./components/**/*.{js,jsx,ts,tsx,mdx}",
@@ -40,6 +40,11 @@ export default {
         },
         lg: {
           css: {
+            /* typography 기본은 quote-borders가 slate(회색). 인용 왼쪽 강조선은 primary 블루 유지 */
+            "--tw-prose-quote-borders": "#2563eb",
+            "--tw-prose-invert-quote-borders": "#60a5fa",
+            /* prose-invert 기본 invert-quotes는 밝은색 — 밝은 배경(#eff6ff)과 겹치면 묻힘. globals에서 다크 인용 박스 보정과 함께 사용 */
+            "--tw-prose-invert-quotes": "#e5e7eb",
             "code::before": { content: "none" },
             "code::after": { content: "none" },
             color: "#1f2937",

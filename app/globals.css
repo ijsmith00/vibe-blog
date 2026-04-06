@@ -59,9 +59,23 @@ body {
 }
 
 /* prose 이미지 캡션: 다크 모드에서 가독성 */
-@media (prefers-color-scheme: dark) {
+html.dark {
   .prose.prose-lg figure figcaption {
     color: #9ca3af;
+  }
+
+  /*
+   * dark:prose-invert는 인용 글자색만 밝게 바꾸는데, lg 커스텀 배경(#eff6ff)은 그대로라 대비가 깨짐.
+   * 다크에서는 인용 박스를 어둡게 두고 본문과 맞는 밝은 글자색으로 통일.
+   */
+  .prose.prose-lg blockquote {
+    background-color: rgba(30, 58, 138, 0.28);
+    border-left-color: #60a5fa;
+    color: #e5e7eb;
+  }
+
+  .prose.prose-lg blockquote p {
+    color: inherit;
   }
 }
 
@@ -87,7 +101,7 @@ body {
   margin-top: 1.5rem;
 }
 
-@media (prefers-color-scheme: dark) {
+html.dark {
   .prose :where(hr) {
     border-top-color: #374151;
   }
@@ -129,7 +143,7 @@ body {
   border-radius: 0;
 }
 
-@media (prefers-color-scheme: dark) {
+html.dark {
   .md-content p,
   .md-content ul,
   .md-content ol {
@@ -412,7 +426,7 @@ body {
   font-size: 0.7rem;
 }
 
-@media (prefers-color-scheme: dark) {
+html.dark {
   .wireframe-gshape {
     border-color: #475569;
     background-color: #0f172a;

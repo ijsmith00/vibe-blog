@@ -473,8 +473,8 @@ Sitemap: https://myblog.com/sitemap.xml
 ```html
 확인할 것들:
 
-<title>BlogName - 블로그 설명</title>                            ✅ 있어야 함
-<meta name="description" content="블로그 설명..."/>              ✅ 있어야 함
+<title>BlogName - 블로그 설명</title>                           ✅ 있어야 함
+<meta name="description" content="블로그 설명..."/>             ✅ 있어야 함
 <meta property="og:title" content="..."/>                      ✅ 있어야 함
 <meta property="og:description" content="..."/>                ✅ 있어야 함
 <meta property="og:image" content="..."/>                      ✅ 있어야 함

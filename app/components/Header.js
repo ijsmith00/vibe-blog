@@ -5,6 +5,7 @@ import { useEffect, useId, useState } from "react";
 
 import ScrollProgressBar from "@/app/components/ScrollProgressBar";
 import SearchBar from "@/app/components/SearchBar";
+import ThemeToggle from "@/app/components/ThemeToggle";
 import { SITE_NAME } from "@/lib/site-config";
 
 /** 상단 메뉴 순서: 홈 → 소개 → 카테고리(드롭다운) → 문의 */
@@ -179,6 +180,8 @@ export default function Header({ categoryNavItems = [] }) {
         >
           ☰
         </button>
+
+        <ThemeToggle />
         </div>
       </div>
 
