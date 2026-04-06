@@ -1,7 +1,15 @@
 import EmptyPostsState from "@/app/components/EmptyPostsState";
 import PostListWithFilter from "@/app/components/PostListWithFilter";
-import { SITE_NAME } from "@/lib/site-config";
+import { SITE_NAME, absolutePageUrl } from "@/lib/site-config";
 import { getAllPosts } from "@/lib/posts";
+
+export async function generateMetadata() {
+  return {
+    alternates: {
+      canonical: absolutePageUrl("/"),
+    },
+  };
+}
 
 export default async function Home() {
   const posts = await getAllPosts();

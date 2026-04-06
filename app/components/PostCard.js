@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import PostTitle from "@/app/components/PostTitle";
 import { stripMarkdownBold } from "@/lib/post-title";
+import { postDetailPath } from "@/lib/site-config";
 
 /** @param {string} src */
 function isNonOptimizableImageSrc(src) {
@@ -35,7 +36,7 @@ export default function PostCard({ post, priority = false }) {
 
   return (
     <Link
-      href={`/posts/${slug}`}
+      href={postDetailPath(slug)}
       className="group block h-full w-full max-w-full min-w-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
     >
       <article className="flex h-full flex-col overflow-hidden rounded-lg border border-border bg-bg-main shadow-sm transition duration-200 ease-out hover:-translate-y-1 hover:shadow-lg dark:border-dm-border dark:bg-dm-card dark:hover:shadow-black/40">

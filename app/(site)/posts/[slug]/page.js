@@ -12,13 +12,14 @@ import {
   normalizeCategory,
 } from "@/lib/category";
 import {
-  AUTHOR_NAME,
-  absoluteOgImageUrl,
   absolutePageUrl,
+  absolutePostUrl,
+  postDetailPath,
   SITE_NAME,
   SITE_URL,
   ogImageMetadata,
 } from "@/lib/site-config";
+import { buildBlogPostingJsonLd } from "@/lib/post-jsonld";
 
 function isNonOptimizableImageSrc(src) {
   return (
@@ -46,7 +47,7 @@ export async function generateMetadata({ params }) {
     return { title: SITE_NAME };
   }
 
-  const canonical = absolutePageUrl(`/posts/${slug}`);
+  const canonical = absolutePostUrl(slug);
   const titlePlain = stripMarkdownBold(post.title);
   const ogImage = ogImageMetadata(post.thumbnailUrl, titlePlain);
 
@@ -88,36 +89,17 @@ export default async function PostPage({ params }) {
   const categorySlug =
     categorySlugFromLabel(post.category) ??
     encodeURIComponent(normalizeCategory(post.category));
-  const postUrl = absolutePageUrl(`/posts/${slug}`);
+  const postUrl = absolutePostUrl(slug);
   const categoryPageUrl = absolutePageUrl(
     `/category/${categorySlug}`,
   );
-  const imageUrl = absoluteOgImageUrl(post.thumbnailUrl);
   const titlePlain = stripMarkdownBold(post.title);
 
-  const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: titlePlain,
-    description: post.description,
-    datePublished: post.date,
-    dateModified: post.dateModified,
-    author: {
-      "@type": "Person",
-      name: AUTHOR_NAME,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      url: SITE_URL,
-    },
-    image: [imageUrl],
-    url: postUrl,
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": postUrl,
-    },
-  };
+  const articleJsonLd = buildBlogPostingJsonLd({
+    post,
+    slug,
+    titlePlain,
+  });
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -230,7 +212,7 @@ export default async function PostPage({ params }) {
             >
               {prev ? (
                 <Link
-                  href={`/posts/${prev.slug}`}
+                  href={postDetailPath(prev.slug)}
                   className="group flex max-w-[min(100%,20rem)] flex-col rounded-xl border border-border bg-bg-main p-4 transition hover:border-primary hover:bg-secondary/60 dark:border-dm-border dark:bg-dm-card dark:hover:border-blue-500/50"
                 >
                   <span className="text-xs font-medium text-text-sub dark:text-dm-muted">
@@ -245,7 +227,7 @@ export default async function PostPage({ params }) {
               )}
               {next ? (
                 <Link
-                  href={`/posts/${next.slug}`}
+                  href={postDetailPath(next.slug)}
                   className="group ml-auto flex max-w-[min(100%,20rem)] flex-col rounded-xl border border-border bg-bg-main p-4 text-right transition hover:border-primary hover:bg-secondary/60 dark:border-dm-border dark:bg-dm-card dark:hover:border-blue-500/50 sm:text-right"
                 >
                   <span className="text-xs font-medium text-text-sub dark:text-dm-muted">

@@ -473,6 +473,25 @@ body {
     border-right-color: #475569;
   }
 
+  .wireframe-gshape.wireframe-gshape--table
+    .wireframe-table.wireframe-table--arrow-sep:not(.wireframe-table--stack)
+    th[scope="row"] {
+    border-right: none;
+  }
+
+  .wireframe-gshape.wireframe-gshape--table
+    .wireframe-table.wireframe-table--arrow-sep
+    td.wireframe-table__arrow {
+    color: #94a3b8;
+  }
+
+  .wireframe-gshape.wireframe-gshape--table
+    .wireframe-table.wireframe-table--serp-mock
+    tr:first-child
+    td:first-child {
+    color: #94a3b8;
+  }
+
   .wireframe-gshape.wireframe-gshape--table .wireframe-table--compare3 thead th {
     background-color: rgba(30, 41, 59, 0.85);
     color: #e2e8f0;
@@ -522,6 +541,33 @@ body {
 
   .wireframe-adsense-mock__url {
     color: #4ade80;
+  }
+
+  .wireframe-og-card {
+    border: none;
+    background-color: #1f2937;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  }
+
+  .wireframe-og-card__image {
+    color: #cbd5e1;
+    background: linear-gradient(155deg, #1e3a5f 0%, #1e40af 55%, #172554 100%);
+  }
+
+  .wireframe-og-card__text--title {
+    color: #f9fafb;
+  }
+
+  .wireframe-og-card__text--desc {
+    color: #94a3b8;
+  }
+
+  .wireframe-og-card__text--url {
+    color: #4ade80;
+  }
+
+  .wireframe-og-card__tag {
+    color: #64748b;
   }
 
   .wireframe-color-swatch {
@@ -661,6 +707,65 @@ body {
 
 .wireframe-table:not(.wireframe-table--stack) th[scope="row"] {
   border-right: 1px solid #94a3b8;
+}
+
+/* 항목 ↔ 설명: 세로선 대신 화살표 열 (DAY 09 등) */
+.wireframe-table.wireframe-table--arrow-sep:not(.wireframe-table--stack) th[scope="row"] {
+  border-right: none;
+  width: auto;
+  max-width: 46%;
+}
+
+.wireframe-table.wireframe-table--arrow-sep td.wireframe-table__arrow {
+  width: 2.5rem;
+  padding-left: 0.125rem;
+  padding-right: 0.125rem;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #64748b;
+  border-right: none;
+}
+
+.wireframe-table.wireframe-table--arrow-sep td.wireframe-table__hint {
+  width: auto;
+  text-align: left;
+}
+
+/* 구글 검색 결과 한 칸: 본문(왼쪽) ← 역할(오른쪽) — 원문 ASCII와 동일 순서 */
+.wireframe-table.wireframe-table--serp-mock.wireframe-table--arrow-sep td:first-child {
+  text-align: left;
+  font-weight: 600;
+}
+
+.wireframe-table.wireframe-table--serp-mock.wireframe-table--arrow-sep tr:first-child td:first-child {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.wireframe-table.wireframe-table--serp-mock.wireframe-table--arrow-sep td.wireframe-table__hint {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.wireframe-table.wireframe-table--serp-mock.wireframe-table--arrow-sep
+  tr.wireframe-table__row-tall
+  td.wireframe-table__hint {
+  white-space: normal;
+  max-width: 9rem;
+}
+
+.wireframe-table.wireframe-table--serp-mock.wireframe-table--arrow-sep tr.wireframe-table__row-tall td {
+  vertical-align: top;
+}
+
+.wireframe-table.wireframe-table--serp-mock.wireframe-table--arrow-sep
+  tr.wireframe-table__row-tall
+  td.wireframe-table__arrow {
+  vertical-align: top;
+  padding-top: 0.6rem;
 }
 
 .wireframe-table th {
@@ -862,5 +967,87 @@ body {
   font-size: 0.7rem;
   color: #15803d;
   line-height: 1.4;
+}
+
+/* DAY 09: Open Graph · 링크 미리보기 카드(대표 이미지형) 와이어 */
+.wireframe-og-card-figure {
+  margin: 1.5rem auto;
+  max-width: 22rem;
+}
+
+.wireframe-og-card {
+  overflow: hidden;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+.wireframe-og-card__image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 7.5rem;
+  aspect-ratio: 1200 / 630;
+  max-height: 9.5rem;
+  margin: 0;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #475569;
+  background: linear-gradient(155deg, #dbeafe 0%, #bfdbfe 45%, #93c5fd 100%);
+}
+
+.wireframe-og-card__body {
+  padding: 0.65rem 0.75rem 0.75rem;
+}
+
+.wireframe-og-card__line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 0.5rem;
+  margin: 0 0 0.45rem;
+}
+
+.wireframe-og-card__line:last-child {
+  margin-bottom: 0;
+}
+
+.wireframe-og-card__text {
+  flex: 1 1 12rem;
+  min-width: 0;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.wireframe-og-card__text--title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.wireframe-og-card__text--desc {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #64748b;
+}
+
+.wireframe-og-card__text--url {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #15803d;
+}
+
+.wireframe-og-card__tag {
+  flex-shrink: 0;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #94a3b8;
+  text-transform: lowercase;
 }
 

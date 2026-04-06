@@ -1,4 +1,4 @@
-import { SITE_NAME } from "@/lib/site-config";
+import { SITE_NAME, absolutePageUrl } from "@/lib/site-config";
 
 const CONTACT_EMAIL = "howtovibecoding@gmail.com";
 
@@ -6,6 +6,9 @@ export async function generateMetadata() {
   return {
     title: `문의 | ${SITE_NAME}`,
     description: `${SITE_NAME} 문의 — 질문·협업·제안은 이메일로 연락해 주세요.`,
+    alternates: {
+      canonical: absolutePageUrl("/contact"),
+    },
   };
 }
 

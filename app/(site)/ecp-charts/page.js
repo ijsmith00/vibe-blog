@@ -1,10 +1,13 @@
 import EcpChartsShowcase from "@/app/components/ecp/EcpChartsShowcase";
-import { SITE_NAME } from "@/lib/site-config";
+import { SITE_NAME, absolutePageUrl } from "@/lib/site-config";
 
 export const metadata = {
   title: "ЕЦП 스타일 차트 예시",
   description:
     "«Региональная справка» PDF에 가까운 Highcharts 유형(선·막대·워터폴·산점도·누적·콤보) 데모입니다.",
+  alternates: {
+    canonical: absolutePageUrl("/ecp-charts"),
+  },
 };
 
 export default function EcpChartsPage() {

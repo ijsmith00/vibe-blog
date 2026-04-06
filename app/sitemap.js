@@ -3,7 +3,7 @@ import {
   getAllPosts,
   getAllTags,
 } from "@/lib/posts";
-import { SITE_URL } from "@/lib/site-config";
+import { SITE_URL, absolutePostUrl } from "@/lib/site-config";
 
 /** @returns {import("next").MetadataRoute.Sitemap} */
 export default async function sitemap() {
@@ -25,7 +25,7 @@ export default async function sitemap() {
       priority: 1,
     },
     ...posts.map((p) => ({
-      url: `${base}/posts/${encodeURIComponent(p.slug)}`,
+      url: absolutePostUrl(p.slug),
       lastModified: new Date(p.date),
       changeFrequency: "weekly",
       priority: 0.8,

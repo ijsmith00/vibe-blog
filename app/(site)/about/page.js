@@ -1,6 +1,10 @@
 import Image from "next/image";
 
-import { ABOUT_PROFILE_IMAGE_PATH, SITE_NAME } from "@/lib/site-config";
+import {
+  ABOUT_PROFILE_IMAGE_PATH,
+  SITE_NAME,
+  absolutePageUrl,
+} from "@/lib/site-config";
 
 /** 소개 페이지 히어로에 표시되는 운영자 이름 */
 const OPERATOR_DISPLAY_NAME = "바이브 빌더";
@@ -9,6 +13,9 @@ export async function generateMetadata() {
   return {
     title: `소개 | ${SITE_NAME}`,
     description: `${SITE_NAME}은 바이브 코딩으로 다양한 실험을 해보고 그 노하우를 나누는 공간입니다.`,
+    alternates: {
+      canonical: absolutePageUrl("/about"),
+    },
   };
 }
 

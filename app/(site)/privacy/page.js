@@ -1,10 +1,13 @@
-import { SITE_NAME } from "@/lib/site-config";
+import { SITE_NAME, absolutePageUrl } from "@/lib/site-config";
 import { getPrivacyPolicy } from "@/lib/privacy-policy";
 
 export async function generateMetadata() {
   return {
     title: `개인정보처리방침 | ${SITE_NAME}`,
     description: `${SITE_NAME} 개인정보처리방침`,
+    alternates: {
+      canonical: absolutePageUrl("/privacy"),
+    },
     robots: {
       index: false,
       follow: true,

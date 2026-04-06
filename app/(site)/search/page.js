@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import PostCard from "@/app/components/PostCard";
 import SearchBar from "@/app/components/SearchBar";
-import { SITE_NAME } from "@/lib/site-config";
+import { SITE_NAME, absolutePageUrl } from "@/lib/site-config";
 import { searchPosts } from "@/lib/posts";
 
 export async function generateMetadata({ searchParams }) {
@@ -15,11 +15,16 @@ export async function generateMetadata({ searchParams }) {
         ? String(qRaw[0] ?? "").trim()
         : "";
   const title = q ? `"${q}" 검색 · ${SITE_NAME}` : `검색 · ${SITE_NAME}`;
+  const canonicalUrl = new URL(absolutePageUrl("/search"));
+  if (q) canonicalUrl.searchParams.set("q", q);
   return {
     title,
     description: q
       ? `${SITE_NAME}에서 「${q}」에 대한 검색 결과입니다.`
       : `${SITE_NAME} 글 검색`,
+    alternates: {
+      canonical: canonicalUrl.href,
+    },
   };
 }
 
