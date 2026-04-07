@@ -13,7 +13,12 @@ const FOOTER_LINKS = [
   { href: "/privacy", label: "개인정보처리방침" },
 ];
 
-export default function Footer() {
+/**
+ * @param {{ useNativeLinks?: boolean }} props
+ */
+export default function Footer({ useNativeLinks = false }) {
+  const NavLink = useNativeLinks ? "a" : Link;
+
   return (
     <footer className="border-t border-border bg-bg-sub text-text-sub dark:border-dm-border dark:bg-dm-bg dark:text-dm-muted">
       <div className="mx-auto w-full max-w-[1200px] page-gutter py-12">
@@ -38,13 +43,13 @@ export default function Footer() {
             aria-label="푸터 링크"
           >
             {FOOTER_LINKS.map((item) => (
-              <Link
+              <NavLink
                 key={item.href}
                 href={item.href}
                 className="text-sm font-medium text-text-sub transition-colors hover:text-text-main dark:text-dm-muted dark:hover:text-dm-text"
               >
                 {item.label}
-              </Link>
+              </NavLink>
             ))}
           </nav>
 

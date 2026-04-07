@@ -19,9 +19,6 @@ function categoryHref(slug) {
   return `/category/${encodeURIComponent(slug)}`;
 }
 
-/**
- * @param {{ categoryNavItems?: { slug: string; label: string }[] }} props
- */
 function SearchIcon({ className = "h-5 w-5" }) {
   return (
     <svg
@@ -40,7 +37,13 @@ function SearchIcon({ className = "h-5 w-5" }) {
   );
 }
 
-export default function Header({ categoryNavItems = [] }) {
+/**
+ * @param {{ categoryNavItems?: { slug: string; label: string }[]; useNativeLinks?: boolean }} props
+ * `useNativeLinks`: global-not-found처럼 App Router 밖에서는 `next/link` 대신 `<a>` 사용
+ */
+export default function Header({ categoryNavItems = [], useNativeLinks = false }) {
+  const NavLink = useNativeLinks ? "a" : Link;
+
   const [mobileOpen, setMobileOpen] = useState(false);
   const [categoryMobileOpen, setCategoryMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -65,7 +68,7 @@ export default function Header({ categoryNavItems = [] }) {
     >
       <ScrollProgressBar />
       <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between page-gutter py-4">
-        <Link
+        <NavLink
           href="/"
           className="flex items-center gap-2.5 text-xl font-bold tracking-tight text-text-main dark:text-dm-text sm:gap-3 sm:text-2xl"
           onClick={() => {
@@ -83,7 +86,7 @@ export default function Header({ categoryNavItems = [] }) {
             aria-hidden
           />
           <span>{SITE_NAME}</span>
-        </Link>
+        </NavLink>
 
         <div className="flex flex-1 items-center justify-end gap-1 min-[769px]:gap-2">
         <nav
@@ -91,13 +94,13 @@ export default function Header({ categoryNavItems = [] }) {
           aria-label="주요 메뉴"
         >
           {NAV_LEAD.map((item) => (
-            <Link
+            <NavLink
               key={item.href}
               href={item.href}
               className="text-[0.9375rem] font-medium leading-snug text-text-sub transition-colors hover:text-text-main dark:text-dm-muted dark:hover:text-dm-text"
             >
               {item.label}
-            </Link>
+            </NavLink>
           ))}
 
           <div className="group relative">
@@ -122,35 +125,35 @@ export default function Header({ categoryNavItems = [] }) {
                 className="rounded-lg border border-border bg-bg-main py-2 shadow-lg dark:border-dm-border dark:bg-dm-card"
               >
                 <li role="none">
-                  <Link
+                  <NavLink
                     role="menuitem"
                     href="/category"
                     className="block px-4 py-2 text-sm font-medium text-text-sub transition-colors hover:bg-secondary hover:text-text-main dark:text-dm-muted dark:hover:bg-dm-bg dark:hover:text-dm-text"
                   >
                     전체 보기
-                  </Link>
+                  </NavLink>
                 </li>
                 {categoryNavItems.map(({ slug, label }) => (
                   <li key={slug} role="none">
-                    <Link
+                    <NavLink
                       role="menuitem"
                       href={categoryHref(slug)}
                       className="block px-4 py-2 text-sm font-medium text-text-sub transition-colors hover:bg-secondary hover:text-text-main dark:text-dm-muted dark:hover:bg-dm-bg dark:hover:text-dm-text"
                     >
                       {label}
-                    </Link>
+                    </NavLink>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
 
-          <Link
+          <NavLink
             href={NAV_CONTACT.href}
             className="text-[0.9375rem] font-medium leading-snug text-text-sub transition-colors hover:text-text-main dark:text-dm-muted dark:hover:text-dm-text"
           >
             {NAV_CONTACT.label}
-          </Link>
+          </NavLink>
         </nav>
 
         <button
@@ -212,7 +215,7 @@ export default function Header({ categoryNavItems = [] }) {
       >
         <nav className="mx-auto flex w-full max-w-[1200px] flex-col page-gutter py-2">
           {NAV_LEAD.map((item) => (
-            <Link
+            <NavLink
               key={item.href}
               href={item.href}
               className="block py-3 text-base font-medium text-text-sub transition-colors hover:text-text-main dark:text-dm-muted dark:hover:text-dm-text"
@@ -222,7 +225,7 @@ export default function Header({ categoryNavItems = [] }) {
               }}
             >
               {item.label}
-            </Link>
+            </NavLink>
           ))}
 
           <div className="border-t border-border py-1 dark:border-dm-border">
@@ -246,7 +249,7 @@ export default function Header({ categoryNavItems = [] }) {
             >
               <ul className="flex flex-col gap-0 border-l-2 border-primary/25 pl-3 dark:border-blue-500/30">
                 <li>
-                  <Link
+                  <NavLink
                     href="/category"
                     className="block py-2 text-sm text-text-sub hover:text-text-main dark:text-dm-muted dark:hover:text-dm-text"
                     onClick={() => {
@@ -255,11 +258,11 @@ export default function Header({ categoryNavItems = [] }) {
                     }}
                   >
                     전체 보기
-                  </Link>
+                  </NavLink>
                 </li>
                 {categoryNavItems.map(({ slug, label }) => (
                   <li key={slug}>
-                    <Link
+                    <NavLink
                       href={categoryHref(slug)}
                       className="block py-2 text-sm text-text-sub hover:text-text-main dark:text-dm-muted dark:hover:text-dm-text"
                       onClick={() => {
@@ -268,14 +271,14 @@ export default function Header({ categoryNavItems = [] }) {
                       }}
                     >
                       {label}
-                    </Link>
+                    </NavLink>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
 
-          <Link
+          <NavLink
             href={NAV_CONTACT.href}
             className="block border-t border-border py-3 text-base font-medium text-text-sub transition-colors hover:text-text-main dark:border-dm-border dark:text-dm-muted dark:hover:text-dm-text"
             onClick={() => {
@@ -284,7 +287,7 @@ export default function Header({ categoryNavItems = [] }) {
             }}
           >
             {NAV_CONTACT.label}
-          </Link>
+          </NavLink>
         </nav>
       </div>
     </header>

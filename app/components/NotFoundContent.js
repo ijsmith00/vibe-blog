@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { getCategoryNavItems } from "@/lib/posts";
@@ -12,7 +10,7 @@ export default async function NotFoundContent() {
 
   return (
     <>
-      <Header categoryNavItems={categoryNavItems} />
+      <Header categoryNavItems={categoryNavItems} useNativeLinks />
       <main className="flex min-h-0 min-w-0 flex-1 flex-col">
         <div className="mx-auto flex w-full max-w-[1200px] flex-1 flex-col page-gutter">
           <section
@@ -85,25 +83,20 @@ export default async function NotFoundContent() {
                 출발해 볼까요?
               </p>
 
-              <div className="mt-9 flex w-full flex-col gap-3 sm:mt-10 sm:flex-row sm:justify-center sm:gap-4">
-                <Link
+              <div className="mt-9 flex w-full justify-center sm:mt-10">
+                {/* global-not-found는 라우터 밖에서 렌더될 수 있어 <a>로 전체 이동 */}
+                <a
                   href="/"
                   className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-primary px-6 py-3 text-center text-sm font-semibold text-white shadow-md transition hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:bg-blue-600 dark:hover:bg-blue-500 sm:w-auto sm:min-w-[11rem]"
                 >
                   홈으로 돌아가기
-                </Link>
-                <Link
-                  href="/#latest-posts"
-                  className="inline-flex min-h-11 w-full items-center justify-center rounded-xl border-2 border-border bg-bg-main px-6 py-3 text-center text-sm font-semibold text-text-main transition hover:border-primary/40 hover:bg-secondary/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary dark:border-dm-border dark:bg-dm-card dark:text-dm-text dark:hover:border-blue-500/50 dark:hover:bg-dm-bg sm:w-auto sm:min-w-[11rem]"
-                >
-                  최신 글 보기
-                </Link>
+                </a>
               </div>
             </div>
           </section>
         </div>
       </main>
-        <Footer />
+        <Footer useNativeLinks />
     </>
   );
 }
