@@ -5,7 +5,7 @@ const CONTACT_EMAIL = "howtovibecoding@gmail.com";
 export async function generateMetadata() {
   return {
     title: `문의 | ${SITE_NAME}`,
-    description: `${SITE_NAME} 문의 — 질문·협업·제안은 이메일로 연락해 주세요.`,
+    description: `${SITE_NAME} 문의 — 방문 감사 인사와 이메일 연락 안내.`,
     alternates: {
       canonical: absolutePageUrl("/contact"),
     },
@@ -19,9 +19,13 @@ export default function ContactPage() {
         <h1 className="text-2xl font-extrabold tracking-tight text-text-main dark:text-dm-text sm:text-3xl">
           문의
         </h1>
+        <p className="mt-4 text-[0.9375rem] leading-relaxed text-text-sub dark:text-dm-muted sm:text-base">
+          블로그에 방문해 주셔서 감사합니다. 글과 정보가 조금이나마 도움이 되고
+          유익하게 쓰이기를 바랍니다.
+        </p>
         <p className="mt-3 text-[0.9375rem] leading-relaxed text-text-sub dark:text-dm-muted sm:text-base">
-          질문·협업·제안이 있으시면 아래 메일로 편하게 보내 주세요. 가능한 빨리
-          확인해 답변드리겠습니다.
+          질문·협업·제안이 있으시면 아래 안내에 따라 이메일로 연락하시면
+          최대한 신속하게 답변드리겠습니다.
         </p>
       </header>
 
@@ -33,18 +37,20 @@ export default function ContactPage() {
           id="contact-email-heading"
           className="text-sm font-semibold uppercase tracking-wider text-primary dark:text-blue-400"
         >
-          이메일
+          이메일로 보내기
         </h2>
         <p className="mt-4 text-[0.9375rem] leading-relaxed text-text-sub dark:text-dm-muted sm:text-base">
-          메일 앱이 열리면 제목과 내용을 적어 보내 주시면 됩니다.
+          사용 중인 메일(웹메일·앱 등)에서 <strong>새 메일 작성</strong>을 연 뒤,
+          받는 사람란에 아래 주소를 직접 입력해 보내 주세요.
         </p>
-        <p className="mt-5">
-          <a
-            href={`mailto:${CONTACT_EMAIL}`}
-            className="break-all text-lg font-semibold text-primary underline decoration-1 underline-offset-2 transition hover:text-primary/90 dark:text-blue-400 dark:hover:text-blue-300 sm:text-xl"
+        <p className="mt-6">
+          <span className="sr-only">문의 이메일 주소: </span>
+          <span
+            className="inline-block w-full break-all rounded-lg border border-border bg-secondary/60 px-4 py-3 font-mono text-base font-semibold tracking-tight text-text-main dark:border-dm-border dark:bg-dm-bg dark:text-dm-text sm:text-lg"
+            translate="no"
           >
             {CONTACT_EMAIL}
-          </a>
+          </span>
         </p>
       </section>
     </div>
