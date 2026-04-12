@@ -6,7 +6,6 @@ import JsonLd from "./components/JsonLd";
 import ScrollToTop from "./components/ScrollToTop";
 import {
   getWebSiteJsonLd,
-  GOOGLE_ADSENSE_CLIENT,
   GOOGLE_SITE_VERIFICATION,
   NAVER_SITE_VERIFICATION,
 } from "@/lib/config";
@@ -68,6 +67,15 @@ export const viewport = {
   viewportFit: "cover",
 };
 
+const adsenseId =
+  typeof process.env.NEXT_PUBLIC_ADSENSE_ID === "string"
+    ? process.env.NEXT_PUBLIC_ADSENSE_ID.trim()
+    : "";
+const adsenseScriptSrc =
+  adsenseId !== ""
+    ? `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(adsenseId)}`
+    : null;
+
 export default function RootLayout({ children }) {
   return (
     <html
@@ -85,12 +93,6 @@ export default function RootLayout({ children }) {
           content={GOOGLE_SITE_VERIFICATION}
         />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        {/* 구글 애드센스 — 퍼블리셔 ID는 lib/config.js `GOOGLE_ADSENSE_CLIENT` */}
-        <script
-          async
-          crossOrigin="anonymous"
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(GOOGLE_ADSENSE_CLIENT)}`}
-        />
         <Script id="theme-init" strategy="beforeInteractive">
           {`(function(){try{var k='vibe-theme';var t=localStorage.getItem(k);var d=document.documentElement;if(t==='dark')d.classList.add('dark');else if(t==='light')d.classList.remove('dark');else if(typeof matchMedia!=='undefined'&&matchMedia('(prefers-color-scheme: dark)').matches)d.classList.add('dark')}catch(e){}})()`}
         </Script>
@@ -98,6 +100,15 @@ export default function RootLayout({ children }) {
       <body
         className={`${notoSansKr.className} min-h-full flex flex-col bg-bg-main text-text-main transition-colors dark:bg-dm-bg dark:text-dm-text`}
       >
+        {adsenseScriptSrc ? (
+          <Script
+            async
+            crossOrigin="anonymous"
+            id="google-adsense"
+            src={adsenseScriptSrc}
+            strategy="afterInteractive"
+          />
+        ) : null}
         <JsonLd data={getWebSiteJsonLd()} />
         {children}
         <ScrollToTop />
