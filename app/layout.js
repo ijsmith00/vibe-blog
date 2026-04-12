@@ -6,6 +6,7 @@ import JsonLd from "./components/JsonLd";
 import ScrollToTop from "./components/ScrollToTop";
 import {
   getWebSiteJsonLd,
+  GOOGLE_ADSENSE_CLIENT,
   GOOGLE_SITE_VERIFICATION,
   NAVER_SITE_VERIFICATION,
 } from "@/lib/config";
@@ -84,6 +85,12 @@ export default function RootLayout({ children }) {
           content={GOOGLE_SITE_VERIFICATION}
         />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        {/* 구글 애드센스 — 퍼블리셔 ID는 lib/config.js `GOOGLE_ADSENSE_CLIENT` */}
+        <script
+          async
+          crossOrigin="anonymous"
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(GOOGLE_ADSENSE_CLIENT)}`}
+        />
         <Script id="theme-init" strategy="beforeInteractive">
           {`(function(){try{var k='vibe-theme';var t=localStorage.getItem(k);var d=document.documentElement;if(t==='dark')d.classList.add('dark');else if(t==='light')d.classList.remove('dark');else if(typeof matchMedia!=='undefined'&&matchMedia('(prefers-color-scheme: dark)').matches)d.classList.add('dark')}catch(e){}})()`}
         </Script>
