@@ -1,0 +1,20 @@
+Google Search Console — 도메인 속성 검증용 DNS TXT (참고)
+
+실제 반영: 도메인 DNS 관리 화면(가비아, Vercel Domains, Cloudflare 등)에서
+TXT 레코드를 추가합니다. Next.js 코드 배포만으로 DNS는 바뀌지 않습니다.
+
+호스트(이름): @ 또는 비움(루트 도메인 howtovibecoding.com)
+타입: TXT
+
+아래는 각각 별도 TXT 레코드로 추가합니다. 기존 레코드를 지우지 말고,
+없는 줄만 추가하면 됩니다.
+
+google-site-verification=cwlsq1uOkUbqKYXiCc9uRPd2XQ_xAYImTtAbPCtqV7k
+
+google-site-verification=scORv1uziTYs35Nqp4flWcmLya5LN_gzWG1HiYSnNe4
+
+값은 lib/config.js 의 GOOGLE_SITE_VERIFICATION, GOOGLE_SITE_VERIFICATION_SECOND 와
+동일해야 합니다. 토큰이 바뀌면 위 줄과 config를 함께 수정하세요.
+
+저장 후 전파까지 수 시간~48시간 걸릴 수 있습니다. nslookup -type=TXT howtovibecoding.com
+등으로 확인한 뒤 Search Console에서 다시 확인을 누릅니다.
