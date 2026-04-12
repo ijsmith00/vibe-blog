@@ -6,6 +6,7 @@ import JsonLd from "@/app/components/JsonLd";
 import {
   getWebSiteJsonLd,
   GOOGLE_SITE_VERIFICATION,
+  GOOGLE_SITE_VERIFICATION_SECOND,
   NAVER_SITE_VERIFICATION,
 } from "@/lib/config";
 import { SITE_NAME, SITE_URL, ogImageMetadata } from "@/lib/site-config";
@@ -65,6 +66,10 @@ export default function GlobalNotFound() {
         <meta
           name="google-site-verification"
           content={GOOGLE_SITE_VERIFICATION}
+        />
+        <meta
+          name="google-site-verification"
+          content={GOOGLE_SITE_VERIFICATION_SECOND}
         />
         <meta
           name="naver-site-verification"

@@ -7,6 +7,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import {
   getWebSiteJsonLd,
   GOOGLE_SITE_VERIFICATION,
+  GOOGLE_SITE_VERIFICATION_SECOND,
   NAVER_SITE_VERIFICATION,
 } from "@/lib/config";
 import {
@@ -91,6 +92,10 @@ export default function RootLayout({ children }) {
         <meta
           name="google-site-verification"
           content={GOOGLE_SITE_VERIFICATION}
+        />
+        <meta
+          name="google-site-verification"
+          content={GOOGLE_SITE_VERIFICATION_SECOND}
         />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <Script id="theme-init" strategy="beforeInteractive">

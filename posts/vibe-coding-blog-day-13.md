@@ -354,7 +354,7 @@ verification: {
 이 부분을 metadata 객체에 추가해줘."
 ```
 
-> **참고:** 이 블로그 템플릿은 이미 `lib/config.js`의 `GOOGLE_SITE_VERIFICATION`이 `app/layout.js`와 연결되어 있을 수 있습니다. 서치 콘솔에서 받은 `content` 값이 설정과 일치하는지 확인하면 됩니다.
+> **참고:** 이 블로그 템플릿은 `lib/config.js`의 `GOOGLE_SITE_VERIFICATION`(및 추가 소유자용 `GOOGLE_SITE_VERIFICATION_SECOND`)이 `app/layout.js` `<head>` 메타와 연결되어 있을 수 있습니다. 서치 콘솔에서 받은 `content` 값이 설정과 일치하는지 확인하면 됩니다.
 
 ![커서에 소유권 확인을 위한 코드 추가 요청](/image-day13/day13-04.png)
 
