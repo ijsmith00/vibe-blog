@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import AdPlaceholder from "@/app/components/AdPlaceholder";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import JsonLd from "@/app/components/JsonLd";
 import PostCard from "@/app/components/PostCard";
@@ -34,6 +35,7 @@ import {
   getPostBySlug,
   getRelatedPosts,
 } from "@/lib/posts";
+import { splitContentHtmlForMidAd } from "@/lib/split-content-html-for-mid-ad";
 
 export async function generateStaticParams() {
   const posts = await getAllPosts();
@@ -101,6 +103,9 @@ export default async function PostPage({ params }) {
     titlePlain,
   });
 
+  const { before: contentBeforeMid, after: contentAfterMid } =
+    splitContentHtmlForMidAd(post.contentHtml);
+
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -161,6 +166,8 @@ export default async function PostPage({ params }) {
               </p>
             </header>
 
+            <AdPlaceholder className="mt-8" />
+
             {post.thumbnailUrl ? (
               isNonOptimizableImageSrc(post.thumbnailUrl) ? (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -186,10 +193,24 @@ export default async function PostPage({ params }) {
               )
             ) : null}
 
-            <article
-              className="prose prose-lg mt-10 max-w-none dark:prose-invert prose-headings:scroll-mt-28"
-              dangerouslySetInnerHTML={{ __html: post.contentHtml }}
-            />
+            <article className="prose prose-lg mt-10 max-w-none dark:prose-invert prose-headings:scroll-mt-28">
+              {contentAfterMid ? (
+                <>
+                  <div
+                    dangerouslySetInnerHTML={{ __html: contentBeforeMid }}
+                  />
+                  <AdPlaceholder className="my-10" />
+                  <div
+                    dangerouslySetInnerHTML={{ __html: contentAfterMid }}
+                  />
+                </>
+              ) : (
+                <div
+                  dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+                />
+              )}
+              <AdPlaceholder className="mt-10" />
+            </article>
 
             {post.tags.length > 0 ? (
               <ul className="mt-12 flex flex-wrap gap-2">
@@ -260,10 +281,8 @@ export default async function PostPage({ params }) {
 
         <aside className="hidden min-w-0 lg:block">
           <div className="sticky top-24 space-y-6">
+            <AdPlaceholder className="min-h-[160px]" />
             <TableOfContents items={post.toc} />
-            <div className="flex min-h-[160px] items-center justify-center rounded-xl border border-border bg-secondary text-sm font-medium text-text-sub dark:border-dm-border dark:bg-dm-card dark:text-dm-muted">
-              광고 영역
-            </div>
           </div>
         </aside>
       </div>
