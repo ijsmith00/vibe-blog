@@ -1,6 +1,7 @@
 import { Analytics } from "@vercel/analytics/next";
 import { Geist_Mono, Noto_Sans_KR } from "next/font/google";
 import Script from "next/script";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import JsonLd from "./components/JsonLd";
 import ScrollToTop from "./components/ScrollToTop";
@@ -118,6 +119,7 @@ export default function RootLayout({ children }) {
         {children}
         <ScrollToTop />
         <Analytics />
+        <GoogleAnalytics gaId="G-39962TGT31" />
       </body>
     </html>
   );
