@@ -1,10 +1,21 @@
 import ContactForm from "@/app/components/ContactForm";
 import { SITE_NAME, absolutePageUrl } from "@/lib/site-config";
 
-const WEB3FORMS_ACCESS_KEY =
-  typeof process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY === "string"
-    ? process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY.trim()
-    : "";
+/** 런타임에 서버 환경 변수를 읽도록 해 배포 후 키 누락·정적 캐시 이슈를 줄입니다. */
+export const dynamic = "force-dynamic";
+
+function isWeb3FormsConfigured() {
+  const primary =
+    typeof process.env.WEB3FORMS_ACCESS_KEY === "string"
+      ? process.env.WEB3FORMS_ACCESS_KEY.trim()
+      : "";
+  if (primary.length > 0) return true;
+  const legacy =
+    typeof process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY === "string"
+      ? process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY.trim()
+      : "";
+  return legacy.length > 0;
+}
 
 export async function generateMetadata() {
   return {
@@ -55,7 +66,7 @@ export default function ContactPage() {
 
       {/* 문의 폼 — 기존 컴포넌트 그대로 */}
       <section aria-label="문의 양식">
-        <ContactForm accessKey={WEB3FORMS_ACCESS_KEY} />
+        <ContactForm formEnabled={isWeb3FormsConfigured()} />
       </section>
 
       {/* 안내 섹션 — 구분선 겸 신뢰 신호 */}

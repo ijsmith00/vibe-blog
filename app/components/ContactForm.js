@@ -2,12 +2,11 @@
 
 import { useState } from "react";
 
-const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+const CONTACT_API = "/api/contact";
 
 /** @type {React.FormEventHandler<HTMLFormElement>} */
-export default function ContactForm({ accessKey }) {
-  const key = typeof accessKey === "string" ? accessKey.trim() : "";
-  const isConfigured = key.length > 0;
+export default function ContactForm({ formEnabled }) {
+  const isConfigured = formEnabled === true;
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -23,14 +22,13 @@ export default function ContactForm({ accessKey }) {
     setStatus("sending");
 
     try {
-      const res = await fetch(WEB3FORMS_ENDPOINT, {
+      const res = await fetch(CONTACT_API, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: key,
           name,
           email,
           subject,
@@ -87,16 +85,16 @@ export default function ContactForm({ accessKey }) {
           className="mt-6 rounded-lg border border-amber-200/90 bg-amber-50/90 px-4 py-3 text-sm text-amber-950 dark:border-amber-900/50 dark:bg-amber-950/30 dark:text-amber-100"
           role="status"
         >
-          문의 폼이 아직 연결되지 않았습니다. 로컬에서는{" "}
+          문의 폼이 아직 연결되지 않았습니다.{" "}
+          <code className="rounded bg-black/5 px-1 py-0.5 font-mono text-xs dark:bg-white/10">
+            WEB3FORMS_ACCESS_KEY
+          </code>
+          에 Web3Forms Access Key를 넣어 주세요. 로컬은{" "}
           <code className="rounded bg-black/5 px-1 py-0.5 font-mono text-xs dark:bg-white/10">
             .env.local
-          </code>{" "}
-          에{" "}
-          <code className="rounded bg-black/5 px-1 py-0.5 font-mono text-xs dark:bg-white/10">
-            NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
           </code>
-          를 설정한 뒤 개발 서버를 다시 실행해 주세요. 배포 환경(Vercel 등)에서는
-          동일 이름으로 환경 변수를 등록해 주세요.
+          , Vercel은 Environment Variables에 등록한 뒤 재배포하면 됩니다. (서버
+          전용이라 브라우저에 키가 노출되지 않습니다.)
         </p>
       ) : null}
 
