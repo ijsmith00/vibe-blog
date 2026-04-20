@@ -2,11 +2,17 @@
 
 import { useState } from "react";
 
-const CONTACT_API = "/api/contact";
+const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 
 /** @type {React.FormEventHandler<HTMLFormElement>} */
-export default function ContactForm({ formEnabled }) {
-  const isConfigured = formEnabled === true;
+export default function ContactForm({ accessKey }) {
+  const key =
+    typeof accessKey === "string"
+      ? accessKey.trim()
+      : typeof process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY === "string"
+        ? process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY.trim()
+        : "";
+  const isConfigured = key.length > 0;
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -22,13 +28,14 @@ export default function ContactForm({ formEnabled }) {
     setStatus("sending");
 
     try {
-      const res = await fetch(CONTACT_API, {
+      const res = await fetch(WEB3FORMS_ENDPOINT, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify({
+          access_key: key,
           name,
           email,
           subject,
@@ -85,25 +92,31 @@ export default function ContactForm({ formEnabled }) {
           className="mt-6 rounded-lg border border-amber-200/90 bg-amber-50/90 px-4 py-3 text-sm text-amber-950 dark:border-amber-900/50 dark:bg-amber-950/30 dark:text-amber-100"
           role="status"
         >
-          문의 폼이 아직 연결되지 않았습니다.{" "}
-          <code className="rounded bg-black/5 px-1 py-0.5 font-mono text-xs dark:bg-white/10">
-            WEB3FORMS_ACCESS_KEY
-          </code>
-          에 Web3Forms Access Key를 넣어 주세요. 로컬은{" "}
+          문의 폼이 아직 연결되지 않았습니다. 로컬에서는{" "}
           <code className="rounded bg-black/5 px-1 py-0.5 font-mono text-xs dark:bg-white/10">
             .env.local
+          </code>{" "}
+          에{" "}
+          <code className="rounded bg-black/5 px-1 py-0.5 font-mono text-xs dark:bg-white/10">
+            NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
           </code>
-          , Vercel은 Environment Variables에 등록한 뒤 재배포하면 됩니다. (서버
-          전용이라 브라우저에 키가 노출되지 않습니다.)
+          를 설정한 뒤 개발 서버를 다시 실행해 주세요. 배포 환경(Vercel 등)에서는
+          동일 이름으로 환경 변수를 등록하고 재배포해 주세요.
         </p>
       ) : null}
 
       {status === "success" ? (
         <div
-          className="mt-8 rounded-xl border border-emerald-200/80 bg-emerald-50/90 px-4 py-4 text-center text-sm font-medium text-emerald-900 dark:border-emerald-800/60 dark:bg-emerald-950/40 dark:text-emerald-100"
+          className="mt-8 rounded-xl border border-border bg-bg-main px-4 py-4 text-center text-sm shadow-sm ring-1 ring-primary/12 dark:border-dm-border dark:bg-dm-card dark:ring-blue-500/20"
           role="status"
         >
-          전송 완료 (Success!)
+          <span className="font-semibold text-text-main dark:text-dm-text">
+            전송 완료
+          </span>
+          <span className="font-medium text-primary dark:text-blue-400">
+            {" "}
+            (Success!)
+          </span>
         </div>
       ) : isConfigured ? (
         <form className="mt-8 space-y-5" onSubmit={handleSubmit} noValidate>
