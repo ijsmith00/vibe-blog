@@ -1,7 +1,7 @@
 import {
   getAllCategories,
-  getAllPosts,
   getAllTags,
+  getPublicPosts,
 } from "@/lib/posts";
 import { SITE_URL, absolutePostUrl } from "@/lib/site-config";
 
@@ -11,7 +11,7 @@ export default async function sitemap() {
   const now = new Date();
 
   const [posts, categories, tagList] = await Promise.all([
-    getAllPosts(),
+    getPublicPosts(),
     getAllCategories(),
     getAllTags(),
   ]);

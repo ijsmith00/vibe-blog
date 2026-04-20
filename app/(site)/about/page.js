@@ -165,12 +165,6 @@ export default function AboutPage() {
               </strong>
               — 바이브 코딩만으로 블로그를 처음부터 완성해 가는 연재 시리즈
             </li>
-            <li>
-              <strong className="font-semibold text-text-main dark:text-dm-text">
-                수익화 노하우
-              </strong>
-              — 애드센스, 키워드, SEO·콘텐츠 전략 등 수익과 운영에 필요한 정보
-            </li>
           </ul>
         </section>
 

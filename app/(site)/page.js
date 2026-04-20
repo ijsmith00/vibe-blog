@@ -1,7 +1,7 @@
 import EmptyPostsState from "@/app/components/EmptyPostsState";
 import PostListWithFilter from "@/app/components/PostListWithFilter";
 import { SITE_NAME, absolutePageUrl } from "@/lib/site-config";
-import { getAllPosts } from "@/lib/posts";
+import { getPublicPosts } from "@/lib/posts";
 
 export async function generateMetadata() {
   return {
@@ -12,7 +12,7 @@ export async function generateMetadata() {
 }
 
 export default async function Home() {
-  const posts = await getAllPosts();
+  const posts = await getPublicPosts();
 
   return (
     <div className="flex w-full flex-col gap-16 md:gap-20 lg:gap-24">

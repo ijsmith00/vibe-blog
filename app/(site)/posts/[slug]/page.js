@@ -10,6 +10,7 @@ import PostTitle from "@/app/components/PostTitle";
 import TableOfContents from "@/app/components/TableOfContents";
 import {
   categorySlugFromLabel,
+  isPrivateCategoryLabel,
   normalizeCategory,
 } from "@/lib/category";
 import {
@@ -52,6 +53,14 @@ export async function generateMetadata({ params }) {
   const canonical = absolutePostUrl(slug);
   const titlePlain = stripMarkdownBold(post.title);
   const ogImage = ogImageMetadata(post.thumbnailUrl, titlePlain);
+  const isPrivate = isPrivateCategoryLabel(post.category);
+  const robots = isPrivate
+    ? {
+        index: false,
+        follow: false,
+        googleBot: { index: false, follow: false },
+      }
+    : undefined;
 
   return {
     title: titlePlain,
@@ -59,6 +68,7 @@ export async function generateMetadata({ params }) {
     alternates: {
       canonical,
     },
+    ...(robots ? { robots } : {}),
     openGraph: {
       type: "article",
       url: canonical,
@@ -96,6 +106,7 @@ export default async function PostPage({ params }) {
     `/category/${categorySlug}`,
   );
   const titlePlain = stripMarkdownBold(post.title);
+  const isPrivate = isPrivateCategoryLabel(post.category);
 
   const articleJsonLd = buildBlogPostingJsonLd({
     post,
@@ -106,30 +117,49 @@ export default async function PostPage({ params }) {
   const { before: contentBeforeMid, after: contentAfterMid } =
     splitContentHtmlForMidAd(post.contentHtml);
 
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "홈",
-        item: SITE_URL,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: categoryLabel,
-        item: categoryPageUrl,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: titlePlain,
-        item: postUrl,
-      },
-    ],
-  };
+  const breadcrumbJsonLd = isPrivate
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "홈",
+            item: SITE_URL,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: titlePlain,
+            item: postUrl,
+          },
+        ],
+      }
+    : {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "홈",
+            item: SITE_URL,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: categoryLabel,
+            item: categoryPageUrl,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: titlePlain,
+            item: postUrl,
+          },
+        ],
+      };
 
   return (
     <div className="pb-16 pt-10">
@@ -143,7 +173,7 @@ export default async function PostPage({ params }) {
                 { label: "홈", href: "/" },
                 {
                   label: categoryLabel,
-                  href: `/category/${categorySlug}`,
+                  href: isPrivate ? null : `/category/${categorySlug}`,
                 },
                 { label: titlePlain, href: null },
               ]}
