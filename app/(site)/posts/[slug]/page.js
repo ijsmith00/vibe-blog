@@ -115,7 +115,9 @@ export default async function PostPage({ params }) {
   });
 
   const { before: contentBeforeMid, after: contentAfterMid } =
-    splitContentHtmlForMidAd(post.contentHtml);
+    splitContentHtmlForMidAd(post.contentHtml, {
+      midAdBeforeText: post.midAdBeforeHeading || "",
+    });
 
   const breadcrumbJsonLd = isPrivate
     ? {
