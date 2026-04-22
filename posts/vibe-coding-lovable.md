@@ -51,13 +51,13 @@ mid_ad_ol_index: 2
 사용자의 건강 고민을 설문으로 받아서 맞춤 영양제를 추천해 주는 웹 앱을 만들어줘. 신뢰감을 주는 민트 톤 디자인에 아주 깔끔한 카드 UI를 사용해 줘.
 ```
 
-<strong>“본 포스팅은 코딩 기술 구현에 초점을 맞춘 가이드이며, 생성된 결과물은 학습용 예시일 뿐 의학적 근거로 활용될 수 없음을 미리 알려드립니다.”</strong>
+> 본 포스팅은 코딩 기술 구현에 초점을 맞춘 가이드이며, 생성된 결과물은 학습용 예시일 뿐 의학적 근거로 활용될 수 없음을 미리 알려드립니다.
 
 입력 후 <kbd>Enter</kbd>를 치면, 아래로 작업이 올라가고 Lovable **AI**의 <strong>사고·빌드</strong> 과정이 쌓이며 보입니다.
 
 ![Lovable이 요청한 작업을 진행 중인 화면](/image-lovable/lovable-05.png)
 
-작업이 끝날 때까지 걸리는 시간은 환경마다 다릅니다(저는 약 20분이 걸렸습니다). 작업이 완료되면 오른쪽 <strong>Preview</strong>에 <strong>완성 UI</strong>가 뜹니다.
+작업이 끝날 때까지 걸리는 시간은 환경마다 다릅니다(저는 약 20분이 걸렸지만, 이는 컴퓨터 사양 등 다양한 요소로 달라질 수 있습니다). 작업이 완료되면 오른쪽 <strong>Preview</strong>에 <strong>완성 UI</strong>가 뜹니다.
 
 ![Lovable이 완성한 웹/앱 화면](/image-lovable/lovable-06.png)
 
@@ -115,7 +115,7 @@ Lovable이 만든 앱에서 마음에 들지 않거나 다듬고 싶은 부분�
 
 ![웹/앱 배포 진행 화면 - 배포 완료](/image-lovable/lovable-15.png)
 
-배포가 끝났다면, 부여된 <strong>주소</strong>(예: `https://원하는-이름.lovable.app` 형식)로 직접 열어 보세요. Lovable <strong>호스팅</strong> 페이지가 정상적으로 <strong>로딩</strong>되면, 배포 <strong>성공</strong>입니다.
+배포가 끝났다면, 부여된 <strong>주소</strong>(예: `https://러버블이지정한이름.lovable.app` 형식)로 직접 열어 보세요. Lovable <strong>호스팅</strong> 페이지가 정상적으로 <strong>로딩</strong>되면, 배포 <strong>성공</strong>입니다.
 
 ![웹 주소로 접속해서 정상적으로 배포되었는지 확인](/image-lovable/lovable-16.png)
 
