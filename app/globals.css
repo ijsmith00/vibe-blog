@@ -107,9 +107,11 @@ html.dark {
   }
 }
 
-/* fenced ``` 블록: 모노스페이스·행 정렬·배경 대비 (ASCII 다이어그램 포함) */
+/* fenced ``` 블록: 모노스페이스·배경 대비. 가로 스크롤 없이 줄바꿈 (typography의 pre overflow-x보다 우선) */
 .md-content pre,
-.prose pre {
+.prose pre,
+article.prose pre,
+article.prose.prose-lg pre {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
   border-radius: 0.75rem;
@@ -117,21 +119,29 @@ html.dark {
   background-color: #f1f5f9;
   color: #0f172a;
   padding: 1rem 1.125rem;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden !important;
   font-size: 0.8125rem;
   line-height: 1.5;
   letter-spacing: 0;
   font-weight: 400;
   font-variant-ligatures: none;
   tab-size: 2;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .md-content pre code,
-.prose pre code {
+.prose pre code,
+article.prose pre code,
+article.prose.prose-lg pre code {
   display: block;
-  width: max-content;
-  min-width: 100%;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   padding: 0;
   font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, "Liberation Mono", "Courier New", monospace;
@@ -141,6 +151,9 @@ html.dark {
   color: inherit;
   background-color: transparent;
   border-radius: 0;
+  white-space: pre-wrap !important;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 html.dark {
