@@ -170,5 +170,5 @@ Lovable이 *‘AI에게 다 맡기고 결과만 받아보는’* 깔끔한 경�
 
 다음 편에서는 또 다른 바이브 코딩 도구로 찾아뵙겠습니다. 감사합니다!
 
-<p class="not-prose mt-10 text-center text-xs leading-relaxed text-text-sub dark:text-dm-muted">본 포스팅은 서비스 소개를 위한 리뷰이며, 모든 사이트 UI 저작권은 StackBlitz(Bolt.new)에 있습니다.</p>
+<p class="not-prose mt-10 text-center text-xs leading-relaxed text-text-sub dark:text-dm-muted">본 포스팅은 서비스 소개를 위한 리뷰이며, 글에 사용된 모든 사이트 UI의의 저작권은 StackBlitz(Bolt.new)에 있습니다.</p>
 

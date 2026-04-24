@@ -1,5 +1,8 @@
+import Link from "next/link";
+
 import EmptyPostsState from "@/app/components/EmptyPostsState";
 import PostListWithFilter from "@/app/components/PostListWithFilter";
+import { SITE_CATEGORY_DEFS } from "@/lib/config";
 import { SITE_NAME, absolutePageUrl } from "@/lib/site-config";
 import { getPublicPosts } from "@/lib/posts";
 
@@ -13,6 +16,7 @@ export async function generateMetadata() {
 
 export default async function Home() {
   const posts = await getPublicPosts();
+  const publicCategories = SITE_CATEGORY_DEFS.filter((c) => !c.private);
 
   return (
     <div className="flex w-full flex-col gap-16 md:gap-20 lg:gap-24">
@@ -29,12 +33,21 @@ export default async function Home() {
         <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-text-sub dark:text-dm-muted sm:mt-5 sm:text-lg md:text-xl">
           꺾이지 않는 마음과 복/붙 기술만 있다면 누구나 나만의 웹사이트를 만들 수 있어요!
         </p>
-        <a
-          href="/category/vibe-coding-blog"
-          className="mt-8 inline-flex items-center justify-center rounded-xl bg-[#1d4ed8] px-5 py-3 text-sm font-bold text-white shadow-md ring-2 ring-white/40 transition hover:bg-[#1e3a8a] hover:ring-white/60 sm:mt-10 sm:px-8 sm:py-3.5 sm:text-base md:text-lg"
+        <div
+          className="mx-auto mt-8 flex w-full max-w-3xl flex-col gap-3 sm:mt-10 sm:flex-row sm:justify-center sm:gap-4"
+          role="navigation"
+          aria-label="카테고리로 이동"
         >
-          바로 시작하기!
-        </a>
+          {publicCategories.map((cat) => (
+            <Link
+              key={cat.slug}
+              href={`/category/${encodeURIComponent(cat.slug)}`}
+              className="inline-flex min-h-[3.25rem] flex-1 items-center justify-center rounded-xl bg-[#1d4ed8] px-4 py-3 text-center text-sm font-bold leading-snug text-white shadow-md ring-2 ring-white/40 transition hover:bg-[#1e3a8a] hover:ring-white/60 sm:min-w-0 sm:px-5 sm:py-3.5 sm:text-base"
+            >
+              {cat.label}
+            </Link>
+          ))}
+        </div>
       </section>
 
       <section
