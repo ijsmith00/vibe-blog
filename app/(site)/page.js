@@ -21,20 +21,31 @@ export default async function Home() {
   return (
     <div className="flex w-full flex-col gap-16 md:gap-20 lg:gap-24">
       <section
-        className="mx-auto w-full rounded-2xl bg-gradient-to-b from-white to-secondary px-5 py-16 text-center dark:from-dm-bg dark:to-dm-card sm:px-7 md:px-10 md:py-20 lg:py-24"
+        className="mx-auto w-full rounded-2xl bg-gradient-to-b from-white to-secondary px-5 py-16 text-center dark:from-dm-bg dark:to-dm-card sm:px-7 md:px-10 md:py-24"
         aria-labelledby="hero-heading"
       >
         <h1
           id="hero-heading"
-          className="text-3xl font-extrabold leading-tight tracking-tight text-text-main dark:text-dm-text sm:text-4xl md:text-5xl lg:text-6xl"
+          className="text-4xl font-extrabold leading-tight tracking-tight text-text-main dark:text-dm-text md:text-5xl"
         >
           {SITE_NAME}
         </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-text-sub dark:text-dm-muted sm:mt-5 sm:text-lg md:text-xl">
-          꺾이지 않는 마음과 복/붙 기술만 있다면 누구나 나만의 웹사이트를 만들 수 있어요!
-        </p>
+        <div className="mx-auto mt-8 max-w-2xl md:mt-10">
+          <p
+            className="text-balance [word-break:keep-all] text-xl font-semibold leading-[1.6] text-gray-800 dark:text-gray-200 md:text-2xl lg:text-3xl"
+          >
+            코딩 몰라도 괜찮아요.
+            <br />
+            {`꺾이지 않는 마음과 복/붙 기술만 있다면, `}
+            <br className="hidden md:block" />
+            AI와 함께 나만의 웹사이트를 만들 수 있어요.
+          </p>
+          <p className="mt-6 text-pretty text-sm leading-relaxed text-gray-500 dark:text-gray-400 md:text-base">
+            바이브 코딩 개념부터 실전 배포까지, 비개발자를 위한 단계별 가이드
+          </p>
+        </div>
         <div
-          className="mx-auto mt-8 flex w-full max-w-3xl flex-col gap-3 sm:mt-10 sm:flex-row sm:justify-center sm:gap-4"
+          className="mx-auto mt-8 flex w-full max-w-3xl flex-col gap-3 md:mt-10 sm:flex-row sm:justify-center sm:gap-4"
           role="navigation"
           aria-label="카테고리로 이동"
         >
