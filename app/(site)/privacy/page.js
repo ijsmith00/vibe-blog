@@ -9,7 +9,7 @@ export async function generateMetadata() {
       canonical: absolutePageUrl("/privacy"),
     },
     robots: {
-      index: false,
+      index: true,
       follow: true,
     },
   };
