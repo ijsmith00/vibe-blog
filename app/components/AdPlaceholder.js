@@ -3,6 +3,13 @@
  * @param {{ className?: string }} props
  */
 export default function AdPlaceholder({ className = "" }) {
+  const shouldShowPlaceholder =
+    process.env.NEXT_PUBLIC_SHOW_AD_PLACEHOLDERS === "true";
+
+  if (!shouldShowPlaceholder) {
+    return null;
+  }
+
   return (
     <div
       className={`flex min-h-[120px] items-center justify-center rounded-xl border border-border bg-secondary text-sm font-medium text-text-sub not-prose dark:border-dm-border dark:bg-dm-card dark:text-dm-muted ${className}`}
