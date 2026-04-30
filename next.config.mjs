@@ -53,6 +53,7 @@ const nextConfig = {
         destination: "/category/blog-monetization",
         permanent: true,
       },
+      /** 
       {
         source: "/:path*",
         has: [
@@ -68,6 +69,7 @@ const nextConfig = {
         destination: "https://www.howtovibecoding.com/:path*",
         permanent: true,
       },
+      */
     ];
   },
   images: {
