@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import {
   SITE_NAME,
+  SITE_OG_DEFAULT_ALT,
   absolutePageUrl,
   ogImageMetadata,
 } from "@/lib/site-config";
@@ -11,7 +12,7 @@ export async function generateMetadata() {
   const title = `카테고리 | ${SITE_NAME}`;
   const description = `주제별로 글을 모아 볼 수 있는 카테고리 목록 — ${SITE_NAME}`;
   const canonical = absolutePageUrl("/category");
-  const ogImage = ogImageMetadata(null, SITE_NAME);
+  const ogImage = ogImageMetadata(null, SITE_OG_DEFAULT_ALT);
   return {
     title,
     description,

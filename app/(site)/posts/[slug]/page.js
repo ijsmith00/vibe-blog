@@ -38,6 +38,8 @@ import {
 } from "@/lib/posts";
 import { splitContentHtmlForMidAd } from "@/lib/split-content-html-for-mid-ad";
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const posts = await getAllPosts();
   return posts.map((p) => ({ slug: p.slug }));

@@ -9,6 +9,8 @@ import {
 } from "@/lib/site-config";
 import { getAllTags, getPostsByTag } from "@/lib/posts";
 
+export const dynamicParams = false;
+
 function tagFromParam(raw) {
   if (typeof raw !== "string" || raw.trim() === "") return "";
   try {

@@ -3,13 +3,15 @@ import { Geist_Mono, Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
 import NotFoundContent from "@/app/components/NotFoundContent";
 import JsonLd from "@/app/components/JsonLd";
+import { getWebSiteJsonLd, NAVER_SITE_VERIFICATION } from "@/lib/config";
 import {
-  getWebSiteJsonLd,
-  GOOGLE_SITE_VERIFICATION,
-  GOOGLE_SITE_VERIFICATION_SECOND,
-  NAVER_SITE_VERIFICATION,
-} from "@/lib/config";
-import { SITE_NAME, SITE_URL, ogImageMetadata } from "@/lib/site-config";
+  DEFAULT_DESCRIPTION,
+  SITE_NAME,
+  SITE_OG_DEFAULT_ALT,
+  SITE_TITLE,
+  SITE_URL,
+  ogImageMetadata,
+} from "@/lib/site-config";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -27,8 +29,11 @@ const notoSansKr = Noto_Sans_KR({
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "페이지를 찾을 수 없습니다",
-  description: `${SITE_NAME}에서 요청하신 페이지를 찾을 수 없습니다.`,
+  title: {
+    default: "페이지를 찾을 수 없습니다",
+    template: `%s | ${SITE_TITLE}`,
+  },
+  description: DEFAULT_DESCRIPTION,
   icons: {
     icon: [
       { url: "/favicon.png", type: "image/png", sizes: "16x16" },
@@ -53,14 +58,14 @@ export const metadata = {
     url: SITE_URL,
     siteName: SITE_NAME,
     title: "페이지를 찾을 수 없습니다",
-    description: `${SITE_NAME}에서 요청하신 페이지를 찾을 수 없습니다.`,
-    images: [ogImageMetadata(null, SITE_NAME)],
+    description: DEFAULT_DESCRIPTION,
+    images: [ogImageMetadata(null, SITE_OG_DEFAULT_ALT)],
   },
   twitter: {
     card: "summary_large_image",
     title: "페이지를 찾을 수 없습니다",
-    description: `${SITE_NAME}에서 요청하신 페이지를 찾을 수 없습니다.`,
-    images: [ogImageMetadata(null, SITE_NAME)],
+    description: DEFAULT_DESCRIPTION,
+    images: [ogImageMetadata(null, SITE_OG_DEFAULT_ALT)],
   },
 };
 
@@ -76,15 +81,7 @@ export default function GlobalNotFound() {
       className={`${geistMono.variable} ${notoSansKr.variable} h-full scroll-smooth antialiased`}
     >
       <head>
-        {/* 구글 서치 콘솔 / 네이버 서치어드바이저 소유 확인 — 루트 레이아웃과 동일 토큰(lib/config.js) */}
-        <meta
-          name="google-site-verification"
-          content={GOOGLE_SITE_VERIFICATION}
-        />
-        <meta
-          name="google-site-verification"
-          content={GOOGLE_SITE_VERIFICATION_SECOND}
-        />
+        {/* 네이버 서치어드바이저 소유 확인 — 루트 레이아웃과 동일 토큰(lib/config.js) */}
         <meta
           name="naver-site-verification"
           content={NAVER_SITE_VERIFICATION}

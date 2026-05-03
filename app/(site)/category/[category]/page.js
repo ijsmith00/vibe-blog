@@ -16,6 +16,8 @@ import {
   getPostsByCategory,
 } from "@/lib/posts";
 
+export const dynamicParams = false;
+
 function categorySlugFromParam(raw) {
   if (typeof raw !== "string" || raw.trim() === "") return "";
   try {

@@ -23,10 +23,6 @@ const nextConfig = {
       },
     ];
   },
-  /**
-   * - `www` + HTTP → HTTPS `www` (Vercel 외 환경·직접 http 접속 대비)
-   * - apex → `https://www…` (기존, http/https 모두 www·TLS로 통일)
-   */
   /** `/blog/[slug]`가 공식 URL. 기존 `/posts/[slug]`는 301으로 통합 */
   async rewrites() {
     return [
@@ -73,23 +69,6 @@ const nextConfig = {
         destination: "/category/tech-vibe",
         permanent: true,
       },
-      /** 
-      {
-        source: "/:path*",
-        has: [
-          { type: "header", key: "x-forwarded-proto", value: "http" },
-          { type: "host", value: "www.howtovibecoding.com" },
-        ],
-        destination: "https://www.howtovibecoding.com/:path*",
-        permanent: true,
-      },
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "howtovibecoding.com" }],
-        destination: "https://www.howtovibecoding.com/:path*",
-        permanent: true,
-      },
-      */
     ];
   },
   images: {
