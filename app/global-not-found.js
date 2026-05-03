@@ -30,8 +30,18 @@ export const metadata = {
   title: "페이지를 찾을 수 없습니다",
   description: `${SITE_NAME}에서 요청하신 페이지를 찾을 수 없습니다.`,
   icons: {
-    icon: [{ url: "/favicon.png", type: "image/png", sizes: "any" }],
-    apple: [{ url: "/favicon.png", sizes: "180x180" }],
+    icon: [
+      { url: "/favicon.png", type: "image/png", sizes: "16x16" },
+      { url: "/favicon.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon.png", type: "image/png", sizes: "48x48" },
+    ],
+    apple: [
+      {
+        url: "/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
   },
   robots: {
     index: false,

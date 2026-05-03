@@ -41,8 +41,18 @@ export async function generateMetadata() {
     },
     description: DEFAULT_DESCRIPTION,
     icons: {
-      icon: [{ url: "/favicon.png", type: "image/png", sizes: "any" }],
-      apple: [{ url: "/favicon.png", sizes: "180x180" }],
+      icon: [
+        { url: "/favicon.png", type: "image/png", sizes: "16x16" },
+        { url: "/favicon.png", type: "image/png", sizes: "32x32" },
+        { url: "/favicon.png", type: "image/png", sizes: "48x48" },
+      ],
+      apple: [
+        {
+          url: "/apple-touch-icon.png",
+          sizes: "180x180",
+          type: "image/png",
+        },
+      ],
     },
     robots: {
       index: true,

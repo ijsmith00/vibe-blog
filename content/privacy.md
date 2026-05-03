@@ -59,7 +59,7 @@ updated: 2026-04-19
 
 - **블로그명**: 아이다호 편집자의 테크 바이브
 
-- **운영자 이메일**: howtovibecoding@gmail.com
+- **운영자 이메일**: 2joojs369@gmail.com
 
 - **문의 페이지**: [문의하기](/contact)
 

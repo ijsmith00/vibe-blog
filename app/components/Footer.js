@@ -1,9 +1,6 @@
 import Link from "next/link";
 
-import { SITE_NAME } from "@/lib/site-config";
-
-const FOOTER_TAGLINE =
-  "바이브 코딩으로 블로그 제작·다양한 실험 노하우를 모두와 나눕니다.";
+import { DEFAULT_DESCRIPTION, SITE_NAME } from "@/lib/site-config";
 
 const FOOTER_LINKS = [
   { href: "/", label: "홈" },
@@ -34,8 +31,8 @@ export default function Footer({ useNativeLinks = false }) {
             />
             <span>{SITE_NAME}</span>
           </p>
-          <p className="mt-2 max-w-xl text-sm leading-relaxed text-text-sub dark:text-dm-muted">
-            {FOOTER_TAGLINE}
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-text-sub dark:text-dm-muted">
+            {DEFAULT_DESCRIPTION}
           </p>
 
           <nav
@@ -53,8 +50,8 @@ export default function Footer({ useNativeLinks = false }) {
             ))}
           </nav>
 
-          <p className="mt-10 w-full text-center text-xs text-text-sub dark:text-dm-muted">
-            Copyright © 2026 {SITE_NAME}. All rights reserved.
+          <p className="mt-10 w-full text-center text-xs leading-relaxed text-text-sub dark:text-dm-muted">
+            © 2026 {SITE_NAME}. 무단 전재·재배포를 금합니다.
           </p>
         </div>
       </div>
