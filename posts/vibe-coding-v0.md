@@ -1,14 +1,14 @@
 ---
 title: "바이브 코딩 툴 v0.app 사용 후기 (AI로 포트폴리오 페이지 만들기)"
 date: "2026-04-29"
-category: "바이브 코딩 (AI 개발)"
+category: "테크 바이브"
 description: "v0.app으로 포트폴리오 페이지를 만드는 전 과정. 회원가입, 프롬프트 작성, 화면 수정, 배포까지 비개발자 관점으로 정리한 실전 사용 후기."
 tags: ["바이브코딩", "v0", "v0.app", "AI개발", "포트폴리오", "노코드"]
 mid_ad_ol: after
 mid_ad_ol_index: 2
 ---
 
-안녕하세요. 모두의바이브코딩입니다.
+안녕하세요. 아이다호 편집자의 테크 바이브입니다.
 
 지난 [Lovable 편](/posts/vibe-coding-lovable)과 [Bolt.new 편](/posts/vibe-coding-bolt)에 이어, 오늘은 [다양한 바이브 코딩 도구](/posts/vibe-coding-tools) 시리즈의 세 번째 주자, **v0.app**을 다룹니다.
 

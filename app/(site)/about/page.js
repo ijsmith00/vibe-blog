@@ -7,13 +7,12 @@ import {
   absolutePageUrl,
 } from "@/lib/site-config";
 
-/** 소개 페이지 히어로에 표시되는 운영자 이름 */
-const OPERATOR_DISPLAY_NAME = "바이브 빌더";
+/** 소개 페이지 히어로에 표시되는 이름 */
+const OPERATOR_DISPLAY_NAME = "아이다호 편집자";
 
 export async function generateMetadata() {
   const description =
-    "10년 차 테크니컬 에디터가 미국 현지에서 실험하는 AI 개발 방법론과 바이브 코딩(Vibe Coding) 실전 노하우를 공유합니다. " +
-    "IT·과학 도서 역서 10권 이상 번역·편집 경험을 바탕으로, 지속 가능한 독립 플랫폼 구축과 디지털 자산의 가치를 제시합니다.";
+    "미국 북부 아이다호 작은 마을에서 쓰는 글입니다. 시골 적응기와 리모트로 IT 도서를 편집하며 AI·코딩을 익혀 가는 기록을 담습니다.";
   return {
     title: `소개 | ${SITE_NAME}`,
     description,
@@ -44,15 +43,9 @@ const sectionClass =
 const emStrong =
   "font-semibold text-text-main dark:text-dm-text";
 
-/** 섹션 본문 첫 문장 — E-E-A-T·문맥 신호용 */
+/** 섹션 본문 첫 문장 */
 const leadFirst =
   "font-medium text-text-main dark:text-dm-text";
-
-const categoryLinkClass =
-  "inline-flex items-center gap-1 rounded-lg font-semibold text-primary underline decoration-2 underline-offset-2 transition hover:bg-primary/5 hover:text-primary/90 dark:text-blue-400 dark:hover:bg-blue-500/10 dark:hover:text-blue-300";
-
-const ctaPillClass =
-  "ml-1 inline-flex shrink-0 items-center rounded-full border border-primary/35 bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary dark:border-blue-500/40 dark:bg-blue-500/15 dark:text-blue-300";
 
 export default function AboutPage() {
   const profileSrc = (ABOUT_PROFILE_IMAGE_PATH || "").trim();
@@ -98,161 +91,109 @@ export default function AboutPage() {
               {OPERATOR_DISPLAY_NAME}
             </h1>
             <p className="mt-3 text-base font-medium leading-relaxed text-text-main dark:text-dm-text sm:text-lg">
-              IT·과학 도서 역서 10권 이상을 번역했고, IT 전문 출판사에서 테크니컬
-              에디터로 십 년 가까이 일했습니다. 현재는 미국에 거주하며, AI 개발
-              방법론과 바이브 코딩 실험 결과를 이 블로그에 기록합니다.
+              미국 북부 아이다호의 작은 마을에서 글을 씁니다. 시골 적응기와
+              리모트 편집 일, 그리고 AI 도구를 천천히 익혀 가는 과정을 이곳에
+              남깁니다.
             </p>
           </div>
         </div>
       </section>
 
       <div className="mt-12 flex flex-col gap-10 sm:mt-14 sm:gap-12">
-        <section className={sectionClass} aria-labelledby="about-vibe-def">
+        <section className={sectionClass} aria-labelledby="about-opening">
           <h2
-            id="about-vibe-def"
+            id="about-opening"
             className="text-xl font-bold tracking-tight text-text-main dark:text-dm-text sm:text-2xl"
           >
-            바이브 코딩이란?
+            이 글을 쓰는 곳
           </h2>
           <div className="mt-5 space-y-4 text-[0.9375rem] leading-[1.85] text-text-sub dark:text-dm-muted sm:text-base">
             <p className={leadFirst}>
-              바이브 코딩(Vibe Coding)은 인간이 방향·기준·책임을 설정하고, AI가
-              생산 속도와 반복 작업을 맡는 협업 방식으로 정의합니다.
+              안녕하세요. 미국 북부 아이다호의 작은 마을에서 이 글을 씁니다.
             </p>
             <p>
-              코드 한 줄을 모두 외우지 않아도, 아키텍처와 품질 기준을 운영자가
-              제시하면 AI가 구현 초안·리팩터링·문서화를 병렬로 밀어 넣을 수 있습니다.
-              핵심은 도구에 맡기는 범위와 검증 책임을 어디에 두느냐입니다.
+              여기 도착한 날짜가 2026년 1월 1일이니까 이제 막 4개월 됐네요.
+              한국식당도 없고 아시안 마켓도 하나 없는 그야말로 깡촌인데, 창밖
+              풍경 하나는 진짜 매일 봐도 질리지 않습니다. 타운에서 조금만
+              벗어나면 핸드폰 신호가 끊겨서 강제로 디지털 디톡스를 하게 되는
+              곳이에요. 미국 와서 유튜브나 한번 해볼까 싶었는데, 카페에서도
+              길에서도 폰을 들여다보는 사람이 거의 없어서 카메라 들 엄두가 안
+              나더라고요. 그래서 결국 시작한 게 이 블로그입니다.
             </p>
             <p>
-              이 블로그는 그 경계를 실제 프로덕트 수준에서 시험하고, 성공·실패
-              사례를 재현 가능한 절차로 정리합니다. 독자에게는 &apos;무엇을 AI에
-              맡기고 무엇을 사람이 지켜야 하는지&apos;를 명료하게 제시하는 것을
-              목표로 합니다.
+              30대 중반 직장 생활에 회의가 들어 내 평생 진로를 진지하게
+              고민했습니다. 그때 기준이 좀 단순했어요. &apos;뭘 해야 돈을 많이
+              버나&apos;가 아니라, &apos;내가 24시간 해도 안 질릴 만한 일이
+              뭐냐, 그러면서 혼자 먹고살 정도는 벌 수 있느냐&apos;. 그렇게
+              골라낸 답이 번역가였습니다. 시간과 장소에 매이지 않고, 언어로 하는
+              일이고, 무엇보다 내 이름 찍힌 책이 나오니까 허영도 채워주고요.
+              고민의 과정은 좀 길었지만, 결정하고 난 후에는 모든 게 신속하게
+              진행됐습니다. 다니던 직장에 사직 의사를 전하고 국내에서 제일
+              빡세다는 번역 아카데미에 등록했습니다. 그때 밤낮없이 과제 매달리던
+              기억이 아직도 생생합니다.
             </p>
             <p>
-              결과적으로 바이브 코딩은 단순한 코딩 편의를 넘어,{" "}
-              <strong className={emStrong}>
-                지속 가능한 독립 플랫폼을 설계·운영하는 방법론
-              </strong>
-              으로 확장됩니다. 여기에 축적된 기록은 디지털 자산의 가치를 높이는
-              한 축이 됩니다.
+              데뷔한 후 번역가로서 받은 일은 사실 제 원래 취향(심리학, 문학)과는
+              좀 달랐어요. 물리학 전공이라는 배경 때문에 과학, 사회과학,
+              프로그래밍 책이 주로 들어왔거든요. (번역 수주할 때는 이 배경이라는
+              게 꽤 크게 작용합니다.) 그러다 일하면서 인연이 닿은 분에게
+              스카우트를 받아 한 IT 회사의 출판·번역 책임자로 일하게 됐고,
+              거기서 저자 섭외부터 인쇄, 배포까지 출판 전 과정을 처음부터 끝까지
+              배웠습니다.
+            </p>
+            <p>
+              결혼하면서 잠시 일을 쉬다가, 회사에서 일할 때 알게 된 분 추천으로
+              작은 IT 도서 출판사에 교정자로 들어갔습니다. 그게 벌써 10년 전
+              일이에요. 처음 들어갔을 때 대표님 포함 정규 직원이 4명, 저까지
+              5명. 완전 재택에 자율성이 어찌나 높은지, 주변에 회사 얘기할 때
+              농담 반 진담 반으로 &apos;한국의 구글 다닌다&apos;고 했습니다. 그
+              인연이 지금까지 이어져서 10년 차 편집자로 일하고 있어요. 직원은 한
+              명 늘어 6명이 됐고, 다들 전국 각지(그리고 이제는 세계 각지, 그러니까
+              저)에 흩어져 일합니다.
+            </p>
+            <p>
+              저희 출판사는 DeepL이 한국에 정식 서비스를 하기도 전부터 그걸
+              써보던 회사입니다. AI 관련 신간을 국내에서 가장 빠르게 내는 축에
+              들고요. 저는 원래 신문물에 좀 느린 편인데, 회사 책 리뷰를 맡다
+              보니 어쩔 수 없이 이런저런 AI 도구와 배경 이론을 접하게 됐습니다.
+              최근엔 커서(Cursor)로 바이브 코딩이라는 걸 해보면서 개인 블로그도
+              직접 만들고, 게임도 하나 만들어봤어요. 진짜로 작동하는 게
+              신기했고, 동시에 이걸 모르면 앞으로 정말 뒤처지겠다는 위기감이 꽤
+              절실하게 들었습니다.
             </p>
           </div>
         </section>
 
-        <section className={sectionClass} aria-labelledby="about-why">
+        <section className={sectionClass} aria-labelledby="about-direction">
           <h2
-            id="about-why"
+            id="about-direction"
             className="text-xl font-bold tracking-tight text-text-main dark:text-dm-text sm:text-2xl"
           >
-            이 블로그를 만든 이유
+            이 블로그가 나아가는 방향
           </h2>
           <div className="mt-5 space-y-4 text-[0.9375rem] leading-[1.85] text-text-sub dark:text-dm-muted sm:text-base">
             <p className={leadFirst}>
-              생성 AI 이후 기술 격차에 대한 불안에서 출발했습니다. 그 과정에서
-              플랫폼 종속 구조와 검색·운영 리스크를 몸으로 겪었고, 그 경험을
-              기록으로 남기기로 했습니다.
+              이 블로그는 그래서 두 갈래로 굴러갑니다.
             </p>
             <p>
-              외부 서비스에 콘텐츠를 올려 두면 단기간에 트래픽을 모을 수 있지만,
-              규칙 변경 한 번에 디지털 자산의 가치가 흔들릴 수 있습니다. 내 이름으로
-              보이는 공간이 실제로는 통제 불가능한 임대지일 수 있다는 사실을
-              확인했습니다.
+              하나는{" "}
+              <strong className={emStrong}>미국 시골 적응기</strong>입니다. 아이는
+              한 교실에 5학년부터 8학년이 같이 앉아 있는 작은 학교를 다니고,
+              한국 식당이 없으니 살기 위해 요리를 해야 해서 요리 실력이 나날이
+              느는, 그런 시시콜콜한 일상 이야기와 아이 학교 이야기, 요리
+              이야기.
             </p>
             <p>
-              ‘그럼 아예 직접 만들면 어떨까?’ 막연하게 생각하던 그 즈음, 바이브 코딩
-              붐이 일었습니다. 그리고 문득 이런 질문을 던졌습니다.
-            </p>
-            <p className="text-lg font-semibold text-primary dark:text-blue-400">
-              나도 혹시… 될까?
-            </p>
-            <p>
-              Claude에게{" "}
-              {"\u201c"}바이브 코딩으로 지속 가능한 독립 플랫폼을 만들고 싶은데,
-              어떻게 하면 돼?{"\u201d"}라고 물었습니다. 260페이지 분량의 가이드가
-              돌아왔고, 검증 가능한 단계만 추려 따라가 보았습니다.
-            </p>
-            <p className="font-semibold text-text-main dark:text-dm-text">
-              삼 일 만에 첫 결과물이 나왔습니다.
-            </p>
-            <p>
-              플랫폼에 종속되지 않은 자기 도메인 기반 사이트가 생겼고, 예상보다
-              낮은 마찰로 구축이 끝났습니다. 이 경험은 ‘바이브 코딩이 어디까지
-              가능한가’를 증명하는 출발점이 되었습니다.
-            </p>
-            <p className={leadFirst}>
-              그래서 이 블로그는 실험 설계부터 배포·측정까지의 과정을 공개합니다.
-            </p>
-            <p>
-              기술 나열에 머무르지 않고,{" "}
+              또 하나는{" "}
               <strong className={emStrong}>
-                비전공자·1인 창업자가 AI를 도구로 삼아 독립 플랫폼을 설계·구축하는
-                실전 로드맵
+                리모트로 IT 도서를 편집하면서 AI 코딩을 익혀 가는 이야기
               </strong>
-              을 제시합니다. 성공한 시도와 실패한 시도, 되돌아본 원인 분석을 같은
-              기준으로 기록합니다. 그 좌충우돌한 기록을 통해{" "}
-              <strong className={emStrong}>
-                {"\u2018"}누구나 메이커가 될 수 있는 바이브(Vibe){"\u2019"}
-              </strong>
-              를 공유합니다.
+              입니다. (이 부분은 앞으로 서서히 내용을 채워 가겠습니다.) 코딩
+              경험 전무한 제가 새 도구를 붙드는 게 어떻게 가능했는지, 어디서
+              막히고 어디서 뚫리는지를 가감 없이 적어보려고 합니다.
             </p>
-            <p className="text-text-main dark:text-dm-text">
-              앞으로 올라올 글에서 그 근거를 차례로 제시하겠습니다.
-            </p>
+            <p className={leadFirst}>천천히 둘러봐 주세요.</p>
           </div>
-        </section>
-
-        <section className={sectionClass} aria-labelledby="about-topics">
-          <h2
-            id="about-topics"
-            className="text-xl font-bold tracking-tight text-text-main dark:text-dm-text sm:text-2xl"
-          >
-            블로그에서 다루는 주제
-          </h2>
-          <p className={`mt-4 ${leadFirst}`}>
-            아래 카테고리는 동일한 기준으로 업데이트됩니다. 본문·절차·체크리스트를
-            한데 모아 두었으니, 필요한 축만 골라 따라오시면 됩니다.
-          </p>
-          <ul className="mt-6 list-none space-y-5 text-[0.9375rem] leading-relaxed text-text-sub dark:text-dm-muted sm:text-base">
-            <li className="rounded-xl border border-border bg-secondary/40 px-4 py-4 dark:border-dm-border dark:bg-dm-bg/80 sm:px-5 sm:py-5">
-              <p className={leadFirst}>
-                바이브 코딩 (AI 개발) — Next.js와 AI 에이전트를 활용한 구축·배포
-                실험
-              </p>
-              <p className="mt-2 text-text-sub dark:text-dm-muted">
-                아키텍처 결정, 에이전트 워크플로, 운영 관측까지 한 흐름으로
-                정리합니다.
-              </p>
-              <p className="mt-3">
-                <Link
-                  href="/category/vibe-coding-guide"
-                  className={categoryLinkClass}
-                >
-                  <span>바이브 코딩 (AI 개발) — 실전 가이드 보기</span>
-                  <span className={ctaPillClass}>이동</span>
-                </Link>
-              </p>
-            </li>
-            <li className="rounded-xl border border-border bg-secondary/40 px-4 py-4 dark:border-dm-border dark:bg-dm-bg/80 sm:px-5 sm:py-5">
-              <p className={leadFirst}>
-                [연재] 바이브 코딩으로 블로그 만들기 — 0부터 SEO·배포까지의 단계별
-                기록
-              </p>
-              <p className="mt-2 text-text-sub dark:text-dm-muted">
-                설계·구현·검색 노출까지 실제로 밟은 순서를 그대로 옮겼습니다.
-              </p>
-              <p className="mt-3">
-                <Link
-                  href="/category/vibe-coding-blog"
-                  className={categoryLinkClass}
-                >
-                  <span>[연재] 블로그 만들기 — 실전 가이드 보기</span>
-                  <span className={ctaPillClass}>이동</span>
-                </Link>
-              </p>
-            </li>
-          </ul>
         </section>
 
         <section className={sectionClass} aria-labelledby="about-author">
@@ -264,44 +205,30 @@ export default function AboutPage() {
           </h2>
           <div className="mt-5 space-y-4 text-[0.9375rem] leading-[1.85] text-text-sub dark:text-dm-muted sm:text-base">
             <p className={leadFirst}>
-              AI와 함께 읽고, 쓰고, 검증합니다. 그리고 그 과정을 재현 가능한 글로
-              남깁니다.
+              <strong className={emStrong}>아이다호 편집자</strong>라는 이름으로
+              글을 씁니다. 번역 아카데미를 거쳐 과학·프로그래밍 등 비문학
+              번역으로 데뷔했고, IT 출판사에서 출판·번역 업무를 거친 뒤 작은 IT
+              도서 출판사에서 교정·편집을 맡아 온 지 10년이 넘었습니다.
+            </p>
+            <p>
+              지금은{" "}
+              <strong className={emStrong}>
+                미국 아이다호의 작은 마을에 거주하며 같은 출판사 일을 리모트로
+              </strong>
+              이어 가고 있습니다. 회사 일로 AI 도구와 이론을 일찍 접했고, 그
+              연장선에서 블로그와 작은 프로젝트를 직접 만들어 보기도 했습니다.
+              다만 이 공간에서는 우선{" "}
+              <strong className={emStrong}>
+                시골 생활과 편집자로서의 시선
+              </strong>
+              을 중심에 두고, 기술 이야기는 천천히 차곡차곡 쌓아 가려 합니다.
             </p>
             <p>
               <strong className={emStrong}>
-                IT·과학 분야 도서를 열 권 넘게 번역했고, IT 전문 출판사에서
-                테크니컬 에디터로 십 년 가까이 일해 왔습니다.
-              </strong>{" "}
-              <strong className={emStrong}>
-                복잡한 내용을 쉬운 문장으로 풀어내고 글의 뼈대를 세우는 일
+                복잡한 것을 읽기 쉬운 문장으로 옮기고, 글의 뼈대를 세우는 일
               </strong>
-              이 오랜 직업이었습니다.{" "}
-              <strong className={emStrong}>이 블로그의 모든 글</strong>은 그 감각
-              위에서 만들어집니다.
-            </p>
-            <p>
-              현재는 <strong className={emStrong}>미국에 거주</strong>합니다.{" "}
-              <strong className={emStrong}>
-                AI의 흐름이 가장 먼저 도착하는 곳에
-              </strong>{" "}
-              있다 보니, 한국에 있을 때보다{" "}
-              <strong className={emStrong}>기술의 속도를 훨씬 가깝게 체감합니다.</strong>{" "}
-              새로운 도구를 먼저 써 보고, 막히는 지점과 풀어내는 방법을
-              기록합니다. 여기에 오랜 편집자의 시선을 더해,{" "}
-              <strong className={emStrong}>
-                누구나 따라올 수 있는 가장 쉬운 언어로 옮기는 것
-              </strong>
-              이 저의 방식입니다.
-            </p>
-            <p>
-              <strong className={emStrong}>
-                AI는 잘 활용하면 우리 삶에 실질적인 유익을 주는 도구
-              </strong>
-              라고 봅니다.{" "}
-              <strong className={emStrong}>
-                이 블로그는 그 전제 위에서, AI를 곁에 두고 직접 실험하며 얻은
-                결과를 근거와 함께 제시하는 공간입니다.
-              </strong>
+              이 오랜 직업이었습니다. 이 블로그의 글도 그 습관을 따라, 제가 겪고
+              배운 것을 가능한 한 솔직하게 적어 보려 합니다.
             </p>
           </div>
         </section>

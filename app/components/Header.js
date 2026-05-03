@@ -78,7 +78,7 @@ export default function Header({ categoryNavItems = [], useNativeLinks = false }
           }}
         >
           <img
-            src="/favicon.svg"
+            src="/favicon.png"
             alt=""
             width={28}
             height={28}

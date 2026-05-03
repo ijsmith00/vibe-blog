@@ -29,6 +29,10 @@ export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: "페이지를 찾을 수 없습니다",
   description: `${SITE_NAME}에서 요청하신 페이지를 찾을 수 없습니다.`,
+  icons: {
+    icon: [{ url: "/favicon.png", type: "image/png", sizes: "any" }],
+    apple: [{ url: "/favicon.png", sizes: "180x180" }],
+  },
   robots: {
     index: false,
     follow: true,
@@ -75,7 +79,6 @@ export default function GlobalNotFound() {
           name="naver-site-verification"
           content={NAVER_SITE_VERIFICATION}
         />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
       <body
         className={`${notoSansKr.className} min-h-full flex flex-col bg-bg-main text-text-main transition-colors dark:bg-dm-bg dark:text-dm-text`}

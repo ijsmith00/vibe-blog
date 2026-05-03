@@ -1,7 +1,7 @@
 ---
 title: "바이브 코딩 도구 추천 TOP 7 - 후기와 자료를 싹 뒤져서 정리했습니다 (2026년 최신)"
 date: "2026-04-12"
-category: "바이브 코딩 (AI 개발)"
+category: "테크 바이브"
 description: "Claude Code, Cursor, Lovable, Bolt.new, Replit, Windsurf, v0 등 바이브 코딩 도구 7종의 유형·요금·장단점을 후기와 커뮤니티 평가를 바탕으로 정리하고, 상황별 추천 조합을 제안한다."
 tags: ["바이브코딩", "Cursor", "ClaudeCode", "Lovable", "Bolt", "Replit", "Windsurf", "v0", "AI개발", "도구추천"]
 ---

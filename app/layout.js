@@ -40,6 +40,10 @@ export async function generateMetadata() {
       template: `%s | ${SITE_NAME}`,
     },
     description: DEFAULT_DESCRIPTION,
+    icons: {
+      icon: [{ url: "/favicon.png", type: "image/png", sizes: "any" }],
+      apple: [{ url: "/favicon.png", sizes: "180x180" }],
+    },
     robots: {
       index: true,
       follow: true,
@@ -98,7 +102,6 @@ export default function RootLayout({ children }) {
           name="google-site-verification"
           content={GOOGLE_SITE_VERIFICATION_SECOND}
         />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <Script id="theme-init" strategy="beforeInteractive">
           {`(function(){try{var k='vibe-theme';var t=localStorage.getItem(k);var d=document.documentElement;if(t==='dark')d.classList.add('dark');else if(t==='light')d.classList.remove('dark');else if(typeof matchMedia!=='undefined'&&matchMedia('(prefers-color-scheme: dark)').matches)d.classList.add('dark')}catch(e){}})()`}
         </Script>

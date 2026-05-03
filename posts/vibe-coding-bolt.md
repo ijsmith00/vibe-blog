@@ -1,14 +1,14 @@
 ---
 title: "바이브 코딩 툴 Bolt.new 사용 후기 (대화 하나로 여행 짐싸기 체크리스트 앱 완성)"
 date: "2026-04-23"
-category: "바이브 코딩 (AI 개발)"
+category: "테크 바이브"
 description: "Bolt.new로 여행 짐싸기 체크리스트 앱을 만드는 전 과정. Lovable과의 차이(파일·프리뷰), 회원가입·프롬프트·배포(bolt.host)까지 풀스택 바이브 코딩 가이드."
 tags: ["바이브코딩", "Bolt", "Bolt.new", "AI개발", "풀스택", "여행"]
 mid_ad_ol: after
 mid_ad_ol_index: 2
 ---
 
-안녕하세요. 모두의바이브코딩입니다.
+안녕하세요. 아이다호 편집자의 테크 바이브입니다.
 
 지난 [Lovable 편](/posts/vibe-coding-lovable)에 이어, 오늘은 [다양한 바이브 코딩 도구](/posts/vibe-coding-tools) 중 또 다른 강력한 선수인 **Bolt.new**를 다뤄봅니다. Bolt.new는 한 마디로 <strong>‘브라우저 안에서 웹 앱을 통째로 만들어주는 도구’</strong>예요. 채팅으로 앱을 만들 수 있다는 점은 Lovable과 비슷하지만, **AI가 어떤 부품들을 어떻게 조립하고 있는지 옆에서 같이 보여준다는 점**이 가장 큰 차이입니다.
 

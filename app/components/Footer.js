@@ -25,10 +25,10 @@ export default function Footer({ useNativeLinks = false }) {
         <div className="flex flex-col items-center text-center md:items-start md:text-left">
           <p className="flex items-center justify-center gap-2.5 text-lg font-semibold text-text-main md:justify-start">
             <img
-              src="/favicon.svg"
+              src="/favicon.png"
               alt=""
-              width={22}
-              height={22}
+              width={20}
+              height={20}
               className="h-5 w-5 shrink-0 opacity-80 dark:opacity-90"
               aria-hidden
             />

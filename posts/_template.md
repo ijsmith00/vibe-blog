@@ -1,7 +1,7 @@
 ---
 title: "글 제목"
 date: "2026-01-01"
-category: "카테고리 라벨"
+category: "테크 바이브"
 description: "검색·목록용 한 줄 요약"
 tags: ["태그1", "태그2"]
 ---

@@ -1,7 +1,7 @@
 ---
 title: "**DAY 11** [배포] Vercel 배포 + 도메인 연결 20분 컷"
 date: "2026-04-07"
-category: "[연재] 바이브 코딩으로 블로그 만들기"
+category: "테크 바이브"
 description: "GitHub 푸시, Vercel 배포, vercel.app·커스텀 도메인·HTTPS, SITE_URL·metadata 갱신까지. 서버 0원으로 블로그를 인터넷에 공개하는 실전 가이드."
 tags: ["바이브코딩", "VibeCoding", "블로그만들기", "연재", "Vercel", "배포", "도메인", "Next.js"]
 ---
