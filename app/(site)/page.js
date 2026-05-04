@@ -1,6 +1,10 @@
 import EmptyPostsState from "@/app/components/EmptyPostsState";
 import PostCard from "@/app/components/PostCard";
-import { SITE_NAME, absolutePageUrl } from "@/lib/site-config";
+import {
+  DEFAULT_DESCRIPTION,
+  SITE_NAME,
+  absolutePageUrl,
+} from "@/lib/site-config";
 import { getPublicPosts } from "@/lib/posts";
 
 export async function generateMetadata() {
@@ -30,10 +34,11 @@ export default async function Home() {
           <p
             className="text-balance [word-break:keep-all] text-lg font-semibold leading-relaxed text-gray-800 dark:text-gray-200 sm:text-xl md:text-2xl md:leading-snug"
           >
-            미국 시골 라이프와 AI 코딩에 관해 이야기합니다.
+            {DEFAULT_DESCRIPTION}
           </p>
           <p className="mt-5 text-pretty text-base leading-relaxed text-gray-600 dark:text-gray-400 sm:mt-6 sm:text-lg">
-            아이다호의 숲과 AI 코드 사이, 그 어딘가의 기록.
+            시골 생활, 리모트 편집 일, AI 도구 익히기까지 이곳에 차곡차곡
+            남깁니다.
           </p>
         </div>
       </section>
