@@ -8,16 +8,12 @@ import SearchBar from "@/app/components/SearchBar";
 import ThemeToggle from "@/app/components/ThemeToggle";
 import { SITE_NAME } from "@/lib/site-config";
 
-/** 상단 메뉴 순서: 홈 → 소개 → 카테고리(드롭다운) → 문의 */
+/** 상단 메뉴 순서: 홈 → 소개 → 문의 */
 const NAV_LEAD = [
   { href: "/", label: "홈" },
   { href: "/about", label: "소개" },
 ];
 const NAV_CONTACT = { href: "/contact", label: "문의" };
-
-function categoryHref(slug) {
-  return `/category/${encodeURIComponent(slug)}`;
-}
 
 function SearchIcon({ className = "h-5 w-5" }) {
   return (
@@ -38,17 +34,15 @@ function SearchIcon({ className = "h-5 w-5" }) {
 }
 
 /**
- * @param {{ categoryNavItems?: { slug: string; label: string }[]; useNativeLinks?: boolean }} props
+ * @param {{ useNativeLinks?: boolean }} props
  * `useNativeLinks`: global-not-found처럼 App Router 밖에서는 `next/link` 대신 `<a>` 사용
  */
-export default function Header({ categoryNavItems = [], useNativeLinks = false }) {
+export default function Header({ useNativeLinks = false }) {
   const NavLink = useNativeLinks ? "a" : Link;
 
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [categoryMobileOpen, setCategoryMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const categoryMenuId = useId();
   const searchPanelId = useId();
 
   useEffect(() => {
@@ -73,7 +67,6 @@ export default function Header({ categoryNavItems = [], useNativeLinks = false }
           className="flex items-center gap-2.5 text-xl font-bold tracking-tight text-text-main dark:text-dm-text sm:gap-3 sm:text-2xl"
           onClick={() => {
             setMobileOpen(false);
-            setCategoryMobileOpen(false);
             setSearchOpen(false);
           }}
         >
@@ -89,102 +82,57 @@ export default function Header({ categoryNavItems = [], useNativeLinks = false }
         </NavLink>
 
         <div className="flex flex-1 items-center justify-end gap-1 min-[769px]:gap-2">
-        <nav
-          className="hidden min-[769px]:flex min-[769px]:items-center min-[769px]:gap-8"
-          aria-label="주요 메뉴"
-        >
-          {NAV_LEAD.map((item) => (
+          <nav
+            className="hidden min-[769px]:flex min-[769px]:items-center min-[769px]:gap-8"
+            aria-label="주요 메뉴"
+          >
+            {NAV_LEAD.map((item) => (
+              <NavLink
+                key={item.href}
+                href={item.href}
+                className="text-[0.9375rem] font-medium leading-snug text-text-sub transition-colors hover:text-text-main dark:text-dm-muted dark:hover:text-dm-text"
+              >
+                {item.label}
+              </NavLink>
+            ))}
+
             <NavLink
-              key={item.href}
-              href={item.href}
+              href={NAV_CONTACT.href}
               className="text-[0.9375rem] font-medium leading-snug text-text-sub transition-colors hover:text-text-main dark:text-dm-muted dark:hover:text-dm-text"
             >
-              {item.label}
+              {NAV_CONTACT.label}
             </NavLink>
-          ))}
+          </nav>
 
-          <div className="group relative">
-            <span
-              className="inline-flex cursor-default items-center gap-1 text-[0.9375rem] font-medium leading-snug text-text-sub transition-colors group-hover:text-text-main dark:text-dm-muted dark:group-hover:text-dm-text"
-              aria-haspopup="true"
-              aria-expanded={undefined}
-            >
-              카테고리
-              <span className="text-xs opacity-70" aria-hidden="true">
-                ▾
-              </span>
-            </span>
-            <div
-              className="invisible absolute left-0 top-full z-50 min-w-[12rem] pt-2 opacity-0 transition-[opacity,visibility] duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
-              role="presentation"
-            >
-              <ul
-                id={categoryMenuId}
-                role="menu"
-                aria-label="카테고리 목록"
-                className="rounded-lg border border-border bg-bg-main py-2 shadow-lg dark:border-dm-border dark:bg-dm-card"
-              >
-                <li role="none">
-                  <NavLink
-                    role="menuitem"
-                    href="/category"
-                    className="block px-4 py-2 text-sm font-medium text-text-sub transition-colors hover:bg-secondary hover:text-text-main dark:text-dm-muted dark:hover:bg-dm-bg dark:hover:text-dm-text"
-                  >
-                    전체 보기
-                  </NavLink>
-                </li>
-                {categoryNavItems.map(({ slug, label }) => (
-                  <li key={slug} role="none">
-                    <NavLink
-                      role="menuitem"
-                      href={categoryHref(slug)}
-                      className="block px-4 py-2 text-sm font-medium text-text-sub transition-colors hover:bg-secondary hover:text-text-main dark:text-dm-muted dark:hover:bg-dm-bg dark:hover:text-dm-text"
-                    >
-                      {label}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <NavLink
-            href={NAV_CONTACT.href}
-            className="text-[0.9375rem] font-medium leading-snug text-text-sub transition-colors hover:text-text-main dark:text-dm-muted dark:hover:text-dm-text"
+          <button
+            type="button"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-text-main transition-colors hover:bg-secondary/80 dark:text-dm-text dark:hover:bg-dm-card"
+            aria-label={searchOpen ? "검색 닫기" : "검색 열기"}
+            aria-expanded={searchOpen}
+            aria-controls={searchPanelId}
+            onClick={() => {
+              setSearchOpen((v) => !v);
+              if (!searchOpen) setMobileOpen(false);
+            }}
           >
-            {NAV_CONTACT.label}
-          </NavLink>
-        </nav>
+            <SearchIcon />
+          </button>
 
-        <button
-          type="button"
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-text-main transition-colors hover:bg-secondary/80 dark:text-dm-text dark:hover:bg-dm-card"
-          aria-label={searchOpen ? "검색 닫기" : "검색 열기"}
-          aria-expanded={searchOpen}
-          aria-controls={searchPanelId}
-          onClick={() => {
-            setSearchOpen((v) => !v);
-            if (!searchOpen) setMobileOpen(false);
-          }}
-        >
-          <SearchIcon />
-        </button>
+          <button
+            type="button"
+            className="flex h-10 w-10 shrink-0 items-center justify-center text-2xl text-text-main dark:text-dm-text min-[769px]:hidden"
+            aria-label={mobileOpen ? "메뉴 닫기" : "메뉴 열기"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
+            onClick={() => {
+              setMobileOpen((open) => !open);
+              if (!mobileOpen) setSearchOpen(false);
+            }}
+          >
+            ☰
+          </button>
 
-        <button
-          type="button"
-          className="flex h-10 w-10 shrink-0 items-center justify-center text-2xl text-text-main dark:text-dm-text min-[769px]:hidden"
-          aria-label={mobileOpen ? "메뉴 닫기" : "메뉴 열기"}
-          aria-expanded={mobileOpen}
-          aria-controls="mobile-nav"
-          onClick={() => {
-            setMobileOpen((open) => !open);
-            if (!mobileOpen) setSearchOpen(false);
-          }}
-        >
-          ☰
-        </button>
-
-        <ThemeToggle />
+          <ThemeToggle />
         </div>
       </div>
 
@@ -221,69 +169,17 @@ export default function Header({ categoryNavItems = [], useNativeLinks = false }
               className="block py-3 text-base font-medium text-text-sub transition-colors hover:text-text-main dark:text-dm-muted dark:hover:text-dm-text"
               onClick={() => {
                 setMobileOpen(false);
-                setCategoryMobileOpen(false);
               }}
             >
               {item.label}
             </NavLink>
           ))}
 
-          <div className="border-t border-border py-1 dark:border-dm-border">
-            <button
-              type="button"
-              className="flex w-full items-center justify-between py-3 text-left text-base font-medium text-text-sub dark:text-dm-muted"
-              aria-expanded={categoryMobileOpen}
-              aria-controls="mobile-category-list"
-              onClick={() => setCategoryMobileOpen((v) => !v)}
-            >
-              카테고리
-              <span className="text-sm opacity-70" aria-hidden="true">
-                {categoryMobileOpen ? "▾" : "▸"}
-              </span>
-            </button>
-            <div
-              id="mobile-category-list"
-              className={`overflow-hidden transition-[max-height] duration-300 ease-out motion-reduce:transition-none ${
-                categoryMobileOpen ? "max-h-[min(40vh,320px)]" : "max-h-0"
-              }`}
-            >
-              <ul className="flex flex-col gap-0 border-l-2 border-primary/25 pl-3 dark:border-blue-500/30">
-                <li>
-                  <NavLink
-                    href="/category"
-                    className="block py-2 text-sm text-text-sub hover:text-text-main dark:text-dm-muted dark:hover:text-dm-text"
-                    onClick={() => {
-                      setMobileOpen(false);
-                      setCategoryMobileOpen(false);
-                    }}
-                  >
-                    전체 보기
-                  </NavLink>
-                </li>
-                {categoryNavItems.map(({ slug, label }) => (
-                  <li key={slug}>
-                    <NavLink
-                      href={categoryHref(slug)}
-                      className="block py-2 text-sm text-text-sub hover:text-text-main dark:text-dm-muted dark:hover:text-dm-text"
-                      onClick={() => {
-                        setMobileOpen(false);
-                        setCategoryMobileOpen(false);
-                      }}
-                    >
-                      {label}
-                    </NavLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
           <NavLink
             href={NAV_CONTACT.href}
             className="block border-t border-border py-3 text-base font-medium text-text-sub transition-colors hover:text-text-main dark:border-dm-border dark:text-dm-muted dark:hover:text-dm-text"
             onClick={() => {
               setMobileOpen(false);
-              setCategoryMobileOpen(false);
             }}
           >
             {NAV_CONTACT.label}

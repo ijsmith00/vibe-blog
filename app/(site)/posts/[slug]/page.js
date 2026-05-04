@@ -8,13 +8,8 @@ import JsonLd from "@/app/components/JsonLd";
 import PostCard from "@/app/components/PostCard";
 import PostTitle from "@/app/components/PostTitle";
 import TableOfContents from "@/app/components/TableOfContents";
+import { isPrivateCategoryLabel } from "@/lib/category";
 import {
-  categorySlugFromLabel,
-  isPrivateCategoryLabel,
-  normalizeCategory,
-} from "@/lib/category";
-import {
-  absolutePageUrl,
   absolutePostUrl,
   postDetailPath,
   SITE_NAME,
@@ -98,17 +93,10 @@ export default async function PostPage({ params }) {
 
   const { prev, next } = await getAdjacentPosts(slug);
   const related = await getRelatedPosts(slug, post.category, post.tags, 3);
+  void related.length;
 
-  const categoryLabel = post.category.trim() || "미분류";
-  const categorySlug =
-    categorySlugFromLabel(post.category) ??
-    encodeURIComponent(normalizeCategory(post.category));
   const postUrl = absolutePostUrl(slug);
-  const categoryPageUrl = absolutePageUrl(
-    `/category/${categorySlug}`,
-  );
   const titlePlain = stripMarkdownBold(post.title);
-  const isPrivate = isPrivateCategoryLabel(post.category);
 
   const articleJsonLd = buildBlogPostingJsonLd({
     post,
@@ -123,49 +111,24 @@ export default async function PostPage({ params }) {
       midAdOlIndex: post.midAdOlIndex ?? 1,
     });
 
-  const breadcrumbJsonLd = isPrivate
-    ? {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "홈",
-            item: SITE_URL,
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: titlePlain,
-            item: postUrl,
-          },
-        ],
-      }
-    : {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "홈",
-            item: SITE_URL,
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: categoryLabel,
-            item: categoryPageUrl,
-          },
-          {
-            "@type": "ListItem",
-            position: 3,
-            name: titlePlain,
-            item: postUrl,
-          },
-        ],
-      };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "홈",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: titlePlain,
+        item: postUrl,
+      },
+    ],
+  };
 
   return (
     <div className="pb-16 pt-10">
@@ -177,23 +140,16 @@ export default async function PostPage({ params }) {
             <Breadcrumb
               items={[
                 { label: "홈", href: "/" },
-                {
-                  label: categoryLabel,
-                  href: isPrivate ? null : `/category/${categorySlug}`,
-                },
                 { label: titlePlain, href: null },
               ]}
               maxLastLength={30}
             />
 
             <header className="mt-2">
-              <span className="inline-flex rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-800 dark:bg-blue-950/60 dark:text-blue-200">
-                {categoryLabel}
-              </span>
               <PostTitle
                 title={post.title}
                 as="h1"
-                className="mt-4 text-3xl font-extrabold tracking-tight text-text-main dark:text-dm-text sm:text-4xl md:text-[2.5rem] md:leading-tight"
+                className="text-3xl font-extrabold tracking-tight text-text-main dark:text-dm-text sm:text-4xl md:text-[2.5rem] md:leading-tight"
               />
               <p className="mt-3 text-sm font-medium text-text-sub dark:text-dm-muted">
                 <time dateTime={post.date}>{post.dateLabel}</time>
@@ -248,21 +204,6 @@ export default async function PostPage({ params }) {
               <AdPlaceholder className="mt-10" />
             </article>
 
-            {post.tags.length > 0 ? (
-              <ul className="mt-12 flex flex-wrap gap-2">
-                {post.tags.map((tag, i) => (
-                  <li key={`${tag}-${i}`}>
-                    <Link
-                      href={`/tag/${encodeURIComponent(tag)}`}
-                      className="inline-flex rounded-full bg-secondary px-3 py-1 text-xs font-medium text-text-sub transition hover:bg-primary/15 hover:text-primary dark:bg-dm-card dark:text-dm-muted dark:hover:bg-primary/20 dark:hover:text-blue-400"
-                    >
-                      {tag}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-
             <nav
               className="mt-12 flex flex-col gap-4 border-t border-border pt-10 dark:border-dm-border sm:flex-row sm:justify-between"
               aria-label="이전·다음 글"
@@ -297,21 +238,23 @@ export default async function PostPage({ params }) {
               ) : null}
             </nav>
 
-            {related.length > 0 ? (
-              <section className="mt-14" aria-labelledby="related-posts-heading">
-                <h2
-                  id="related-posts-heading"
-                  className="text-xl font-bold tracking-tight text-text-main dark:text-dm-text"
-                >
-                  관련 글
-                </h2>
-                <div className="mt-6 grid w-full min-w-0 grid-cols-1 gap-x-6 gap-y-6 justify-items-stretch sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3">
-                  {related.map((p) => (
-                    <PostCard key={p.slug} post={p} />
-                  ))}
-                </div>
-              </section>
-            ) : null}
+            {/* TODO: AdSense 승인 후 카테고리/태그 시스템 복원 시 다시 활성화 */}
+            {false &&
+              (related.length > 0 ? (
+                <section className="mt-14" aria-labelledby="related-posts-heading">
+                  <h2
+                    id="related-posts-heading"
+                    className="text-xl font-bold tracking-tight text-text-main dark:text-dm-text"
+                  >
+                    관련 글
+                  </h2>
+                  <div className="mt-6 grid w-full min-w-0 grid-cols-1 gap-x-6 gap-y-6 justify-items-stretch sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3">
+                    {related.map((p) => (
+                      <PostCard key={p.slug} post={p} />
+                    ))}
+                  </div>
+                </section>
+              ) : null)}
           </div>
         </main>
 

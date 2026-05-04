@@ -1,5 +1,5 @@
 import EmptyPostsState from "@/app/components/EmptyPostsState";
-import PostListWithFilter from "@/app/components/PostListWithFilter";
+import PostCard from "@/app/components/PostCard";
 import { SITE_NAME, absolutePageUrl } from "@/lib/site-config";
 import { getPublicPosts } from "@/lib/posts";
 
@@ -49,7 +49,11 @@ export default async function Home() {
         {posts.length === 0 ? (
           <EmptyPostsState />
         ) : (
-          <PostListWithFilter posts={posts} />
+          <div className="mt-8 grid w-full min-w-0 grid-cols-1 justify-items-stretch gap-x-6 gap-y-8 sm:mt-10 sm:gap-x-8 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-8">
+            {posts.map((post, index) => (
+              <PostCard key={post.slug} post={post} priority={index === 0} />
+            ))}
+          </div>
         )}
       </section>
     </div>

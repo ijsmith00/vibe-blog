@@ -5,7 +5,6 @@ import { DEFAULT_DESCRIPTION, SITE_NAME } from "@/lib/site-config";
 const FOOTER_LINKS = [
   { href: "/", label: "홈" },
   { href: "/about", label: "소개" },
-  { href: "/category", label: "카테고리" },
   { href: "/contact", label: "문의" },
   { href: "/privacy", label: "개인정보처리방침" },
   { href: "/terms", label: "이용약관" },

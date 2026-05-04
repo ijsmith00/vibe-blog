@@ -1,16 +1,13 @@
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
-import { getCategoryNavItems } from "@/lib/posts";
 
 /**
  * 404 전체 화면 — 헤더·푸터 포함 (`not-found`는 루트 레이아웃만 타므로 여기서 크롬 제공)
  */
 export default async function NotFoundContent() {
-  const categoryNavItems = await getCategoryNavItems();
-
   return (
     <>
-      <Header categoryNavItems={categoryNavItems} useNativeLinks />
+      <Header useNativeLinks />
       <main className="flex min-h-0 min-w-0 flex-1 flex-col">
         <div className="mx-auto flex w-full max-w-[1200px] flex-1 flex-col page-gutter">
           <section
