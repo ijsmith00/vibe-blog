@@ -15,20 +15,12 @@ function isNonOptimizableImageSrc(src) {
 
 /**
  * @param {Object} props
- * @param {{ slug: string; title: string; description: string; dateLabel: string; category?: string; cardThumbnail?: string | null }} props.post
+ * @param {{ slug: string; title: string; description: string; dateLabel: string; cardThumbnail?: string | null }} props.post
  * @param {boolean} [props.priority] LCP — 메인 첫 카드 등에만 true
  */
 export default function PostCard({ post, priority = false }) {
-  const {
-    slug,
-    title,
-    description,
-    dateLabel,
-    category = "",
-    cardThumbnail,
-  } = post;
+  const { slug, title, description, dateLabel, cardThumbnail } = post;
 
-  const categoryLabel = category.trim() || "미분류";
   const titlePlain = stripMarkdownBold(title);
 
   const sizes =
@@ -64,20 +56,12 @@ export default function PostCard({ post, priority = false }) {
               />
             )
           ) : (
-            <div className="flex h-full min-h-[140px] w-full items-center justify-center bg-gradient-to-br from-primary/20 via-secondary to-primary/10 px-4 text-center dark:from-primary/25 dark:via-dm-card dark:to-primary/15">
-              <span className="line-clamp-2 text-base font-semibold text-primary dark:text-blue-400 sm:text-lg">
-                {categoryLabel}
-              </span>
-            </div>
+            <div className="h-full min-h-[140px] w-full bg-gradient-to-br from-primary/15 via-secondary to-primary/10 dark:from-primary/20 dark:via-dm-card dark:to-primary/15" />
           )}
         </div>
 
         <div className="flex flex-1 flex-col p-4">
-          <span className="inline-flex w-fit max-w-full shrink-0 rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
-            {categoryLabel}
-          </span>
-
-          <h2 className="mt-3 line-clamp-2 text-lg font-bold leading-snug text-text-main group-hover:text-primary dark:text-dm-text dark:group-hover:text-blue-400">
+          <h2 className="line-clamp-2 text-lg font-bold leading-snug text-text-main group-hover:text-primary dark:text-dm-text dark:group-hover:text-blue-400">
             <PostTitle title={title} />
           </h2>
 

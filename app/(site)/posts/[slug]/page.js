@@ -6,6 +6,7 @@ import AdPlaceholder from "@/app/components/AdPlaceholder";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import JsonLd from "@/app/components/JsonLd";
 import PostCard from "@/app/components/PostCard";
+import PostSeoTags from "@/app/components/PostSeoTags";
 import PostTitle from "@/app/components/PostTitle";
 import TableOfContents from "@/app/components/TableOfContents";
 import { isPrivateCategoryLabel } from "@/lib/category";
@@ -59,9 +60,17 @@ export async function generateMetadata({ params }) {
       }
     : undefined;
 
+  const keywords =
+    post.seoTags?.length > 0
+      ? post.seoTags
+      : post.tags?.length > 0
+        ? post.tags
+        : undefined;
+
   return {
     title: titlePlain,
     description: post.description,
+    ...(keywords ? { keywords } : {}),
     alternates: {
       canonical,
     },
@@ -160,7 +169,7 @@ export default async function PostPage({ params }) {
 
             <AdPlaceholder className="mt-8" />
 
-            {post.thumbnailUrl ? (
+            {post.showLeadThumbnail ? (
               isNonOptimizableImageSrc(post.thumbnailUrl) ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
@@ -203,6 +212,8 @@ export default async function PostPage({ params }) {
               )}
               <AdPlaceholder className="mt-10" />
             </article>
+
+            <PostSeoTags tags={post.seoTags} />
 
             <nav
               className="mt-12 flex flex-col gap-4 border-t border-border pt-10 dark:border-dm-border sm:flex-row sm:justify-between"

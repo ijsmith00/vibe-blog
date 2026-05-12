@@ -7,8 +7,7 @@ export default function PostCardSkeleton() {
     >
       <div className="relative aspect-[16/10] w-full min-h-[140px] shrink-0 bg-slate-200 dark:bg-dm-bg" />
       <div className="flex flex-1 flex-col p-4">
-        <div className="h-5 w-16 shrink-0 rounded-full bg-slate-200 dark:bg-dm-border" />
-        <div className="mt-3 space-y-2">
+        <div className="space-y-2">
           <div className="h-5 w-full rounded bg-slate-200 dark:bg-dm-border" />
           <div className="h-5 w-[85%] rounded bg-slate-200 dark:bg-dm-border" />
         </div>

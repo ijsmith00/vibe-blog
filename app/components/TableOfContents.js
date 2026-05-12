@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 /**
- * @param {{ items: Array<{ id: string; text: string }> }} props
+ * @param {{ items: Array<{ id: string; text: string; level?: 2 | 3 }> }} props
  */
 export default function TableOfContents({ items }) {
   const list = useMemo(() => items || [], [items]);
@@ -75,7 +75,14 @@ export default function TableOfContents({ items }) {
           <li key={item.id}>
             <a
               href={`#${item.id}`}
-              className={linkClass(item.id)}
+              className={[
+                linkClass(item.id),
+                item.level === 3
+                  ? "pl-4 text-[0.8125rem] leading-snug text-text-sub dark:text-dm-muted"
+                  : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
               onClick={(e) => {
                 e.preventDefault();
                 scrollToId(item.id);
