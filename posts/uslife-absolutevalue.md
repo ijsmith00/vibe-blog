@@ -1,6 +1,6 @@
 ---
 title: "[미국 초등·중등 필독서] 캐스린 어스킨 <The Absolute Value of Mike>"
-date: "2026-06-17"
+date: "2026-06-17T10:49:00-07:00"
 thumbnail: /image-uslife/absolute-value-of-mike.png
 category: "미국 시골 생활"
 description: "캐스린 어스킨 <The Absolute Value of Mike(내 인생의 절댓값)> 줄거리·Lexile 610L·AR 3.9·추천 연령과 함께 읽기. 난산증·자존감·공동체를 다룬 미국 미들그레이드 필독서 리뷰입니다."

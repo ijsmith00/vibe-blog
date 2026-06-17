@@ -1,6 +1,6 @@
 ---
 title: "미국학교의 3개월 여름 방학 계획"
-date: "2026-06-09"
+date: "2026-06-09T16:42:00-07:00"
 thumbnail: /image-uslife/timetable.png
 category: "미국 시골 생활"
 description: "미국 학교 3개월 여름방학, MAP·월반, 재택근무 엄마의 시간표, 도서관 독서 계획까지. 북부 아이다호에서 맞이한 첫 여름방학 이야기입니다."
