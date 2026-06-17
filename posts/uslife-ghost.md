@@ -1,6 +1,6 @@
 ---
 title: "[미국 초등·중등 필독서] 제이슨 레이놀즈 <고스트(Ghost)>"
-date: "2026-05-22"
+date: "2026-06-16"
 thumbnail: /image-uslife/ghost.png
 category: "미국 시골 생활"
 description: "제이슨 레이놀즈 <고스트(Ghost)> 줄거리·Lexile 730L·AR 4.6·추천 연령과 함께 읽기. 분노·트라우마·육상을 다룬 미국 미들그레이드 필독서 리뷰입니다."
