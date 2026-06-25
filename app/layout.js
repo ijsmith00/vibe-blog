@@ -108,16 +108,18 @@ export default function RootLayout({ children }) {
           name="naver-site-verification"
           content={NAVER_SITE_VERIFICATION}
         />
+        {adsenseId ? (
+          <meta name="google-adsense-account" content={adsenseId} />
+        ) : null}
         <Script id="theme-init" strategy="beforeInteractive">
           {`(function(){try{var k='vibe-theme';var t=localStorage.getItem(k);var d=document.documentElement;if(t==='dark')d.classList.add('dark');else if(t==='light')d.classList.remove('dark');else if(typeof matchMedia!=='undefined'&&matchMedia('(prefers-color-scheme: dark)').matches)d.classList.add('dark')}catch(e){}})()`}
         </Script>
         {adsenseScriptSrc ? (
-          <Script
+          // 애드센스 크롤러는 JS 실행 전 HTML 소스의 script 태그를 확인함 — next/script 대신 직접 삽입
+          <script
             async
-            crossOrigin="anonymous"
-            id="google-adsense"
             src={adsenseScriptSrc}
-            strategy="afterInteractive"
+            crossOrigin="anonymous"
           />
         ) : null}
       </head>
