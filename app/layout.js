@@ -111,10 +111,6 @@ export default function RootLayout({ children }) {
         <Script id="theme-init" strategy="beforeInteractive">
           {`(function(){try{var k='vibe-theme';var t=localStorage.getItem(k);var d=document.documentElement;if(t==='dark')d.classList.add('dark');else if(t==='light')d.classList.remove('dark');else if(typeof matchMedia!=='undefined'&&matchMedia('(prefers-color-scheme: dark)').matches)d.classList.add('dark')}catch(e){}})()`}
         </Script>
-      </head>
-      <body
-        className={`${notoSansKr.className} min-h-full flex flex-col bg-bg-main text-text-main transition-colors dark:bg-dm-bg dark:text-dm-text`}
-      >
         {adsenseScriptSrc ? (
           <Script
             async
@@ -124,6 +120,10 @@ export default function RootLayout({ children }) {
             strategy="afterInteractive"
           />
         ) : null}
+      </head>
+      <body
+        className={`${notoSansKr.className} min-h-full flex flex-col bg-bg-main text-text-main transition-colors dark:bg-dm-bg dark:text-dm-text`}
+      >
         <JsonLd data={getWebSiteJsonLd()} />
         {children}
         <ScrollToTop />
