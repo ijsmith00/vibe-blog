@@ -23,12 +23,6 @@ export default async function sitemap() {
       priority: 0.8,
     })),
     {
-      url: `${base}/ecp-charts`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.35,
-    },
-    {
       url: `${base}/about`,
       lastModified: now,
       changeFrequency: "monthly",
@@ -39,6 +33,18 @@ export default async function sitemap() {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.4,
+    },
+    {
+      url: `${base}/privacy`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.35,
+    },
+    {
+      url: `${base}/terms`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.35,
     },
   ];
 

@@ -1,5 +1,11 @@
 import ContactForm from "@/app/components/ContactForm";
-import { SITE_NAME, absolutePageUrl } from "@/lib/site-config";
+import MaskedEmailLink from "@/app/components/MaskedEmailLink";
+import {
+  CONTACT_MAIL_DOMAIN,
+  CONTACT_MAIL_LOCAL,
+  SITE_NAME,
+  absolutePageUrl,
+} from "@/lib/site-config";
 
 /** 클라이언트(Web3Forms)에서 사용 — 빌드 시 번들에 포함됩니다. */
 export const dynamic = "force-dynamic";
@@ -59,6 +65,22 @@ export default function ContactPage() {
       {/* 문의 폼 — 기존 컴포넌트 그대로 */}
       <section aria-label="문의 양식">
         <ContactForm accessKey={WEB3FORMS_ACCESS_KEY} />
+      </section>
+
+      <section
+        aria-label="이메일로 문의"
+        className="mt-8 rounded-xl border border-border bg-secondary/40 px-5 py-5 dark:border-dm-border dark:bg-dm-card/60 sm:px-6"
+      >
+        <h2 className="text-sm font-semibold text-text-main dark:text-dm-text">
+          폼이 동작하지 않을 때
+        </h2>
+        <p className="mt-2 text-sm leading-relaxed text-text-sub dark:text-dm-muted">
+          아래 이메일로 직접 보내 주셔도 됩니다.{" "}
+          <MaskedEmailLink
+            localPart={CONTACT_MAIL_LOCAL}
+            domain={CONTACT_MAIL_DOMAIN}
+          />
+        </p>
       </section>
 
       {/* 안내 섹션 — 구분선 겸 신뢰 신호 */}

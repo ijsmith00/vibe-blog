@@ -49,6 +49,11 @@ const nextConfig = {
         destination: "/",
         permanent: true,
       },
+      {
+        source: "/ecp-charts",
+        destination: "/",
+        permanent: true,
+      },
     ];
   },
   images: {
