@@ -1,7 +1,6 @@
 ---
 title: "두 시간 만에 교정 도구 만든 썰 (feat. 클로드)"
 date: "2026-06-25T11:10:00-07:00"
-draft: true
 thumbnail: /image-uslife/editbot.png
 category: "미국 시골 생활"
 description: "IT 출판 위기 속 소규모 출판사가 맞춤법·띄어쓰기·어미 통일을 자동화한 로컬 교정 도구를 클로드와 함께 만든 과정. LLM 교정의 한계와 반복 작업에 집중한 실전 선택."
