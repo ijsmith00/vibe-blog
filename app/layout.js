@@ -5,7 +5,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import JsonLd from "./components/JsonLd";
 import ScrollToTop from "./components/ScrollToTop";
-import { getWebSiteJsonLd, NAVER_SITE_VERIFICATION } from "@/lib/config";
+import { getWebSiteJsonLd, getAdsensePublisherId, NAVER_SITE_VERIFICATION } from "@/lib/config";
 import {
   DEFAULT_DESCRIPTION,
   SITE_KEYWORDS,
@@ -82,14 +82,10 @@ export const viewport = {
   viewportFit: "cover",
 };
 
-const adsenseId =
-  typeof process.env.NEXT_PUBLIC_ADSENSE_ID === "string"
-    ? process.env.NEXT_PUBLIC_ADSENSE_ID.trim()
-    : "";
-const adsenseScriptSrc =
-  adsenseId !== ""
-    ? `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(adsenseId)}`
-    : null;
+const adsenseId = getAdsensePublisherId();
+const adsenseScriptSrc = adsenseId
+  ? `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(adsenseId)}`
+  : null;
 
 const gaId =
   typeof process.env.NEXT_PUBLIC_GA_ID === "string"
