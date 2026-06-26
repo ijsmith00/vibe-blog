@@ -31,6 +31,8 @@ const notoSansKr = Noto_Sans_KR({
 });
 
 export async function generateMetadata() {
+  const adsenseId = getAdsensePublisherId();
+
   return {
     metadataBase: new URL(SITE_URL),
     title: {
@@ -57,7 +59,11 @@ export async function generateMetadata() {
       index: true,
       follow: true,
     },
-    // 소유 확인용 meta는 아래 `<head>`에 직접 둠(네이버 크롤러 호환·head 앞쪽 배치). 토큰은 lib/config.js.
+    // 애드센스 사이트 확인: <meta name="google-adsense-account" content="ca-pub-…" />
+    ...(adsenseId
+      ? { other: { "google-adsense-account": adsenseId } }
+      : {}),
+    // 네이버는 metadata API 미지원 name이라 아래 <head>에 직접 둠
     openGraph: {
       type: "website",
       locale: "ko_KR",
@@ -104,9 +110,6 @@ export default function RootLayout({ children }) {
           name="naver-site-verification"
           content={NAVER_SITE_VERIFICATION}
         />
-        {adsenseId ? (
-          <meta name="google-adsense-account" content={adsenseId} />
-        ) : null}
         <Script id="theme-init" strategy="beforeInteractive">
           {`(function(){try{var k='vibe-theme';var t=localStorage.getItem(k);var d=document.documentElement;if(t==='dark')d.classList.add('dark');else if(t==='light')d.classList.remove('dark');else if(typeof matchMedia!=='undefined'&&matchMedia('(prefers-color-scheme: dark)').matches)d.classList.add('dark')}catch(e){}})()`}
         </Script>
