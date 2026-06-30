@@ -1,6 +1,6 @@
 ---
 title: "미국 영주권자 첫해, 세금 자진납세(추정세) 도전기"
-date: "2026-06-26T14:30:00-07:00"
+date: "2026-06-30T12:00:00-07:00"
 thumbnail: /image-uslife/tax.jpg
 category: "미국 시골 생활"
 description: "한국 프리랜서 편집자가 미국 영주권자가 된 뒤 겪은 추정세·FBAR·FATCA·아이다호 주세 납부 경험. Form 1040-ES, pay1040, IRS Direct Pay까지 첫해에 배운 것들."
