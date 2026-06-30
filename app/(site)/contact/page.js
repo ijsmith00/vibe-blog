@@ -1,4 +1,3 @@
-import ContactForm from "@/app/components/ContactForm";
 import MaskedEmailLink from "@/app/components/MaskedEmailLink";
 import {
   CONTACT_MAIL_DOMAIN,
@@ -7,18 +6,10 @@ import {
   absolutePageUrl,
 } from "@/lib/site-config";
 
-/** 클라이언트(Web3Forms)에서 사용 — 빌드 시 번들에 포함됩니다. */
-export const dynamic = "force-dynamic";
-
-const WEB3FORMS_ACCESS_KEY =
-  typeof process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY === "string"
-    ? process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY.trim()
-    : "";
-
 export async function generateMetadata() {
   return {
     title: `문의 | ${SITE_NAME}`,
-    description: `${SITE_NAME} 문의 — 아래 폼으로 연락해 주세요.`,
+    description: `${SITE_NAME} 문의 — 아래 이메일로 연락해 주세요.`,
     alternates: {
       canonical: absolutePageUrl("/contact"),
     },
@@ -28,7 +19,6 @@ export async function generateMetadata() {
 export default function ContactPage() {
   return (
     <div className="mx-auto w-full max-w-2xl pb-20 pt-8 sm:pt-10">
-      {/* 헤더 */}
       <header className="mb-10 sm:mb-12">
         <div
           aria-hidden="true"
@@ -57,33 +47,31 @@ export default function ContactPage() {
           유익하게 쓰이기를 바랍니다.
         </p>
         <p className="mt-3 text-[0.9375rem] leading-relaxed text-text-sub dark:text-dm-muted sm:text-base">
-          질문·협업·제안이 있으시면 아래 폼으로 보내 주세요. 최대한 신속하게
-          답변드리겠습니다.
+          질문·협업·제안이 있으시면 아래 이메일로 보내 주세요. 확인 후 가능한
+          범위에서 답변드리겠습니다.
         </p>
       </header>
 
-      {/* 문의 폼 — 기존 컴포넌트 그대로 */}
-      <section aria-label="문의 양식">
-        <ContactForm accessKey={WEB3FORMS_ACCESS_KEY} />
-      </section>
-
       <section
         aria-label="이메일로 문의"
-        className="mt-8 rounded-xl border border-border bg-secondary/40 px-5 py-5 dark:border-dm-border dark:bg-dm-card/60 sm:px-6"
+        className="rounded-2xl border border-border bg-secondary/60 px-5 py-8 shadow-sm dark:border-dm-border dark:bg-dm-bg sm:px-8 sm:py-10"
       >
-        <h2 className="text-sm font-semibold text-text-main dark:text-dm-text">
-          폼이 동작하지 않을 때
+        <h2 className="text-base font-semibold uppercase tracking-wider text-primary sm:text-lg dark:text-blue-400">
+          이메일로 문의하기
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-text-sub dark:text-dm-muted">
-          아래 이메일로 직접 보내 주셔도 됩니다.{" "}
+          제목과 본문을 적어 보내 주시면 됩니다. 회신이 필요하시면 보내시는
+          주소를 꼭 확인해 주세요.
+        </p>
+        <p className="mt-6 text-lg font-medium text-text-main dark:text-dm-text">
           <MaskedEmailLink
             localPart={CONTACT_MAIL_LOCAL}
             domain={CONTACT_MAIL_DOMAIN}
+            className="text-lg"
           />
         </p>
       </section>
 
-      {/* 안내 섹션 — 구분선 겸 신뢰 신호 */}
       <section
         aria-label="문의 안내"
         className="mt-12 border-t border-text-main/10 pt-8 dark:border-dm-text/10 sm:mt-14"
@@ -110,7 +98,7 @@ export default function ContactPage() {
               개인정보 처리
             </dt>
             <dd className="mt-1.5 text-sm leading-relaxed text-text-sub dark:text-dm-muted">
-              입력하신 정보는 답변 목적 외에는 사용되지 않습니다.
+              보내 주신 메일 내용은 답변 목적 외에는 사용되지 않습니다.
             </dd>
           </div>
         </dl>

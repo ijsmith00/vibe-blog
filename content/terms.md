@@ -37,7 +37,6 @@ updated: 2026-05-03
 - **Vercel**: 웹사이트 호스팅 및 방문 통계
 - **Google Analytics**: 방문자 행태 분석
 - **Google AdSense**: 광고 게재
-- **Web3Forms**: 문의 페이지 양식 처리
 
 각 서비스의 데이터 처리 방식에 대한 자세한 내용은 [개인정보처리방침](/privacy)을 참고해 주시기 바랍니다.
 

@@ -242,7 +242,7 @@ export default function AboutPage() {
           </h2>
           <div className="mt-5 space-y-4 text-[0.9375rem] leading-[1.85] text-text-sub dark:text-dm-muted sm:text-base">
             <p className={leadFirst}>
-              협업·콘텐츠 관련 제안은 문의 페이지의 양식으로 접수합니다.
+              협업·콘텐츠 관련 제안은 문의 페이지에 안내된 이메일로 접수합니다.
             </p>
             <p>
               <Link
@@ -251,7 +251,8 @@ export default function AboutPage() {
               >
                 문의 페이지로 이동
               </Link>
-              하여 내용을 남겨 주시면, 확인 후 가능한 범위에서 답변드립니다.
+              하여 이메일 주소를 확인하신 뒤, 내용을 보내 주시면 확인 후 가능한
+              범위에서 답변드립니다.
             </p>
           </div>
         </section>
